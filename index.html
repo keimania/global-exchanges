@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Global Exchange & Order Types Architecture</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Marked (Markdown Parser) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Highlight.js (Code Highlighting) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- KaTeX (Math Rendering) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Markdown Styling */
+    .prose-custom h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(148, 163, 184, 0.2);
+    }
+    .prose-custom h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      color: #0284c7;
+    }
+    .dark .prose-custom h2 {
+      color: #38bdf8;
+    }
+    .prose-custom h3 {
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .prose-custom h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .prose-custom p {
+      margin-bottom: 0.85rem;
+      line-height: 1.7;
+    }
+    .prose-custom ul, .prose-custom ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .prose-custom ul {
+      list-style-type: disc;
+    }
+    .prose-custom ol {
+      list-style-type: decimal;
+    }
+    .prose-custom li {
+      margin-bottom: 0.35rem;
+      line-height: 1.6;
+    }
+    .prose-custom strong {
+      font-weight: 600;
+      color: inherit;
+    }
+    .prose-custom blockquote {
+      border-left: 4px solid #0284c7;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      opacity: 0.9;
+      font-style: italic;
+    }
+    .prose-custom hr {
+      margin: 2rem 0;
+      border-color: rgba(148, 163, 184, 0.2);
+    }
+
+    /* Mobile-optimized Responsive Tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      -webkit-overflow-scrolling: touch;
+    }
+    .prose-custom table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+    .prose-custom th {
+      padding: 0.75rem 1rem;
+      background-color: rgba(148, 163, 184, 0.1);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      white-space: nowrap;
+    }
+    .prose-custom td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      line-height: 1.5;
+    }
+    .prose-custom tr:last-child td {
+      border-bottom: none;
+    }
+    .prose-custom tr:hover {
+      background-color: rgba(148, 163, 184, 0.05);
+    }
+
+    /* Code blocks */
+    .prose-custom pre {
+      background-color: #1e293b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .prose-custom :not(pre) > code {
+      background-color: rgba(148, 163, 184, 0.15);
+      padding: 0.15rem 0.35rem;
+      border-radius: 0.25rem;
+      font-size: 0.85em;
+      color: #0284c7;
+    }
+    .dark .prose-custom :not(pre) > code {
+      color: #38bdf8;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Mobile Top Header -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <button id="btn-toggle-sidebar" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="메뉴 열기">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+          GX
+        </div>
+        <div>
+          <h1 class="text-sm font-bold leading-tight tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+            <span id="current-exchange-name">Global Exchanges</span>
+          </h1>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Order Types & Matching Engine Specs</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Header -->
+    <div class="flex items-center space-x-1.5">
+      <button id="btn-search-trigger" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="거래소 검색">
+        <i data-lucide="search" class="w-4 h-4"></i>
+      </button>
+      <button id="btn-theme-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="다크/라이트 모드">
+        <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+        <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+      </button>
+      <a href="https://github.com/keimania/global-exchanges" target="_blank" rel="noopener" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors hidden sm:inline-flex" title="GitHub Repository">
+        <i data-lucide="github" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden relative">
+
+    <!-- Sidebar Backdrop for Mobile -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-950/60 z-40 hidden transition-opacity lg:hidden backdrop-blur-sm"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed lg:static top-0 bottom-0 left-0 z-50 w-72 lg:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-transform -translate-x-full lg:translate-x-0 shadow-2xl lg:shadow-none h-full">
+      
+      <!-- Sidebar Header (Mobile Close) -->
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between lg:hidden">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="globe" class="w-5 h-5 text-sky-500"></i>
+          <span class="font-bold text-sm">전세계 거래소 목록</span>
+        </div>
+        <button id="btn-close-sidebar" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Quick Search Input inside Sidebar -->
+      <div class="p-3 border-b border-slate-100 dark:border-slate-800/60">
+        <div class="relative">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+          <input type="text" id="sidebar-search" placeholder="거래소, 국가, 엔진 검색..." 
+            class="w-full bg-slate-100 dark:bg-slate-800/80 rounded-lg pl-9 pr-3 py-1.5 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500 border border-transparent">
+        </div>
+      </div>
+
+      <!-- Exchange Nav List -->
+      <nav id="nav-list" class="flex-1 overflow-y-auto p-3 space-y-4 text-xs">
+        <!-- Rendered dynamically by JS -->
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+        <span class="flex items-center gap-1.5 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 24 Documents Active
+        </span>
+        <div class="flex items-center gap-1">
+          <button id="font-decrease" class="px-1.5 py-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 font-mono font-bold" title="글자 크기 축소">A-</button>
+          <button id="font-reset" class="px-1.5 py-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 font-mono" title="글자 크기 초기화">A</button>
+          <button id="font-increase" class="px-1.5 py-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 font-mono font-bold" title="글자 크기 확대">A+</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto relative flex flex-col h-[calc(100vh-57px)]" id="main-scroll-container">
+      
+      <!-- Top Status Banner -->
+      <div id="content-banner" class="bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-transparent border-b border-sky-500/10 px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center space-x-2">
+          <span id="badge-country" class="text-base sm:text-lg">🇺🇸</span>
+          <span id="badge-code" class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">NASDAQ</span>
+          <span id="badge-engine" class="font-mono text-[11px] px-2 py-0.5 rounded bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-300">INET Engine</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <button id="btn-toc-toggle" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
+            <i data-lucide="list" class="w-3.5 h-3.5"></i>
+            <span>목차(TOC)</span>
+          </button>
+          <button id="btn-copy-link" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
+            <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">공유</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Markdown Render Container -->
+      <div class="flex-1 px-4 sm:px-8 py-6 max-w-4xl mx-auto w-full">
+        <!-- Loading Spinner -->
+        <div id="loading" class="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+          <div class="w-8 h-8 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-xs font-medium">데이터를 불러오는 중입니다...</p>
+        </div>
+
+        <!-- Rendered Article -->
+        <article id="markdown-body" class="prose-custom hidden text-[15px] leading-relaxed">
+          <!-- Markdown injected here -->
+        </article>
+      </div>
+
+      <!-- Bottom Floating Controls for Mobile -->
+      <div class="sticky bottom-4 right-4 self-end z-30 flex items-center gap-2 pr-4 pb-2">
+        <button id="btn-scroll-top" class="p-3 rounded-full bg-slate-900/90 dark:bg-slate-800/90 text-white shadow-xl backdrop-blur border border-slate-700/50 hover:bg-sky-600 transition-all opacity-0 pointer-events-none transform translate-y-2" title="맨 위로">
+          <i data-lucide="chevron-up" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- TOC Modal / Drawer (Mobile & Desktop) -->
+  <div id="toc-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-md w-full max-h-[80vh] flex flex-col overflow-hidden">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="list" class="w-4 h-4 text-sky-500"></i>
+          <h3 class="font-bold text-sm">문서 목차 (Table of Contents)</h3>
+        </div>
+        <button id="btn-close-toc" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="toc-content" class="p-4 overflow-y-auto space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-start justify-center pt-16 px-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+        <input type="text" id="global-search-input" placeholder="거래소명, 국가, 매칭 엔진 (예: NASDAQ, Optiq, 홍콩, T7)..." 
+          class="flex-1 bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none">
+        <button id="btn-close-search" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="global-search-results" class="max-h-80 overflow-y-auto p-2 space-y-1 text-xs">
+        <!-- Search items dynamically injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Data & Application Script -->
+  <script>
+    // Exchange Directory Metadata
+    const EXCHANGES = [
+      // North America
+      { id: 'nasdaq', name: 'NASDAQ', krName: '나스닥', file: 'nasdaq.md', country: '미국', flag: '🇺🇸', region: 'North America', engine: 'INET / Eqlipse' },
+      { id: 'nyse', name: 'NYSE', krName: '뉴욕증권거래소', file: 'nyse.md', country: '미국', flag: '🇺🇸', region: 'North America', engine: 'Pillar Engine' },
+      { id: 'tmx', name: 'TMX (TSX)', krName: '토론토증권거래소', file: 'tmx.md', country: '캐나다', flag: '🇨🇦', region: 'North America', engine: 'TSX Quantum' },
+      
+      // Asia-Pacific
+      { id: 'hkex', name: 'HKEX', krName: '홍콩증권거래소', file: 'hkex.md', country: '홍콩', flag: '🇭🇰', region: 'Asia-Pacific', engine: 'OTP-C Platform' },
+      { id: 'jpx', name: 'JPX (TSE)', krName: '도쿄증권거래소', file: 'jpx.md', country: '일본', flag: '🇯🇵', region: 'Asia-Pacific', engine: 'Arrowhead 4.0' },
+      { id: 'sse', name: 'SSE', krName: '상하이증권거래소', file: 'sse.md', country: '중국', flag: '🇨🇳', region: 'Asia-Pacific', engine: 'New Generation System' },
+      { id: 'szse', name: 'SZSE', krName: '선전증권거래소', file: 'szse.md', country: '중국', flag: '🇨🇳', region: 'Asia-Pacific', engine: '5th Gen Engine' },
+      { id: 'twse', name: 'TWSE', krName: '대만증권거래소', file: 'twse.md', country: '대만', flag: '🇹🇼', region: 'Asia-Pacific', engine: 'Continuous Trading Engine' },
+      { id: 'sgx', name: 'SGX', krName: '싱가포르거래소', file: 'sgx.md', country: '싱가포르', flag: '🇸🇬', region: 'Asia-Pacific', engine: 'SGX Titan Engine' },
+      { id: 'asx', name: 'ASX', krName: '호주증권거래소', file: 'asx.md', country: '호주', flag: '🇦🇺', region: 'Asia-Pacific', engine: 'ASX Trade & Centre Point' },
+      { id: 'bursa_malaysia', name: 'Bursa Malaysia', krName: '말레이시아거래소', file: 'bursa_malaysia.md', country: '말레이시아', flag: '🇲🇾', region: 'Asia-Pacific', engine: 'BTS2 Engine' },
+      
+      // Europe
+      { id: 'lse', name: 'LSE', krName: '런던증권거래소', file: 'lse.md', country: '영국', flag: '🇬🇧', region: 'Europe', engine: 'Millennium Exchange' },
+      { id: 'euronext', name: 'Euronext', krName: '유로넥스트', file: 'euronext.md', country: '범유럽', flag: '🇪🇺', region: 'Europe', engine: 'Optiq Platform' },
+      { id: 'deutsche_borse', name: 'Deutsche Börse (Xetra)', krName: '독일거래소', file: 'deutsche_borse.md', country: '독일', flag: '🇩🇪', region: 'Europe', engine: 'T7 Architecture' },
+      { id: 'six', name: 'SIX Swiss', krName: '스위스거래소', file: 'six.md', country: '스위스', flag: '🇨🇭', region: 'Europe', engine: 'SwissAtMid & OREX' },
+      { id: 'borsa_italiana', name: 'Borsa Italiana', krName: '이탈리아거래소', file: 'borsa_italiana.md', country: '이탈리아', flag: '🇮🇹', region: 'Europe', engine: 'Optiq Engine' },
+      { id: 'bme', name: 'BME', krName: '스페인거래소', file: 'bme.md', country: '스페인', flag: '🇪🇸', region: 'Europe', engine: 'SIBE System' },
+      { id: 'nasdaq_nordic', name: 'Nasdaq Nordic', krName: '나스닥 노르딕', file: 'nasdaq_nordic.md', country: '북유럽', flag: '🇸🇪', region: 'Europe', engine: 'INET Nordic' },
+      
+      // Emerging & Middle East
+      { id: 'nse_india', name: 'NSE India', krName: '인도국립증권거래소', file: 'nse_india.md', country: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', engine: 'NEAT+ Platform' },
+      { id: 'bse', name: 'BSE', krName: '봄베이증권거래소', file: 'bse.md', country: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', engine: 'BOLT Plus' },
+      { id: 'jse', name: 'JSE', krName: '요하네스버그거래소', file: 'jse.md', country: '남아공', flag: '🇿🇦', region: 'Emerging & Middle East', engine: 'MillenniumIT' },
+      { id: 'tadawul', name: 'Saudi Tadawul', krName: '사우디 타다울', file: 'tadawul.md', country: '사우디', flag: '🇸🇦', region: 'Emerging & Middle East', engine: 'Nasdaq X-Stream INET' },
+
+      // Special Regulatory Documents
+      { id: 'NASDAQ_OPTIONS_RULES_Korean', name: 'NASDAQ Options Rules (한글)', krName: '나스닥 옵션 규정집 (한국어)', file: 'NASDAQ_OPTIONS_RULES_Korean.md', country: '미국', flag: '📘', region: 'Special Regulations', engine: 'NOM Rules 208P Full' },
+      { id: 'NASDAQ_OPTIONS_RULES', name: 'NASDAQ Options Rules (영문)', krName: '나스닥 옵션 규정집 (원문)', file: 'NASDAQ_OPTIONS_RULES.md', country: '미국', flag: '📄', region: 'Special Regulations', engine: 'NOM Rules Original' }
+    ];
+
+    // Current State
+    let currentId = 'nasdaq';
+    let currentFontSize = 15;
+
+    // Marked Renderer Configuration
+    const renderer = new marked.Renderer();
+    
+    // Wrap tables in responsive div
+    renderer.table = function(header, body) {
+      return '<div class="table-container"><table>' +
+        '<thead>' + header + '</thead>' +
+        '<tbody>' + body + '</tbody>' +
+        '</table></div>';
+    };
+
+    marked.setOptions({
+      renderer: renderer,
+      gfm: true,
+      breaks: false,
+      highlight: function(code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      }
+    });
+
+    // Group Exchanges by Region
+    function getGroupedExchanges() {
+      const groups = {};
+      EXCHANGES.forEach(ex => {
+        if (!groups[ex.region]) groups[ex.region] = [];
+        groups[ex.region].push(ex);
+      });
+      return groups;
+    }
+
+    // Render Sidebar Navigation
+    function renderSidebar(filterText = '') {
+      const navList = document.getElementById('nav-list');
+      const grouped = getGroupedExchanges();
+      let html = '';
+
+      const query = filterText.toLowerCase().trim();
+
+      for (const [region, items] of Object.entries(grouped)) {
+        const filtered = items.filter(ex => 
+          ex.name.toLowerCase().includes(query) || 
+          ex.krName.toLowerCase().includes(query) || 
+          ex.country.toLowerCase().includes(query) || 
+          ex.engine.toLowerCase().includes(query)
+        );
+
+        if (filtered.length === 0) continue;
+
+        html += `<div class="space-y-1">
+          <div class="px-2 py-1 text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">${region}</div>
+          <div class="space-y-0.5">`;
+
+        filtered.forEach(ex => {
+          const isActive = ex.id === currentId;
+          const activeClasses = isActive 
+            ? 'bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 font-semibold border-l-2 border-sky-500' 
+            : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60';
+
+          html += `
+            <a href="#/${ex.id}" class="flex items-center justify-between px-2.5 py-2 rounded-md transition-all ${activeClasses} group">
+              <div class="flex items-center space-x-2 truncate">
+                <span class="text-sm">${ex.flag}</span>
+                <div class="truncate">
+                  <div class="truncate leading-tight">${ex.name}</div>
+                  <div class="text-[10px] text-slate-400 font-normal truncate">${ex.krName}</div>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 truncate max-w-[80px]">${ex.engine.split(' ')[0]}</span>
+            </a>
+          `;
+        });
+
+        html += `</div></div>`;
+      }
+
+      if (html === '') {
+        html = `<div class="p-4 text-center text-slate-400 text-xs">일치하는 거래소가 없습니다.</div>`;
+      }
+
+      navList.innerHTML = html;
+    }
+
+    // Load and Render Markdown File
+    async function loadExchange(id) {
+      const ex = EXCHANGES.find(e => e.id === id) || EXCHANGES[0];
+      currentId = ex.id;
+      window.location.hash = `/${ex.id}`;
+
+      // Update Header Badges
+      document.getElementById('current-exchange-name').textContent = `${ex.name} (${ex.krName})`;
+      document.getElementById('badge-country').textContent = ex.flag;
+      document.getElementById('badge-code').textContent = ex.name;
+      document.getElementById('badge-engine').textContent = ex.engine;
+      document.title = `${ex.name} - Global Exchange Architecture`;
+
+      // Update Sidebar active state
+      renderSidebar(document.getElementById('sidebar-search').value);
+
+      // Close mobile sidebar
+      closeSidebar();
+
+      // Show Loading
+      const loading = document.getElementById('loading');
+      const body = document.getElementById('markdown-body');
+      loading.classList.remove('hidden');
+      body.classList.add('hidden');
+
+      try {
+        const response = await fetch(ex.file);
+        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+        let markdown = await response.text();
+
+        // Convert Math delimiters if necessary before marked
+        // Parse markdown to HTML
+        const html = marked.parse(markdown);
+        body.innerHTML = html;
+
+        // Render KaTeX math
+        renderMathInElement(body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+
+        // Generate TOC
+        buildTOC();
+
+        loading.classList.add('hidden');
+        body.classList.remove('hidden');
+
+        // Scroll to top of container
+        document.getElementById('main-scroll-container').scrollTop = 0;
+
+        // Refresh icons
+        lucide.createIcons();
+
+      } catch (err) {
+        loading.classList.add('hidden');
+        body.classList.remove('hidden');
+        body.innerHTML = `
+          <div class="p-6 rounded-xl border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-900/50 text-red-600 dark:text-red-400">
+            <h3 class="font-bold text-base mb-2">문서를 불러오지 못했습니다</h3>
+            <p class="text-xs mb-4">${err.message}</p>
+            <p class="text-xs text-slate-500">GitHub Pages나 로컬 웹서버(http://)를 통해 접속해야 마크다운 파일을 비동기로 읽어올 수 있습니다.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Build Table of Contents
+    function buildTOC() {
+      const body = document.getElementById('markdown-body');
+      const headings = body.querySelectorAll('h1, h2, h3');
+      const tocContainer = document.getElementById('toc-content');
+      
+      if (headings.length === 0) {
+        tocContainer.innerHTML = '<p class="text-slate-400 text-center py-4">목차가 없습니다.</p>';
+        return;
+      }
+
+      let html = '';
+      headings.forEach((heading, idx) => {
+        const id = 'heading-' + idx;
+        heading.id = id;
+        const level = heading.tagName.toLowerCase();
+        const indent = level === 'h1' ? 'font-bold text-slate-900 dark:text-white pt-1' : (level === 'h2' ? 'pl-3 font-semibold text-sky-600 dark:text-sky-400' : 'pl-6 text-slate-500');
+
+        html += `
+          <a href="#${id}" class="block py-1 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${indent} truncate" onclick="closeTOC();">
+            ${heading.textContent}
+          </a>
+        `;
+      });
+
+      tocContainer.innerHTML = html;
+    }
+
+    // Global Search Modal Logic
+    function setupGlobalSearch() {
+      const searchTrigger = document.getElementById('btn-search-trigger');
+      const searchModal = document.getElementById('search-modal');
+      const searchClose = document.getElementById('btn-close-search');
+      const searchInput = document.getElementById('global-search-input');
+      const searchResults = document.getElementById('global-search-results');
+
+      function openSearch() {
+        searchModal.classList.remove('hidden');
+        searchInput.value = '';
+        renderSearchResults('');
+        setTimeout(() => searchInput.focus(), 50);
+      }
+
+      function closeSearch() {
+        searchModal.classList.add('hidden');
+      }
+
+      function renderSearchResults(q) {
+        const query = q.toLowerCase().trim();
+        const matches = EXCHANGES.filter(ex => 
+          ex.name.toLowerCase().includes(query) ||
+          ex.krName.toLowerCase().includes(query) ||
+          ex.country.toLowerCase().includes(query) ||
+          ex.engine.toLowerCase().includes(query) ||
+          ex.region.toLowerCase().includes(query)
+        );
+
+        if (matches.length === 0) {
+          searchResults.innerHTML = '<div class="p-4 text-center text-slate-400">검색 결과가 없습니다.</div>';
+          return;
+        }
+
+        searchResults.innerHTML = matches.map(ex => `
+          <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+               onclick="loadExchange('${ex.id}'); document.getElementById('search-modal').classList.add('hidden');">
+            <div class="flex items-center space-x-3 truncate">
+              <span class="text-xl">${ex.flag}</span>
+              <div class="truncate">
+                <div class="font-bold text-slate-800 dark:text-slate-100 text-xs">${ex.name} <span class="text-slate-400 font-normal">(${ex.krName})</span></div>
+                <div class="text-[10px] text-slate-400">${ex.country} · ${ex.region}</div>
+              </div>
+            </div>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-500/20">${ex.engine}</span>
+          </div>
+        `).join('');
+      }
+
+      searchTrigger.addEventListener('click', openSearch);
+      searchClose.addEventListener('click', closeSearch);
+      searchModal.addEventListener('click', (e) => {
+        if (e.target === searchModal) closeSearch();
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value);
+      });
+
+      // Keyboard Shortcut (Cmd+K / Ctrl+K)
+      window.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          openSearch();
+        }
+        if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+          closeSearch();
+        }
+      });
+    }
+
+    // Sidebar Mobile Controls
+    const sidebar = document.getElementById('sidebar');
+    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      sidebarBackdrop.classList.remove('hidden');
+    }
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      sidebarBackdrop.classList.add('hidden');
+    }
+
+    // TOC Modal Controls
+    const tocModal = document.getElementById('toc-modal');
+    function openTOC() { tocModal.classList.remove('hidden'); }
+    function closeTOC() { tocModal.classList.add('hidden'); }
+
+    // Theme Toggle Logic
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      lucide.createIcons();
+    }
+
+    // Init Theme
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Font Size Controls
+    function setFontSize(size) {
+      currentFontSize = size;
+      document.getElementById('markdown-body').style.fontSize = `${currentFontSize}px`;
+      localStorage.setItem('docFontSize', size);
+    }
+
+    // Setup Event Listeners
+    document.getElementById('btn-toggle-sidebar').addEventListener('click', openSidebar);
+    document.getElementById('btn-close-sidebar').addEventListener('click', closeSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+
+    document.getElementById('btn-toc-toggle').addEventListener('click', openTOC);
+    document.getElementById('btn-close-toc').addEventListener('click', closeTOC);
+    tocModal.addEventListener('click', (e) => { if (e.target === tocModal) closeTOC(); });
+
+    document.getElementById('btn-theme-toggle').addEventListener('click', toggleTheme);
+
+    document.getElementById('font-decrease').addEventListener('click', () => setFontSize(Math.max(12, currentFontSize - 1)));
+    document.getElementById('font-reset').addEventListener('click', () => setFontSize(15));
+    document.getElementById('font-increase').addEventListener('click', () => setFontSize(Math.min(20, currentFontSize + 1)));
+
+    // Sidebar Search input
+    document.getElementById('sidebar-search').addEventListener('input', (e) => {
+      renderSidebar(e.target.value);
+    });
+
+    // Copy Link Button
+    document.getElementById('btn-copy-link').addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert('문서 링크가 클립보드에 복사되었습니다!');
+      });
+    });
+
+    // Scroll to Top Button Visibility
+    const scrollContainer = document.getElementById('main-scroll-container');
+    const scrollTopBtn = document.getElementById('btn-scroll-top');
+    scrollContainer.addEventListener('scroll', () => {
+      if (scrollContainer.scrollTop > 300) {
+        scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+      } else {
+        scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+      }
+    });
+    scrollTopBtn.addEventListener('click', () => {
+      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hash Route Listener
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#/', '');
+      if (hash && hash !== currentId) {
+        loadExchange(hash);
+      }
+    });
+
+    // Initialize App
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      setupGlobalSearch();
+
+      const savedFontSize = localStorage.getItem('docFontSize');
+      if (savedFontSize) setFontSize(parseInt(savedFontSize));
+
+      renderSidebar();
+
+      // Read initial hash
+      const initialHash = window.location.hash.replace('#/', '');
+      if (initialHash && EXCHANGES.some(e => e.id === initialHash)) {
+        loadExchange(initialHash);
+      } else {
+        loadExchange('nasdaq');
+      }
+    });
+  </script>
+</body>
+</html>
