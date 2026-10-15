@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Global Exchange & Order Types Architecture</title>
+  <title>Global Exchanges & Order Types Architecture</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -65,7 +65,7 @@
       border-bottom: 2px solid rgba(148, 163, 184, 0.2);
     }
     .prose-custom h2 {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 700;
       margin-top: 2rem;
       margin-bottom: 0.75rem;
@@ -77,13 +77,13 @@
       color: #38bdf8;
     }
     .prose-custom h3 {
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       font-weight: 600;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
     }
     .prose-custom h4 {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 600;
       margin-top: 1.25rem;
       margin-bottom: 0.5rem;
@@ -127,34 +127,51 @@
       width: 100%;
       overflow-x: auto;
       margin: 1.25rem 0;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.25);
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
       -webkit-overflow-scrolling: touch;
+      background-color: transparent;
     }
     .prose-custom table {
       width: 100%;
+      min-width: 500px;
       border-collapse: collapse;
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       text-align: left;
     }
     .prose-custom th {
       padding: 0.75rem 1rem;
-      background-color: rgba(148, 163, 184, 0.1);
+      background-color: rgba(148, 163, 184, 0.12);
       font-weight: 600;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
       white-space: nowrap;
+      color: #0f172a;
+    }
+    .dark .prose-custom th {
+      background-color: rgba(30, 41, 59, 0.8);
+      color: #f8fafc;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
     }
     .prose-custom td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-      line-height: 1.5;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      line-height: 1.55;
     }
     .prose-custom tr:last-child td {
       border-bottom: none;
     }
-    .prose-custom tr:hover {
-      background-color: rgba(148, 163, 184, 0.05);
+    .prose-custom tbody tr:nth-child(even) {
+      background-color: rgba(148, 163, 184, 0.04);
+    }
+    .dark .prose-custom tbody tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+    .prose-custom tbody tr:hover {
+      background-color: rgba(148, 163, 184, 0.08);
+    }
+    .dark .prose-custom tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
     }
 
     /* Code blocks */
@@ -197,33 +214,49 @@
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
   <!-- Mobile Top Header -->
-  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-3 sm:px-4 py-2.5 flex items-center justify-between">
+    <div class="flex items-center space-x-2 sm:space-x-3">
       <button id="btn-toggle-sidebar" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" aria-label="메뉴 열기">
         <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
       <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow-md">
           GX
         </div>
         <div>
-          <h1 class="text-sm font-bold leading-tight tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
-            <span id="current-exchange-name">Global Exchanges</span>
+          <h1 class="text-xs sm:text-sm font-bold leading-tight tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 truncate max-w-[150px] sm:max-w-xs">
+            <span id="current-exchange-name">NASDAQ</span>
           </h1>
-          <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Order Types & Matching Engine Specs</p>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Order Types & Engine Specs</p>
         </div>
       </div>
     </div>
 
     <!-- Quick Actions Header -->
-    <div class="flex items-center space-x-1.5">
+    <div class="flex items-center space-x-1 sm:space-x-1.5">
+      
+      <!-- Language Toggle Switch (KO / EN) -->
+      <div class="flex items-center p-0.5 rounded-lg bg-slate-200/80 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-[11px] font-bold">
+        <button id="lang-ko-btn" class="px-2 py-1 rounded-md transition-all flex items-center gap-1">
+          <span>🇰🇷</span> <span class="hidden sm:inline">한국어</span><span class="sm:hidden">KO</span>
+        </button>
+        <button id="lang-en-btn" class="px-2 py-1 rounded-md transition-all flex items-center gap-1">
+          <span>🇺🇸</span> <span class="hidden sm:inline">English</span><span class="sm:hidden">EN</span>
+        </button>
+      </div>
+
+      <!-- Quick Search Trigger -->
       <button id="btn-search-trigger" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="거래소 검색">
         <i data-lucide="search" class="w-4 h-4"></i>
       </button>
+
+      <!-- Theme Toggle -->
       <button id="btn-theme-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="다크/라이트 모드">
         <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
         <i data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
       </button>
+
+      <!-- GitHub Link -->
       <a href="https://github.com/keimania/global-exchanges" target="_blank" rel="noopener" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors hidden sm:inline-flex" title="GitHub Repository">
         <i data-lucide="github" class="w-4 h-4"></i>
       </a>
@@ -242,7 +275,7 @@
       <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between lg:hidden">
         <div class="flex items-center space-x-2">
           <i data-lucide="globe" class="w-5 h-5 text-sky-500"></i>
-          <span class="font-bold text-sm">전세계 거래소 목록</span>
+          <span class="font-bold text-sm" id="sidebar-title">글로벌 거래소 목록</span>
         </div>
         <button id="btn-close-sidebar" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -266,7 +299,7 @@
       <!-- Sidebar Footer -->
       <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
         <span class="flex items-center gap-1.5 font-medium">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 24 Documents Active
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 24 Documents (KO/EN)
         </span>
         <div class="flex items-center gap-1">
           <button id="font-decrease" class="px-1.5 py-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 font-mono font-bold" title="글자 크기 축소">A-</button>
@@ -285,15 +318,16 @@
           <span id="badge-country" class="text-base sm:text-lg">🇺🇸</span>
           <span id="badge-code" class="font-mono font-bold text-xs px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">NASDAQ</span>
           <span id="badge-engine" class="font-mono text-[11px] px-2 py-0.5 rounded bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-300">INET Engine</span>
+          <span id="badge-lang-indicator" class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">KO</span>
         </div>
         <div class="flex items-center gap-2 text-xs">
           <button id="btn-toc-toggle" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
             <i data-lucide="list" class="w-3.5 h-3.5"></i>
-            <span>목차(TOC)</span>
+            <span id="toc-btn-text">목차 (TOC)</span>
           </button>
           <button id="btn-copy-link" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
             <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-            <span class="hidden sm:inline">공유</span>
+            <span class="hidden sm:inline" id="share-btn-text">공유</span>
           </button>
         </div>
       </div>
@@ -303,7 +337,7 @@
         <!-- Loading Spinner -->
         <div id="loading" class="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
           <div class="w-8 h-8 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
-          <p class="text-xs font-medium">데이터를 불러오는 중입니다...</p>
+          <p class="text-xs font-medium" id="loading-text">데이터를 불러오는 중입니다...</p>
         </div>
 
         <!-- Rendered Article -->
@@ -329,7 +363,7 @@
       <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <i data-lucide="list" class="w-4 h-4 text-sky-500"></i>
-          <h3 class="font-bold text-sm">문서 목차 (Table of Contents)</h3>
+          <h3 class="font-bold text-sm" id="toc-modal-title">문서 목차 (Table of Contents)</h3>
         </div>
         <button id="btn-close-toc" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
           <i data-lucide="x" class="w-4 h-4"></i>
@@ -346,7 +380,7 @@
     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
       <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2">
         <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
-        <input type="text" id="global-search-input" placeholder="거래소명, 국가, 매칭 엔진 (예: NASDAQ, Optiq, 홍콩, T7)..." 
+        <input type="text" id="global-search-input" placeholder="거래소명, 국가, 매칭 엔진 검색 (예: NASDAQ, Optiq, 홍콩, T7)..." 
           class="flex-1 bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none">
         <button id="btn-close-search" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
           <i data-lucide="x" class="w-4 h-4"></i>
@@ -360,60 +394,50 @@
 
   <!-- Core Data & Application Script -->
   <script>
-    // Exchange Directory Metadata
+    // Exchange Directory Metadata (23 Exchanges + Options Rules)
     const EXCHANGES = [
       // North America
-      { id: 'nasdaq', name: 'NASDAQ', krName: '나스닥', file: 'nasdaq.md', country: '미국', flag: '🇺🇸', region: 'North America', engine: 'INET / Eqlipse' },
-      { id: 'nyse', name: 'NYSE', krName: '뉴욕증권거래소', file: 'nyse.md', country: '미국', flag: '🇺🇸', region: 'North America', engine: 'Pillar Engine' },
-      { id: 'tmx', name: 'TMX (TSX)', krName: '토론토증권거래소', file: 'tmx.md', country: '캐나다', flag: '🇨🇦', region: 'North America', engine: 'TSX Quantum' },
+      { id: 'nasdaq', name: 'NASDAQ', krName: '나스닥', file: 'nasdaq.md', country: 'United States', krCountry: '미국', flag: '🇺🇸', region: 'North America', krRegion: '북미', engine: 'INET / Eqlipse' },
+      { id: 'nyse', name: 'NYSE', krName: '뉴욕증권거래소', file: 'nyse.md', country: 'United States', krCountry: '미국', flag: '🇺🇸', region: 'North America', krRegion: '북미', engine: 'Pillar Engine' },
+      { id: 'tmx', name: 'TMX (TSX)', krName: '토론토증권거래소', file: 'tmx.md', country: 'Canada', krCountry: '캐나다', flag: '🇨🇦', region: 'North America', krRegion: '북미', engine: 'TSX Quantum' },
       
       // Asia-Pacific
-      { id: 'hkex', name: 'HKEX', krName: '홍콩증권거래소', file: 'hkex.md', country: '홍콩', flag: '🇭🇰', region: 'Asia-Pacific', engine: 'OTP-C Platform' },
-      { id: 'jpx', name: 'JPX (TSE)', krName: '도쿄증권거래소', file: 'jpx.md', country: '일본', flag: '🇯🇵', region: 'Asia-Pacific', engine: 'Arrowhead 4.0' },
-      { id: 'sse', name: 'SSE', krName: '상하이증권거래소', file: 'sse.md', country: '중국', flag: '🇨🇳', region: 'Asia-Pacific', engine: 'New Generation System' },
-      { id: 'szse', name: 'SZSE', krName: '선전증권거래소', file: 'szse.md', country: '중국', flag: '🇨🇳', region: 'Asia-Pacific', engine: '5th Gen Engine' },
-      { id: 'twse', name: 'TWSE', krName: '대만증권거래소', file: 'twse.md', country: '대만', flag: '🇹🇼', region: 'Asia-Pacific', engine: 'Continuous Trading Engine' },
-      { id: 'sgx', name: 'SGX', krName: '싱가포르거래소', file: 'sgx.md', country: '싱가포르', flag: '🇸🇬', region: 'Asia-Pacific', engine: 'SGX Titan Engine' },
-      { id: 'asx', name: 'ASX', krName: '호주증권거래소', file: 'asx.md', country: '호주', flag: '🇦🇺', region: 'Asia-Pacific', engine: 'ASX Trade & Centre Point' },
-      { id: 'bursa_malaysia', name: 'Bursa Malaysia', krName: '말레이시아거래소', file: 'bursa_malaysia.md', country: '말레이시아', flag: '🇲🇾', region: 'Asia-Pacific', engine: 'BTS2 Engine' },
+      { id: 'krx', name: 'KRX', krName: '한국거래소', file: 'krx.md', country: 'South Korea', krCountry: '대한민국', flag: '🇰🇷', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'EXTRADE Platform' },
+      { id: 'hkex', name: 'HKEX', krName: '홍콩증권거래소', file: 'hkex.md', country: 'Hong Kong', krCountry: '홍콩', flag: '🇭🇰', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'OTP-C Platform' },
+      { id: 'jpx', name: 'JPX (TSE)', krName: '도쿄증권거래소', file: 'jpx.md', country: 'Japan', krCountry: '일본', flag: '🇯🇵', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'Arrowhead 4.0' },
+      { id: 'sse', name: 'SSE', krName: '상하이증권거래소', file: 'sse.md', country: 'China', krCountry: '중국', flag: '🇨🇳', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'New Gen System' },
+      { id: 'szse', name: 'SZSE', krName: '선전증권거래소', file: 'szse.md', country: 'China', krCountry: '중국', flag: '🇨🇳', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: '5th Gen Engine' },
+      { id: 'twse', name: 'TWSE', krName: '대만증권거래소', file: 'twse.md', country: 'Taiwan', krCountry: '대만', flag: '🇹🇼', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'Continuous System' },
+      { id: 'sgx', name: 'SGX', krName: '싱가포르거래소', file: 'sgx.md', country: 'Singapore', krCountry: '싱가포르', flag: '🇸🇬', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'SGX Titan Engine' },
+      { id: 'asx', name: 'ASX', krName: '호주증권거래소', file: 'asx.md', country: 'Australia', krCountry: '호주', flag: '🇦🇺', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'ASX Trade & NTP' },
+      { id: 'bursa_malaysia', name: 'Bursa Malaysia', krName: '말레이시아거래소', file: 'bursa_malaysia.md', country: 'Malaysia', krCountry: '말레이시아', flag: '🇲🇾', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'BTS2 Engine' },
       
       // Europe
-      { id: 'lse', name: 'LSE', krName: '런던증권거래소', file: 'lse.md', country: '영국', flag: '🇬🇧', region: 'Europe', engine: 'Millennium Exchange' },
-      { id: 'euronext', name: 'Euronext', krName: '유로넥스트', file: 'euronext.md', country: '범유럽', flag: '🇪🇺', region: 'Europe', engine: 'Optiq Platform' },
-      { id: 'deutsche_borse', name: 'Deutsche Börse (Xetra)', krName: '독일거래소', file: 'deutsche_borse.md', country: '독일', flag: '🇩🇪', region: 'Europe', engine: 'T7 Architecture' },
-      { id: 'six', name: 'SIX Swiss', krName: '스위스거래소', file: 'six.md', country: '스위스', flag: '🇨🇭', region: 'Europe', engine: 'SwissAtMid & OREX' },
-      { id: 'borsa_italiana', name: 'Borsa Italiana', krName: '이탈리아거래소', file: 'borsa_italiana.md', country: '이탈리아', flag: '🇮🇹', region: 'Europe', engine: 'Optiq Engine' },
-      { id: 'bme', name: 'BME', krName: '스페인거래소', file: 'bme.md', country: '스페인', flag: '🇪🇸', region: 'Europe', engine: 'SIBE System' },
-      { id: 'nasdaq_nordic', name: 'Nasdaq Nordic', krName: '나스닥 노르딕', file: 'nasdaq_nordic.md', country: '북유럽', flag: '🇸🇪', region: 'Europe', engine: 'INET Nordic' },
+      { id: 'lse', name: 'LSE', krName: '런던증권거래소', file: 'lse.md', country: 'United Kingdom', krCountry: '영국', flag: '🇬🇧', region: 'Europe', krRegion: '유럽', engine: 'Millennium Exchange' },
+      { id: 'euronext', name: 'Euronext', krName: '유로넥스트', file: 'euronext.md', country: 'Europe', krCountry: '범유럽', flag: '🇪🇺', region: 'Europe', krRegion: '유럽', engine: 'Optiq Platform' },
+      { id: 'deutsche_borse', name: 'Deutsche Börse (Xetra)', krName: '독일거래소', file: 'deutsche_borse.md', country: 'Germany', krCountry: '독일', flag: '🇩🇪', region: 'Europe', krRegion: '유럽', engine: 'T7 Architecture' },
+      { id: 'six', name: 'SIX Swiss', krName: '스위스거래소', file: 'six.md', country: 'Switzerland', krCountry: '스위스', flag: '🇨🇭', region: 'Europe', krRegion: '유럽', engine: 'SwissAtMid & OREX' },
+      { id: 'borsa_italiana', name: 'Borsa Italiana', krName: '이탈리아거래소', file: 'borsa_italiana.md', country: 'Italy', krCountry: '이탈리아', flag: '🇮🇹', region: 'Europe', krRegion: '유럽', engine: 'Optiq Engine' },
+      { id: 'bme', name: 'BME', krName: '스페인거래소', file: 'bme.md', country: 'Spain', krCountry: '스페인', flag: '🇪🇸', region: 'Europe', krRegion: '유럽', engine: 'SIBE System' },
+      { id: 'nasdaq_nordic', name: 'Nasdaq Nordic', krName: '나스닥 노르딕', file: 'nasdaq_nordic.md', country: 'Nordic', krCountry: '북유럽', flag: '🇸🇪', region: 'Europe', krRegion: '유럽', engine: 'INET Nordic' },
       
       // Emerging & Middle East
-      { id: 'nse_india', name: 'NSE India', krName: '인도국립증권거래소', file: 'nse_india.md', country: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', engine: 'NEAT+ Platform' },
-      { id: 'bse', name: 'BSE', krName: '봄베이증권거래소', file: 'bse.md', country: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', engine: 'BOLT Plus' },
-      { id: 'jse', name: 'JSE', krName: '요하네스버그거래소', file: 'jse.md', country: '남아공', flag: '🇿🇦', region: 'Emerging & Middle East', engine: 'MillenniumIT' },
-      { id: 'tadawul', name: 'Saudi Tadawul', krName: '사우디 타다울', file: 'tadawul.md', country: '사우디', flag: '🇸🇦', region: 'Emerging & Middle East', engine: 'Nasdaq X-Stream INET' },
+      { id: 'nse_india', name: 'NSE India', krName: '인도국립증권거래소', file: 'nse_india.md', country: 'India', krCountry: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', krRegion: '신흥국 & 중동', engine: 'NEAT+ Platform' },
+      { id: 'bse', name: 'BSE', krName: '봄베이증권거래소', file: 'bse.md', country: 'India', krCountry: '인도', flag: '🇮🇳', region: 'Emerging & Middle East', krRegion: '신흥국 & 중동', engine: 'BOLT Plus' },
+      { id: 'jse', name: 'JSE', krName: '요하네스버그거래소', file: 'jse.md', country: 'South Africa', krCountry: '남아공', flag: '🇿🇦', region: 'Emerging & Middle East', krRegion: '신흥국 & 중동', engine: 'MillenniumIT' },
+      { id: 'tadawul', name: 'Saudi Tadawul', krName: '사우디 타다울', file: 'tadawul.md', country: 'Saudi Arabia', krCountry: '사우디', flag: '🇸🇦', region: 'Emerging & Middle East', krRegion: '신흥국 & 중동', engine: 'Nasdaq X-Stream' },
 
       // Special Regulatory Documents
-      { id: 'NASDAQ_OPTIONS_RULES_Korean', name: 'NASDAQ Options Rules (한글)', krName: '나스닥 옵션 규정집 (한국어)', file: 'NASDAQ_OPTIONS_RULES_Korean.md', country: '미국', flag: '📘', region: 'Special Regulations', engine: 'NOM Rules 208P Full' },
-      { id: 'NASDAQ_OPTIONS_RULES', name: 'NASDAQ Options Rules (영문)', krName: '나스닥 옵션 규정집 (원문)', file: 'NASDAQ_OPTIONS_RULES.md', country: '미국', flag: '📄', region: 'Special Regulations', engine: 'NOM Rules Original' }
+      { id: 'NASDAQ_OPTIONS_RULES', name: 'NASDAQ Options Rules', krName: '나스닥 옵션 규정집', file: 'NASDAQ_OPTIONS_RULES.md', country: 'United States', krCountry: '미국', flag: '📘', region: 'Special Regulations', krRegion: '특별 규정집', engine: 'NOM Rules 208P' }
     ];
 
-    // Current State
+    // Current Application State
     let currentId = 'nasdaq';
-    let currentFontSize = 15;
+    let currentLang = localStorage.getItem('preferredLang') || 'ko'; // default: 'ko'
+    let currentFontSize = parseInt(localStorage.getItem('docFontSize')) || 15;
 
-    // Marked Renderer Configuration
-    const renderer = new marked.Renderer();
-    
-    // Wrap tables in responsive div
-    renderer.table = function(header, body) {
-      return '<div class="table-container"><table>' +
-        '<thead>' + header + '</thead>' +
-        '<tbody>' + body + '</tbody>' +
-        '</table></div>';
-    };
-
+    // Marked Standard Configuration (Do NOT override table method directly to avoid [object Object]undefined)
     marked.setOptions({
-      renderer: renderer,
       gfm: true,
       breaks: false,
       highlight: function(code, lang) {
@@ -424,12 +448,50 @@
       }
     });
 
+    // Language Toggle Handling
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('preferredLang', lang);
+
+      // Update UI button states
+      const koBtn = document.getElementById('lang-ko-btn');
+      const enBtn = document.getElementById('lang-en-btn');
+      if (currentLang === 'ko') {
+        koBtn.className = 'px-2 py-1 rounded-md bg-white dark:bg-slate-700 text-sky-600 dark:text-sky-400 shadow-sm transition-all flex items-center gap-1';
+        enBtn.className = 'px-2 py-1 rounded-md text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-all flex items-center gap-1';
+        document.getElementById('badge-lang-indicator').textContent = '한국어';
+        document.getElementById('sidebar-title').textContent = '글로벌 거래소 목록';
+        document.getElementById('sidebar-search').placeholder = '거래소, 국가, 엔진 검색...';
+        document.getElementById('toc-btn-text').textContent = '목차 (TOC)';
+        document.getElementById('share-btn-text').textContent = '공유';
+        document.getElementById('toc-modal-title').textContent = '문서 목차 (Table of Contents)';
+        document.getElementById('loading-text').textContent = '데이터를 불러오는 중입니다...';
+      } else {
+        enBtn.className = 'px-2 py-1 rounded-md bg-white dark:bg-slate-700 text-sky-600 dark:text-sky-400 shadow-sm transition-all flex items-center gap-1';
+        koBtn.className = 'px-2 py-1 rounded-md text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-all flex items-center gap-1';
+        document.getElementById('badge-lang-indicator').textContent = 'English';
+        document.getElementById('sidebar-title').textContent = 'Global Exchanges';
+        document.getElementById('sidebar-search').placeholder = 'Search exchange, country, engine...';
+        document.getElementById('toc-btn-text').textContent = 'TOC';
+        document.getElementById('share-btn-text').textContent = 'Share';
+        document.getElementById('toc-modal-title').textContent = 'Table of Contents';
+        document.getElementById('loading-text').textContent = 'Loading document...';
+      }
+
+      // Re-render sidebar with updated language priority
+      renderSidebar(document.getElementById('sidebar-search').value);
+
+      // Reload current exchange content
+      loadExchange(currentId);
+    }
+
     // Group Exchanges by Region
     function getGroupedExchanges() {
       const groups = {};
       EXCHANGES.forEach(ex => {
-        if (!groups[ex.region]) groups[ex.region] = [];
-        groups[ex.region].push(ex);
+        const regionKey = currentLang === 'ko' ? ex.krRegion : ex.region;
+        if (!groups[regionKey]) groups[regionKey] = [];
+        groups[regionKey].push(ex);
       });
       return groups;
     }
@@ -447,6 +509,7 @@
           ex.name.toLowerCase().includes(query) || 
           ex.krName.toLowerCase().includes(query) || 
           ex.country.toLowerCase().includes(query) || 
+          ex.krCountry.toLowerCase().includes(query) ||
           ex.engine.toLowerCase().includes(query)
         );
 
@@ -462,16 +525,19 @@
             ? 'bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 font-semibold border-l-2 border-sky-500' 
             : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60';
 
+          const primaryName = currentLang === 'ko' ? `${ex.krName} <span class="text-[10px] text-slate-400 font-normal">(${ex.name})</span>` : `${ex.name} <span class="text-[10px] text-slate-400 font-normal">(${ex.krName})</span>`;
+          const secondaryInfo = currentLang === 'ko' ? `${ex.krCountry}` : `${ex.country}`;
+
           html += `
-            <a href="#/${ex.id}" class="flex items-center justify-between px-2.5 py-2 rounded-md transition-all ${activeClasses} group">
+            <a href="#/${ex.id}?lang=${currentLang}" class="flex items-center justify-between px-2.5 py-2 rounded-md transition-all ${activeClasses} group">
               <div class="flex items-center space-x-2 truncate">
                 <span class="text-sm">${ex.flag}</span>
                 <div class="truncate">
-                  <div class="truncate leading-tight">${ex.name}</div>
-                  <div class="text-[10px] text-slate-400 font-normal truncate">${ex.krName}</div>
+                  <div class="truncate leading-tight">${primaryName}</div>
+                  <div class="text-[10px] text-slate-400 font-normal truncate">${secondaryInfo} · ${ex.engine.split(' ')[0]}</div>
                 </div>
               </div>
-              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 truncate max-w-[80px]">${ex.engine.split(' ')[0]}</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 truncate max-w-[70px]">${ex.id.toUpperCase()}</span>
             </a>
           `;
         });
@@ -480,29 +546,30 @@
       }
 
       if (html === '') {
-        html = `<div class="p-4 text-center text-slate-400 text-xs">일치하는 거래소가 없습니다.</div>`;
+        html = `<div class="p-4 text-center text-slate-400 text-xs">${currentLang === 'ko' ? '일치하는 거래소가 없습니다.' : 'No exchanges found.'}</div>`;
       }
 
       navList.innerHTML = html;
     }
 
-    // Load and Render Markdown File
+    // Load and Render Markdown Document
     async function loadExchange(id) {
       const ex = EXCHANGES.find(e => e.id === id) || EXCHANGES[0];
       currentId = ex.id;
-      window.location.hash = `/${ex.id}`;
+      window.location.hash = `/${ex.id}?lang=${currentLang}`;
 
       // Update Header Badges
-      document.getElementById('current-exchange-name').textContent = `${ex.name} (${ex.krName})`;
+      const displayName = currentLang === 'ko' ? `${ex.krName} (${ex.name})` : `${ex.name} (${ex.krName})`;
+      document.getElementById('current-exchange-name').textContent = displayName;
       document.getElementById('badge-country').textContent = ex.flag;
-      document.getElementById('badge-code').textContent = ex.name;
+      document.getElementById('badge-code').textContent = ex.id.toUpperCase();
       document.getElementById('badge-engine').textContent = ex.engine;
       document.title = `${ex.name} - Global Exchange Architecture`;
 
       // Update Sidebar active state
       renderSidebar(document.getElementById('sidebar-search').value);
 
-      // Close mobile sidebar
+      // Close mobile sidebar if open
       closeSidebar();
 
       // Show Loading
@@ -511,17 +578,37 @@
       loading.classList.remove('hidden');
       body.classList.add('hidden');
 
+      // Resolve file path based on language
+      let targetFile = '';
+      if (currentLang === 'ko') {
+        targetFile = `ko/${ex.file}`;
+      } else {
+        targetFile = `en/${ex.file}`;
+      }
+
       try {
-        const response = await fetch(ex.file);
-        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
-        let markdown = await response.text();
+        let response = await fetch(targetFile);
+        if (!response.ok) {
+          // Fallback to root directory if subfolder fetch fails
+          response = await fetch(ex.file);
+          if (!response.ok) throw new Error(`HTTP ${response.status}: Failed to load ${targetFile}`);
+        }
+        const markdown = await response.text();
 
-        // Convert Math delimiters if necessary before marked
-        // Parse markdown to HTML
-        const html = marked.parse(markdown);
-        body.innerHTML = html;
+        // 1. Parse markdown using standard marked parser (Clean output, no [object Object]undefined)
+        body.innerHTML = marked.parse(markdown);
 
-        // Render KaTeX math
+        // 2. Safe DOM Post-processing: Wrap all <table> elements in responsive scrollable container
+        body.querySelectorAll('table').forEach(table => {
+          if (!table.parentElement.classList.contains('table-container')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-container';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+          }
+        });
+
+        // 3. Render KaTeX math in markdown body
         renderMathInElement(body, {
           delimiters: [
             {left: '$$', right: '$$', display: true},
@@ -532,16 +619,16 @@
           throwOnError: false
         });
 
-        // Generate TOC
+        // 4. Build Table of Contents
         buildTOC();
 
         loading.classList.add('hidden');
         body.classList.remove('hidden');
 
-        // Scroll to top of container
+        // Scroll to top of document
         document.getElementById('main-scroll-container').scrollTop = 0;
 
-        // Refresh icons
+        // Refresh Lucide icons
         lucide.createIcons();
 
       } catch (err) {
@@ -549,9 +636,9 @@
         body.classList.remove('hidden');
         body.innerHTML = `
           <div class="p-6 rounded-xl border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-900/50 text-red-600 dark:text-red-400">
-            <h3 class="font-bold text-base mb-2">문서를 불러오지 못했습니다</h3>
-            <p class="text-xs mb-4">${err.message}</p>
-            <p class="text-xs text-slate-500">GitHub Pages나 로컬 웹서버(http://)를 통해 접속해야 마크다운 파일을 비동기로 읽어올 수 있습니다.</p>
+            <h3 class="font-bold text-base mb-2">${currentLang === 'ko' ? '문서를 불러오지 못했습니다' : 'Failed to load document'}</h3>
+            <p class="text-xs mb-3 font-mono">${err.message}</p>
+            <p class="text-xs text-slate-500">${currentLang === 'ko' ? 'GitHub Pages 정적 호스팅 또는 로컬 HTTP 서버 환경에서 열람 가능합니다.' : 'Please open via GitHub Pages or a local HTTP server.'}</p>
           </div>
         `;
       }
@@ -564,7 +651,7 @@
       const tocContainer = document.getElementById('toc-content');
       
       if (headings.length === 0) {
-        tocContainer.innerHTML = '<p class="text-slate-400 text-center py-4">목차가 없습니다.</p>';
+        tocContainer.innerHTML = `<p class="text-slate-400 text-center py-4">${currentLang === 'ko' ? '목차가 없습니다.' : 'No headings found.'}</p>`;
         return;
       }
 
@@ -610,12 +697,14 @@
           ex.name.toLowerCase().includes(query) ||
           ex.krName.toLowerCase().includes(query) ||
           ex.country.toLowerCase().includes(query) ||
+          ex.krCountry.toLowerCase().includes(query) ||
           ex.engine.toLowerCase().includes(query) ||
-          ex.region.toLowerCase().includes(query)
+          ex.region.toLowerCase().includes(query) ||
+          ex.krRegion.toLowerCase().includes(query)
         );
 
         if (matches.length === 0) {
-          searchResults.innerHTML = '<div class="p-4 text-center text-slate-400">검색 결과가 없습니다.</div>';
+          searchResults.innerHTML = `<div class="p-4 text-center text-slate-400">${currentLang === 'ko' ? '검색 결과가 없습니다.' : 'No results found.'}</div>`;
           return;
         }
 
@@ -626,10 +715,10 @@
               <span class="text-xl">${ex.flag}</span>
               <div class="truncate">
                 <div class="font-bold text-slate-800 dark:text-slate-100 text-xs">${ex.name} <span class="text-slate-400 font-normal">(${ex.krName})</span></div>
-                <div class="text-[10px] text-slate-400">${ex.country} · ${ex.region}</div>
+                <div class="text-[10px] text-slate-400">${currentLang === 'ko' ? ex.krCountry : ex.country} · ${ex.engine}</div>
               </div>
             </div>
-            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-500/20">${ex.engine}</span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-500/20">${ex.id.toUpperCase()}</span>
           </div>
         `).join('');
       }
@@ -686,11 +775,6 @@
       lucide.createIcons();
     }
 
-    // Init Theme
-    if (localStorage.getItem('theme') === 'light') {
-      document.documentElement.classList.remove('dark');
-    }
-
     // Font Size Controls
     function setFontSize(size) {
       currentFontSize = size;
@@ -698,7 +782,10 @@
       localStorage.setItem('docFontSize', size);
     }
 
-    // Setup Event Listeners
+    // Event Listeners Registration
+    document.getElementById('lang-ko-btn').addEventListener('click', () => setLanguage('ko'));
+    document.getElementById('lang-en-btn').addEventListener('click', () => setLanguage('en'));
+
     document.getElementById('btn-toggle-sidebar').addEventListener('click', openSidebar);
     document.getElementById('btn-close-sidebar').addEventListener('click', closeSidebar);
     sidebarBackdrop.addEventListener('click', closeSidebar);
@@ -721,7 +808,7 @@
     // Copy Link Button
     document.getElementById('btn-copy-link').addEventListener('click', () => {
       navigator.clipboard.writeText(window.location.href).then(() => {
-        alert('문서 링크가 클립보드에 복사되었습니다!');
+        alert(currentLang === 'ko' ? '문서 링크가 클립보드에 복사되었습니다!' : 'Document URL copied to clipboard!');
       });
     });
 
@@ -741,29 +828,61 @@
 
     // Hash Route Listener
     window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.replace('#/', '');
-      if (hash && hash !== currentId) {
-        loadExchange(hash);
-      }
+      parseUrlHash();
     });
 
-    // Initialize App
+    function parseUrlHash() {
+      const hashStr = window.location.hash.replace('#/', '');
+      if (!hashStr) {
+        loadExchange('nasdaq');
+        return;
+      }
+      const [id, queryStr] = hashStr.split('?');
+      if (queryStr) {
+        const params = new URLSearchParams(queryStr);
+        const lang = params.get('lang');
+        if (lang && (lang === 'ko' || lang === 'en') && lang !== currentLang) {
+          currentLang = lang;
+        }
+      }
+      if (id && EXCHANGES.some(e => e.id === id)) {
+        if (id !== currentId) {
+          loadExchange(id);
+        }
+      }
+    }
+
+    // Initialize App on DOM Ready
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       setupGlobalSearch();
 
-      const savedFontSize = localStorage.getItem('docFontSize');
-      if (savedFontSize) setFontSize(parseInt(savedFontSize));
-
-      renderSidebar();
-
-      // Read initial hash
-      const initialHash = window.location.hash.replace('#/', '');
-      if (initialHash && EXCHANGES.some(e => e.id === initialHash)) {
-        loadExchange(initialHash);
-      } else {
-        loadExchange('nasdaq');
+      // Restore Theme
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.remove('dark');
       }
+
+      // Restore Font Size
+      setFontSize(currentFontSize);
+
+      // Check URL hash for initial exchange and language
+      const hashStr = window.location.hash.replace('#/', '');
+      if (hashStr) {
+        const [id, queryStr] = hashStr.split('?');
+        if (queryStr) {
+          const params = new URLSearchParams(queryStr);
+          const lang = params.get('lang');
+          if (lang && (lang === 'ko' || lang === 'en')) {
+            currentLang = lang;
+          }
+        }
+        if (id && EXCHANGES.some(e => e.id === id)) {
+          currentId = id;
+        }
+      }
+
+      // Set initial language UI
+      setLanguage(currentLang);
     });
   </script>
 </body>
