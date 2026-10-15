@@ -142,12 +142,12 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Limit Order | Governs the general trading logic tightly bound by local daily price variability limits. |
-| Counterparty Best Price | A tactical market order modifying its designated limit exactly to the single best contra-side quote. |
-| Own Side Best Price | A defensive posture modifying its limit to the strongest resting limit of its own team. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 지정가주문 (Limit Order) | 선전 시장의 일일 가격변동폭 내에서 가격과 시간 우선순위를 철저히 따르는 표준 주문. |
+| 상대방 최우선호가 주문 (Counterparty Best Price) | 주문 진입 시점에 상대방 진영(적군)의 단일 최우선 호가 가격으로 자신의 지정가를 자동 설정하여 정밀 스나이핑하는 시장가형 전술 주문. |
+| 본인 진영 최우선호가 주문 (Own Side Best Price) | 상대방을 공격하지 않고 본인 진영(아군)의 최우선 지정가 대기열 최후미에 자동으로 밀착 등재되는 방어적 호가 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

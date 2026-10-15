@@ -159,15 +159,15 @@ TSX 및 TSXV의 매매단위는 해당 종목의 전일 종가에 따라 결정�
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Executes without limitation against the TSX continuous book and sweeps through price levels. |
-| Limit Order | Held firm on the TSX Quantum engine book. Defines the maximum willingness to pay/receive. |
-| Post Only | Protects flow from taking liquidity. Guaranteed to add fluidity and harvest the TSX maker rebate. |
-| Iceberg Order | Allows a visible portion while obfuscating the vast majority of volume from institutional scanners. |
-| Dark Order | Executed entirely away from the lit book. Targets TSX dark pools like Seek Dark and midpoint mechanisms. |
-| Peg / Bypass | Dynamic tracking of NBBO or deliberate overriding of order protection boundaries (Intermarket Sweep). |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | TSX Quantum 연속 매매 장부를 상대로 가격 제한 없이 즉시 호가 뎁스를 관통하며 체결. |
+| 지정가주문 (Limit Order) | TSX Quantum 엔진 장부에 고정 등재되며 최대 지불/수취 의사를 확정하는 표준 주문. |
+| 포스트 온리 (Post Only) | 유동성 수취를 방지하고 오직 유동성을 공급하여 TSX 메이커 리베이트를 확보하도록 보장. |
+| 아이스버그 주문 (Iceberg Order) | 소량의 표시 수량만 공개하고 기관의 대량 익스포저를 스캐너로부터 은닉 및 순차 리필. |
+| 다크 주문 (Dark Order) | 공개 장부(Lit Book)에서 완전히 격리되어 Seek Dark 등 TSX 다크풀 및 미드포인트 메커니즘에서 비공개 체결. |
+| 페그 / 바이패스 (Peg / Bypass) | NBBO 중간가 동적 추적 또는 캐나다 주문보호규정(OPR) 검사를 무력화하고 로컬 호가를 강제 스윕하는 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

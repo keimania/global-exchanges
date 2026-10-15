@@ -113,13 +113,13 @@ BME는 2018년 1월부터 시행된 **MiFID II 호가단위(최소가격변동�
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Traditional liquidity scavenger bound simply by SIBE connectivity throughputs. |
-| Limit Order | Absolute execution rigid boundary holding steadfast inside Spanish continuous models. |
-| Stop Market/Limit | Triggers only upon price proximity, forcefully dumping liquidity checks to the book. |
-| Time in Force (FOK/FAK) | Stringent latency algorithms enforcing immediate entire or fractional acceptance. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | SIBE 시스템 연결망을 통해 가격 제한 없이 반대편 최우선 호가를 스윕 체결하는 전통적 시장가 주문. |
+| 지정가주문 (Limit Order) | 스페인 연속 매매 모델 내에서 가격 한도를 확고히 유지하며 대기열을 형성하는 전통적 지정가 주문. |
+| 스톱 시장가/지정가 (Stop Market/Limit) | 감시 지표가 설정 가격에 근접 돌파할 때 트리거되어 오더북으로 즉각 전환 투입되는 방어 주문. |
+| 유효기간 조건 (TIF - FOK/FAK) | 즉시 전량 체결(FOK) 또는 가용 수량만 부분 체결 후 잔여 즉시 취소(FAK/IOC)를 강제하는 초저지연 체결 조건. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

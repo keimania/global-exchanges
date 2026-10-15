@@ -129,15 +129,15 @@ Euronext는 **MiFID II 호가단위 체계(최소가격변동폭 체계)**(RTS 1
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Aggressive insertion algorithm that sweeps the public lit book until completely filled. |
-| Limit Order | Passive/Aggressive holding pattern enforcing strict boundary pricing parameters. |
-| Market to Limit (MTL) | A hallmark of Euronext: executes partially at the best price and converts the remainder into a static limit. |
-| Stop Market / Stop Limit | Volatility defensive tools; remain fully dormant/cloaked until a price threshold triggers their injection. |
-| Peg Order | Smart routing sequence that electromagnetically sticks to the ongoing BBO tick movements. |
-| Iceberg Order | Fully compliant with European MiFID II fragmentation, obscuring up to 99% of total tranche volume. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | Optiq 매칭 엔진의 공개 장부를 상대로 전량 소진될 때까지 가격 뎁스를 관통 체결하는 공격적 주문. |
+| 지정가주문 (Limit Order) | 엄격한 가격 경계를 부여받아 오더북 대기열 또는 즉시 체결을 수행하는 표준 주문. |
+| 시장가 지정가 전환 (Market to Limit - MTL) | 최우선 1호가 물량만 즉시 체결하고, 잔여 수량은 즉시 그 가격의 지정가로 형질 변환되어 오더북에 안착하는 유럽식 유동성 붕괴 방지 주문. |
+| 스톱 시장가 / 스톱 지정가 | 평소에는 숨겨진 가상 큐(Synthetic Queue)에 잠복하다가 트리거 시세를 터치하면 활성화되는 방어 주문. |
+| 페그 주문 (Peg Order) | 최우선 매수/매도호가(BBO) 틱의 움직임을 전자기장처럼 실시간 추적하여 자동 갱신되는 스마트 호가. |
+| 아이스버그 주문 (Iceberg Order) | EU MiFID II 규정에 부합하여 전체 수량의 최대 99%를 은닉하고 최소 노출 단위만 공개 및 무작위 리필하는 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

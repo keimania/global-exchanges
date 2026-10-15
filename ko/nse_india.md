@@ -125,14 +125,14 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Traditional liquidity consumer that bypasses pricing limitations to execute against NEAT+ depth. |
-| Limit Order | Standard resting order enforcing precise boundaries of capital allocation. |
-| Stop Loss (SL) | Traps dormant until a trigger threshold is breached, injecting a protective explosion of liquidity removal. |
-| Disclosed Qty (Iceberg) | India's structural fractionation algorithm masking the true depth of wholesale institutional exposure. |
-| After Market (AMO) | Reserved queuing node designed for pre-submission outside standard operating session windows. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 가격 제약 없이 NEAT+ 오더북 뎁스를 관통하며 즉각적인 유동성을 흡수 체결. |
+| 지정가주문 (Limit Order) | 자본 배분의 정밀한 경계를 강제하는 표준 오더북 대기 주문. |
+| 스톱로스 (Stop Loss - SL) | 시세가 트리거 임계값을 돌파할 때까지 잠복하다가 시장가(SL-Market) 또는 지정가(SL-Limit)로 격발 투입되는 보호 주문. |
+| 수량 부분공개 (Disclosed Qty / 인도식 아이스버그) | 거대 기관 물량의 실제 뎁스를 마스킹하고 지정된 일부 수량만 공개하며 순차 리필하는 주문. |
+| 애프터 마켓 주문 (AMO) | 정규 거래 세션 종료 후 심야에 사전 제출되어 익일 개장 전 동시호가 집계 대기열의 최우선 순위를 선점하는 예약 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

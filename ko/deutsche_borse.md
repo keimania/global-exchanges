@@ -147,15 +147,15 @@ Xetra는 다른 EU 매매장소와 동일하게 **MiFID II 호가단위 체계(�
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Sweeps optimally across Xetra liquidity boundaries limitlessly within operation bands. |
-| Limit Order | Imposes strict execution ceilings/floors to manage depth inside T7 matching loops. |
-| OCO (One Cancels Other) | Dual-bracket configuration. If one parameter trips, the alternate is atomically aborted. |
-| Volume Discovery | Xetra’s hybrid engine scans the specialized dark pool network before resorting to standard lit execution. |
-| Strike Match | Executes precisely inside the Xetra ledger pricing structure targeting the stealth T7 blocks. |
-| Trailing Stop | Advanced tracking system where the stop barrier dynamically drags upwards synchronized with positive momentum. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | T7 매칭 엔진의 허용 밴드 내에서 Xetra 유동성을 최적으로 스윕 체결하는 공격적 주문. |
+| 지정가주문 (Limit Order) | T7 매칭 루프 내부에서 가격 상하한을 엄격히 통제하는 표준 지정가 주문. |
+| 양자취소 주문 (One Cancels Other - OCO) | 목표 수익 지정가와 손절 스톱 주문을 한 쌍으로 묶어, 한쪽이 체결되면 다른 쪽을 원자적으로 자동 취소하는 브라켓 킬스위치 주문. |
+| 볼륨 디스커버리 (Volume Discovery) | Xetra 자체 다크풀 네트워크를 먼저 스캔하여 중간가 비공개 체결을 시도한 후 일반 공개 장부로 진행하는 하이브리드 주문. |
+| 스트라이크 매치 (Strike Match) | Xetra 장부상에 노출되지 않는 고용량 블록들을 어둠 속에서 맞교환 체결시키는 은닉 매칭 주문. |
+| 트레일링 스톱 (Trailing Stop) | 주가가 상승할 때 스톱 방어선이 설정 간격(Delta)을 유지하며 동적으로 따라 올라가고, 하락 시에는 고정되어 이익을 보존하는 추적형 스톱 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

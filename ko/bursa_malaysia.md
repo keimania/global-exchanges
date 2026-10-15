@@ -126,14 +126,14 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Absolute execution without price safety nets; crashes the BBO structures limitlessly. |
-| Limit Order | Absolute adherence to price restriction lines; maker-ready and patient. |
-| Limit On Open (LOO) | Specialized timing switch ensuring synchronization precisely within the pre-open balancing phase sequence. |
-| Limit On Close (LOC) | Target acquisition specialized for end-of-day settling cross. |
-| Iceberg Order | Structural volume fractionation concealing bulk limits. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 가격 안전망 없이 BTS2 매칭 엔진의 최우선 호가를 제한 없이 분쇄 체결하는 공격적 주문. |
+| 지정가주문 (Limit Order) | 지정된 가격 제한선을 엄격히 준수하며 오더북에 유동성을 공급하는 메이커형 표준 주문. |
+| 장시작 지정가 (LOO - Limit On Open) | 개장 전 동시호가 집계 세션(IEP)에 정확히 동기화되어 시가 단일가 형성에 참여하는 주문. |
+| 장마감 지정가 (LOC - Limit On Close) | 당일 최종 정산 가격을 결정하는 장마감 동시호가 크로스에 정밀 타겟팅되는 주문. |
+| 아이스버그 주문 (Iceberg Order) | 대량 기관 물량을 소량의 분할 트랜치로 쪼개어 장부상 노출을 최소화하고 순차 리필하는 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

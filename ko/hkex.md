@@ -1,6 +1,6 @@
 # Hong Kong Exchanges and Clearing Limited (HKEX)
 
-> **최종 수정일:** 2026-04-06
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -156,14 +156,14 @@
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description | Session Validity |
-|-----------|-------------|------------------|
-| At-auction Order | A market order explicitly injected into the Pre-opening Session to define the IEP (Indicative Equilibrium Price). | Pre-opening / Closing Auction |
-| At-auction Limit Order | A limit order submitted during the auction session. Bids/offers are capped by price boundaries to prevent extreme deviations. | Pre-opening / Closing Auction |
-| Limit Order | Standard limit order posted during the Continuous Trading Session. Cannot be matched at prices worse than specified. | Continuous Trading |
-| ELO (Enhanced Limit Order) | Allows crossing up to 10 tick levels away from the current best price, optimizing probability of swift execution. | Continuous Trading |
-| SLO (Special Limit Order) | Immediately executes whatever volume it can at or better than the limit and swiftly cancels any remaining unfilled balance. | Continuous Trading |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) | 유효 세션 |
+|---|---|---|
+| 경매 주문 (At-auction Order) | 개장 전 세션(POS) 및 장마감 경매(CAS)에 투입되어 예상 균형 가격(IEP) 형성에 기여하는 시장가형 경매 주문. | 개장전 / 장마감 경매 |
+| 경매 지정가 주문 (At-auction Limit Order) | 경매 세션 동안 극단적인 가격 이탈을 방지하는 상하한 가격 경계 내에서 입력되는 경매 전용 지정가 주문. | 개장전 / 장마감 경매 |
+| 지정가 주문 (Limit Order) | 정규 연속 매매 세션 동안 제시된 가격보다 불리하지 않은 가격으로 체결되는 기본 지정가 주문. | 정규 연속매매 |
+| ELO (Enhanced Limit Order / 강화 지정가) | 현재 최우선 호가로부터 최대 10호가(10 Ticks)까지 연속 관통 체결을 허용하여 신속한 체결 확률을 극대화하는 공격형 주문. | 정규 연속매매 |
+| SLO (Special Limit Order / 특별 지정가) | 지정가 한도 내에서 즉시 가용한 유동성을 최대한 체결시키고, 미체결된 잔여 수량은 오더북에 남기지 않고 즉시 자동 취소(IOC)하는 주문. | 정규 연속매매 |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

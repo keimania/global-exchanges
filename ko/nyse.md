@@ -1,6 +1,6 @@
 # New York Stock Exchange (NYSE)
 
-> **최종 수정일:** 2026-04-03
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -141,16 +141,16 @@
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Executes immediately at the best available price. Available during continuous trading only. |
-| Limit Order | Executes at a specified price or better. Can be displayed or non-displayed on the order book. |
-| Reserve Order | Displays only a portion of the total order quantity. The rest is hidden and replenished globally. |
-| D-Order | Discretionary order unique to floor brokers, allowing manual intervention and price parity matching. |
-| MOC / LOC | Market-on-Close / Limit-on-Close. Participates strictly in the 4:00 PM closing auction mechanism. |
-| MPL | Midpoint Passive Liquidity. A non-displayed order pegged exactly to the midpoint of the NBBO. |
-| ISO | Intermarket Sweep Order. Alerts NYSE that the broker has fulfilled SEC Reg NMS routing to other venues. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 접속매매 세션에서만 사용 가능하며, 시장 내 최우선 가용 가격으로 즉시 전량 체결. |
+| 지정가주문 (Limit Order) | 지정 가격 또는 그보다 유리한 가격으로 체결. 오더북에 표시(Displayed) 또는 비표시(Non-displayed) 가능. |
+| 리저브 주문 (Reserve Order / 빙산주문) | 전체 주문 수량 중 일부만 공개 호가로 노출하고, 잔여 수량은 숨겨두었다가 공개분 체결 시 자동으로 보충. |
+| D-Order (재량 주문) | NYSE 플로어 브로커(Floor Broker) 고유의 주문으로, 장 마감 동시호가 직전 수동 개입 및 가격 동등 배분(Parity) 매칭 참여. |
+| MOC / LOC | 장마감 시장가/지정가 주문. 16:00 장마감 단일가 경매(Closing Auction) 메커니즘에만 참여. |
+| MPL (중간가 수동 유동성) | NBBO의 절대 중간가격(Midpoint)에 정확히 연동되는 비표시 수동 주문. |
+| ISO (시장간 스윕 주문) | 브로커가 SEC Reg NMS 규정에 따라 타 시장의 보호호가에 동시 라우팅을 완료했음을 거래소에 통보하며 NYSE 로컬 호가를 관통 체결하는 지정가 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

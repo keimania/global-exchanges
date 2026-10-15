@@ -1,6 +1,6 @@
 # NASDAQ Stock Market (NASDAQ)
 
-> **최종 수정일:** 2026-04-03
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -64,7 +64,7 @@
 | Closing Cross | ~3:50 PM - 4:00 PM ET | ~20:50 - 21:00 UTC (EST) | 종가단일가매매 (장마감 경매); 단일가 크로스; 일일 거래량의 ~16% |
 | 시간외 거래 | 4:00 PM - 8:00 PM ET | 21:00 - 01:00 UTC (EST) | 연장시간 세션; 제한된 주문유형; 낮은 유동성 |
 
-**계획 변경사항 (2026년 하반기, SEC 승인 대기):** 평일 23시간 거래로 확대. 주간세션 4:00 AM - 8:00 PM ET, 1시간 유지보수 중단 (8:00-9:00 PM), 야간세션 9:00 PM - 4:00 AM ET.
+**현행 거래시간 (2026년 10월 현재):** 평일 23시간 연속 거래 세션 정식 가동 중. 주간 세션 4:00 AM - 8:00 PM ET, 1시간 일일 전산 점검 및 유지보수(8:00-9:00 PM), 야간 글로벌 세션 9:00 PM - 4:00 AM ET로 전세계 투자자 대상 무중단 유동성 공급.
 
 ### 2.3 호가단위 (최소가격변동폭) (Tick Sizes)
 | 가격 범위 | 호가단위 (최소가격변동폭) |
@@ -111,16 +111,16 @@
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Equity Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Executes at the best contra-side price available on INET via automated routing. |
-| Limit Order | Posts at a definitive price. Forms the backbone of the purely electronic NASDAQ book. |
-| Pegged Order | Dynamically updates its price relative to the fundamental NBBO (Primary, Market, or Midpoint). |
-| MOO / LOO | Market/Limit On Open. Valid strictly for the Nasdaq Opening Cross mechanism (09:30 AM). |
-| MOC / LOC | Market/Limit On Close. Locked into the intricate Nasdaq Closing Cross algorithm (4:00 PM). |
-| MELO | Midpoint Extended Life Order. Incorporates a fractional time delay to thwart latency arbitrage. |
-| Post-Only | Ensures the order is posted to the book to capture the maker rebate. Cancels if it would remove liquidity. |
+### 4.1 주식 기본 주문유형 (Equity Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 자동 라우팅을 통해 INET 오더북의 반대편 최우선 가용 가격(Contra-side BBO)으로 즉시 체결되는 공격적 유동성 수취 주문. |
+| 지정가주문 (Limit Order) | 지정된 가격 또는 그보다 유리한 가격으로만 체결. 순수 전자식 나스닥 오더북(INET Book)의 기반을 형성. |
+| 페그 주문 (Pegged Order) | 국가 최우선 매수/매도호가(NBBO)의 변동을 실시간 추적하여 가격을 동적으로 자동 재평가 (Primary, Market, Midpoint Peg 지원). |
+| MOO / LOO | 장시작 시장가/지정가 주문 (Market/Limit On Open). 09:30 AM 나스닥 오프닝 크로스(Opening Cross) 단일가 매매에만 엄격히 유효. |
+| MOC / LOC | 장마감 시장가/지정가 주문 (Market/Limit On Close). 16:00 나스닥 클로징 크로스(Closing Cross) 집계 알고리즘에 고정되어 체결. |
+| MELO | 중간가 수명연장 주문 (Midpoint Extended Life Order). 초단타 차익거래(Latency Arbitrage)를 방어하기 위해 10밀리초 대기 챔버 타이머를 부여받는 비표시 중간가 호가. |
+| 포스트 온리 (Post-Only) | 기존 유동성을 수취(Taker)하지 않고 오더북에 메이커(Maker)로 등재되어 리베이트를 확보하도록 보장. 유동성을 제거하게 될 경우 자동 취소 또는 재가격. |
 
 ### 4.2 Equity Matching Engine & Algorithmic Deep-Dive [Korean Deep-Dive]
 
@@ -146,32 +146,32 @@ NASDAQ의 **INET Matching Engine**은 인적 개입이 없는 100% 완전 전자
 
 ---
 
-### 4.3 Options Order Types (NOM Rules Baseline - Chapter VI, Sec. 1)
+### 4.3 옵션 주문유형 (NOM Rules Baseline - Chapter VI, Sec. 1)
 
 *The Nasdaq Options Market (NOM) 규정집(Chapter VI Trading Systems, Section 1)*에 공식 정의된 10대 주문 유형 및 5대 Time-in-Force(TIF) 사양입니다.
 
-#### Official NOM Order Types
-| Order Type | Rule Citation | Technical Specification & Core Behavior |
-|------------|---------------|------------------------------------------|
-| **Cancel-Replacement Order** | Chapter VI, Sec. 1(e)(1) | Single atomic message that cancels an existing order and enters a replacement. If partially filled, replacement is reduced. **Retains queue priority only if size is reduced** while all other terms remain identical. |
-| **Limit Order** | Chapter VI, Sec. 1(e)(2) | Order to buy or sell at a specified price or better. Marketable if buy limit >= inside offer, or sell limit <= inside bid. |
-| **Minimum Quantity Order (MQO)** | Chapter VI, Sec. 1(e)(3) | Requires execution of a specified minimum quantity of contracts; cancels immediately if threshold is not satisfied. **Enforced as Time-in-Force IOC**. Rejected if entered prior to opening cross or after market close. |
-| **Market Order** | Chapter VI, Sec. 1(e)(5) | Executes at the best available price at execution time. Supports pre-established user timeout parameter for automated cancel-back. |
-| **Price Improving Order (PIO)** | Chapter VI, Sec. 1(e)(6) | Sub-penny order accepted in increments as small as **$0.01**, even in securities with $0.05/$0.10 MPV. Displayed rounded to MPV (rounded down for bids, rounded up for offers) while executing at true penny value. |
-| **On the Open Order (OPG)** | Chapter VI, Sec. 1(e)(7) | Explicitly designated with TIF "OPG". Executable exclusively within the Nasdaq Opening Cross. Unexecuted remainder is automatically cancelled back. |
-| **Intermarket Sweep Order (ISO)** | Chapter VI, Sec. 1(e)(8) | Limit order executed across multiple price levels on NOM without regard to Protected Quotes of other exchanges. Ineligible for routing; requires simultaneous routing of additional ISOs to all superior protected bids/offers. |
-| **One-Cancels-the-Other (OCO)** | Chapter VI, Sec. 1(e)(9) | Market Maker proprietary paired order (buy and sell unit). Full execution of one side triggers atomic, instantaneous cancellation of the contra-side order. |
-| **All-or-None Order (AON)** | Chapter VI, Sec. 1(e)(10) | Executed in its entirety or not at all. **Treated strictly as Time-in-Force IOC**. Rejected prior to opening cross or after market close. |
-| **Post-Only Order** | Chapter VI, Sec. 1(e)(11) | Liquidity-adding (Maker-only) order. Never routes away. Repriced to $0.01 inside the contra-BBO if locking/crossing internal book, or handled via Sec. 7(b)(3)(C) if locking/crossing NBBO. Rejects GTC or IOC designations. |
+#### 공식 NOM 옵션 주문유형 (Official NOM Order Types)
+| 주문유형 (Order Type) | 규정 조항 | 기술 사양 및 핵심 체결 메커니즘 |
+|---|---|---|
+| **취소-대체 주문 (Cancel-Replacement Order)** | Chapter VI, Sec. 1(e)(1) | 기존 주문을 취소함과 동시에 새로운 주문을 입력하는 단일 원자적(Atomic) 메시지. 기존 주문이 이미 부분 체결된 경우 대체 주문의 수량은 기체결분만큼 자동 차감. **오직 수량을 감소(Size Reduction)시키고 기타 모든 조건이 동일한 경우에만 기존 큐의 우선순위를 유지**하며, 가격이나 조건을 변경하면 대기열 최후미로 강등. |
+| **지정가 주문 (Limit Order)** | Chapter VI, Sec. 1(e)(2) | 지정된 가격 또는 그보다 유리한 가격으로 체결되는 주문. 매수 주문은 시스템 진입 시 최우선 매도호가(Inside Offer) 이상일 때, 매도 주문은 최우선 매수호가(Inside Bid) 이하일 때 즉시 체결 가능한 마켓터블(Marketable) 상태로 판정. |
+| **최소 체결 수량 주문 (Minimum Quantity Order - MQO)** | Chapter VI, Sec. 1(e)(3) | 지정된 최소 계약 수 이상의 체결을 요구하며, 조건을 충족하지 못하면 즉시 전량 취소. **시스템 레벨에서 Time-in-Force IOC(Immediate or Cancel)로 강제 취급**. 오프닝 크로스 이전 또는 정규장 마감 후 진입 시 시스템에서 자동 거부(Reject). |
+| **시장가 주문 (Market Order)** | Chapter VI, Sec. 1(e)(5) | 체결 시점에 가용한 최우선 호가로 즉시 체결되는 주문. 참가자는 사전 설정된 허용 시간(Timeout threshold) 초과 시 미체결 잔량이 자동으로 취소 반환(Cancel-back)되도록 프로그래밍 가능. |
+| **가격 개선 주문 (Price Improving Order - PIO)** | Chapter VI, Sec. 1(e)(6) | 종목의 규정 최소호가단위(MPV: $0.05/$0.10)보다 작은 **1센트($0.01) 단위**로 입력 가능한 서브틱 지정가 주문. 외부 호가판 디스플레이 시에는 정규 MPV로 라운딩되어 마스킹(매수 주문은 내림, 매도 주문은 올림) 표시되나, 실제 내부 체결 시에는 $0.01 단위 가격으로 체결되어 테이커에게 가격 개선 이익 제공. |
+| **개장 단일가 주문 (On the Open Order - OPG)** | Chapter VI, Sec. 1(e)(7) | 유효기간(TIF)이 "OPG"로 명시된 주문. 나스닥 오프닝 크로스(Opening Cross) 단일가 경매 세션에서만 실행 가능. 경매 완료 후 미체결된 잔여 수량은 즉시 주문자에게 자동 취소 반환. |
+| **시장간 스윕 주문 (Intermarket Sweep Order - ISO)** | Chapter VI, Sec. 1(e)(8) | 타 적격 옵션 거래소의 보호 호가(Protected Quotes)를 무시하고 나스닥 옵션 시스템(NOM) 내에서 복수 가격대에 걸쳐 즉시 실행되는 지정가 주문. 타 시장 라우팅 불가. 발송 브로커는 NOM으로 전송함과 동시에 타 거래소의 우수한 보호 호가 전량에 대해 추가 ISO 주문을 동시 분기 전송해야 할 법적 의무 부과. |
+| **양자택일 주문 (One-Cancels-the-Other - OCO)** | Chapter VI, Sec. 1(e)(9) | 마켓 메이커(MM) 전용 양방향 페어 주문 (매수와 매도 1세트). 한쪽 주문이 전량 체결되는 즉시, 매칭 엔진 내부 스레드가 반대편 주문을 마이크로초 단위로 즉각 원자적 자동 취소(Atomic Auto-Cancel) 처리. |
+| **전량 체결 조건 주문 (All-or-None Order - AON)** | Chapter VI, Sec. 1(e)(10) | 주문 전체 수량이 완전히 체결되거나, 그렇지 않으면 전혀 체결되지 않는 주문. **엄격히 Time-in-Force IOC로 취급**. 오프닝 크로스 이전 또는 정규장 마감 후 진입 시 시스템에서 즉시 거부(Reject). |
+| **포스트 온리 주문 (Post-Only Order)** | Chapter VI, Sec. 1(e)(11) | 오직 유동성을 공급(Maker-only)하여 리베이트를 확보하는 주문. 타 거래소 라우팅 불가. 내부 호가와 락/크로스 충돌 시 최우선 반대호가 대비 $0.01 안쪽으로 리프라이싱(Reprice)되어 등재되며, 외부 NBBO와 충돌 시 Sec. 7(b)(3)(C)에 따라 비경쟁 가격으로 조정되거나 즉각 반환. GTC 또는 IOC 지정 불가. |
 
-#### Official NOM Time-in-Force (TIF) Designations
-| TIF Flag | Rule Citation | Behavioral Specification |
-|----------|---------------|--------------------------|
-| **OPG** | Chapter VI, Sec. 1(g)(1) | Valid strictly for the Nasdaq Opening Cross; any residual balance is wiped upon cross completion. |
-| **IOC** | Chapter VI, Sec. 1(g)(2) | Any portion not immediately marketable is canceled and returned. May be entered pre-open and held until 9:30 AM evaluation. |
-| **DAY** | Chapter VI, Sec. 1(g)(3) | Persistent resting order valid until market close (4:00 PM / 4:15 PM ET) unless cancelled. |
-| **GTC** | Chapter VI, Sec. 1(g)(4) | Remains active across trading days until explicitly cancelled or until the underlying option series reaches contract expiration. |
-| **WAIT** | Chapter VI, Sec. 1(g)(5) | **Unique NOM delay mechanism**. Upon receipt, the order is **held for exactly 1.0 second without display or execution processing**, then released into the matching engine. |
+#### 공식 NOM 유효기간 (Time-in-Force) 플래그
+| TIF 플래그 | 규정 조항 | 동작 사양 및 시스템 처리 메커니즘 |
+|---|---|---|
+| **OPG** | Chapter VI, Sec. 1(g)(1) | 나스닥 오프닝 크로스(Opening Cross) 전용 유효기간; 경매 종료 즉시 미체결 잔량 소멸. |
+| **IOC** | Chapter VI, Sec. 1(g)(2) | 즉시 체결 가능한 부분만 체결하고 미체결 잔량은 즉시 취소 반환 (Immediate Or Cancel). 개장 전 사전 접수 가능하며 9:30 AM 개장 시 마켓터블 여부 일괄 평가. |
+| **DAY** | Chapter VI, Sec. 1(g)(3) | 당일 정규 거래시간(4:00 PM / 4:15 PM ET) 종료 시까지 오더북에 잔존하는 당일 유효 주문. |
+| **GTC** | Chapter VI, Sec. 1(g)(4) | 주문자가 명시적으로 취소하거나 해당 옵션 시리즈가 만기(Expiration)에 도달할 때까지 복수 거래일에 걸쳐 오더북에 지속 유지 (Good Til Cancelled). |
+| **WAIT** | Chapter VI, Sec. 1(g)(5) | **나스닥 옵션만의 독보적 지연 대기 메커니즘**. 주문이 시스템 게이트웨이에 진입하는 즉시 **정확히 1.0초(1,000,000 µs) 동안 디스플레이 및 체결을 일체 차단한 채 메모리 대기 챔버(Holding Chamber)에 보류**된 후 정규 오더북으로 방출. 초단타 레이턴시 아비트라지 방어용 타임락. |
 
 ---
 

@@ -115,14 +115,14 @@ Saudi Exchange는 **사우디 비전 2030** 및 **금융부문 개발 프로그�
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Standard sweeping acquisition breaking the localized Saudi ledger depth. |
-| Limit Order | Solidified maker boundaries protecting Middle Eastern capital deployments. |
-| Hidden Order | Stealth masking completely blotting out the entity presence from routine lit data feeds. |
-| Negotiated Deals | Extremely unique bilateral manual cross-approval executed off standard market books. |
-| GTD | Time-in-Force constraint mapping the structural memory persistence out to a specific calendar date. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 사우디 거래소 로컬 장부 뎁스를 즉시 스윕 흡수하는 기본 시장가 주문. |
+| 지정가주문 (Limit Order) | 중동 오일/국부 자본 배치를 보호하기 위한 확고한 메이커 경계 지정가 주문. |
+| 히든 주문 (Hidden Order) | 일반 공개 시세 피드에서 주문의 존재를 완전히 지워버리는 스텔스 마스킹 주문. |
+| 장외 협상딜 (Negotiated Deals) | 일반 공개 오더북을 거치지 않고 양측 브로커가 장외에서 사전 합의한 대규모 블록을 나스닥 X-Stream 코어로 사후 승인 통과시키는 사우디 특유의 결제 주문. |
+| 날짜 지정 유효 (GTD - Good Till Date) | 지정된 달력 일자까지 시스템 메모리에 주문의 유효성을 지속 유지하는 타임인포스 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

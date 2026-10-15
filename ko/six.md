@@ -145,14 +145,14 @@ SIX Swiss Exchange는 EU 회원국이 아님에도 **MiFID II 호가단위 체�
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Absolute execution without price safety nets; crashes the regular BBO structures. |
-| Limit Order | Imposes strict execution ceilings/floors to manage risk inside the continuous matching loops. |
-| SwissAtMid Order | Unlit execution mandate strictly constrained within the SIX stealth node matching exact midpoint NBBO. |
-| SLS (Sweep) | Intelligent routing: searches SwissAtMid dark volume first, then violently spills remainder into lit market limits. |
-| Hidden Order | Stealth liquidity placement completely hidden from tape, adhering to immense Large-in-Scale minimums. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 가격 안전망 없이 스위스 일반 호가 장부를 즉시 타격 체결. |
+| 지정가주문 (Limit Order) | 연속 매매 루프 내에서 위험을 관리하기 위해 상하한을 확정하는 표준 지정가 주문. |
+| 스위스앳미드 (SwissAtMid Order) | 공개 오더북과 완벽히 격리된 SIX 스텔스 다크 노드에서 NBBO 절대 중간값으로만 비공개 매칭되는 완전 익명 주문. |
+| 스위스 유동성 스윕 (SLS) | 1차로 SwissAtMid 다크 노드를 스캔해 은밀히 소화한 후, 잔여 수량은 공개 장부(EBBO)로 쏟아부어 체결하는 하이브리드 라우팅 주문. |
+| 히든 주문 (Hidden Order) | EU/스위스 LIS(거대 수량) 요건을 충족하여 호가 테이프에서 수량을 완전히 마스킹 은닉하는 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

@@ -1,6 +1,6 @@
 # London Stock Exchange (LSE)
 
-> **최종 수정일:** 2026-04-03
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -124,14 +124,14 @@ LSE는 2018년 1월부터 시행된 **MiFID II 호가단위 체계** (RTS 11)를
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Absolute execution without limitations, swallowing liquidity cascades in milli-seconds. |
-| Limit Order | Execution constrained by rigid boundaries and governed by the rigid SETS order-book protocol. |
-| Market to Limit (MTL) | Transmutes any unfilled market portions instantly into an unmoving structural resting limit. |
-| Hidden Order | Stealth mandates that conceal massive wholesale blocks entirely from standard SIP retail feeds. |
-| Good Till Time (GTT) | Nanosecond-verified countdown orders; valid strictly until a specified UTC epoch expires. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 가격 제한 없이 SETS 매칭 엔진 내부의 호가 뎁스를 밀리초 단위로 관통하며 즉시 체결. |
+| 지정가주문 (Limit Order) | 엄격한 SETS 프로토콜 경계 내에서 가격 상하한을 확정하는 표준 지정가 주문. |
+| 시장가 지정가 전환 (Market to Limit - MTL) | 상대방 1호가 물량을 즉시 체결한 후 미체결 잔여분은 해당 1호가 단가의 지정가 주문으로 즉시 고정 전환하는 주문. |
+| 히든 주문 (Hidden Order) | 대량 블록 거래 면제(LIS) 요건을 충족하여 일반 공개 시세 피드에서 완전히 은닉되는 스텔스 기관 주문. |
+| 유효시간 지정 (Good Till Time - GTT) | 지정된 나노초/밀리초 UTC 에포크(Epoch) 시각이 만료되는 즉시 메모리에서 자동 소멸되는 시한부 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

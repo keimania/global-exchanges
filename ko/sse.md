@@ -137,12 +137,12 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Limit Order | Core offering capped rigidly by the daily ±10% (or ±20% for STAR market) price bounds. |
-| BOC (Best Order Cancel) | Market order derivative that consumes up to 5 best price levels on the contra-side and cancels the rest. |
-| BOP (Best Order Post) | Market order derivative that consumes up to 5 best price levels and posts the remainder at the final executed price. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 지정가주문 (Limit Order) | 일일 ±10% (STAR 마켓은 ±20%) 가격제한폭 범위에 엄격히 구속되는 상하이 시장의 핵심 주문 유형. |
+| 최유리 5호가 즉결 취소 (BOC - Best Order Cancel) | 반대편 최우선 5개 호가(Top 5 Ticks)까지만 유동성을 즉시 흡수한 뒤 미체결 잔여분은 전량 즉시 취소하는 시장가 변형 주문. |
+| 최유리 5호가 지정가 전환 (BOP - Best Order Post) | 반대편 최우선 5개 호가를 흡수 체결한 후, 잔여 미체결 수량은 최종 체결 가격의 지정가로 오더북에 등재(Post)하는 시장가 변형 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

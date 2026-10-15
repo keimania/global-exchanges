@@ -120,14 +120,14 @@ Borsa Italiana / Euronext Milan은 모든 Euronext 시장에 걸쳐 사용되는
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Unbound execution sweep designed for extreme urgency in the Milan core networks. |
-| Limit Order | Standard resting order enforcing exact max/min compliance metrics bound to BBO. |
-| Market to Limit (MTL) | Inherited directly from Optiq Euronext integration: clears the top lit tier, then converts and anchors the rest. |
-| Peg Order | Dynamic tracking anchor ensuring the Milan-based order sticks to best pricing streams. |
-| Stop Market / Limit | Latent boundary guards triggering defensive protocol sweeps entirely upon threshold breaks. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 밀라노 Optiq 코어 네트워크에서 최고 수준의 시급성으로 가용 유동성을 스윕 체결하는 주문. |
+| 지정가주문 (Limit Order) | BBO에 종속된 엄격한 규정 준수 메트릭을 유지하며 오더북 대기열을 형성하는 표준 지정가 주문. |
+| 시장가 지정가 전환 (Market to Limit - MTL) | Optiq 통합에 따라 최우선 1호가 티어를 즉시 체결한 후, 미체결 잔여분은 해당 1호가 단가의 지정가 주문으로 즉시 고정 락업 전환하는 주문. |
+| 페그 주문 (Peg Order) | 밀라노 시장 최우선 시세 스트림에 실시간 밀착 연동되어 가격을 동적으로 자동 추적하는 앵커 호가. |
+| 스톱 시장가/지정가 (Stop Market / Limit) | 시세가 방어 임계선에 도달할 때만 잠금 해제되어 시스템으로 폭발 투입되는 조건부 방어 가드 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

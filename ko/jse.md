@@ -88,14 +88,14 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Completely unbound search sequence prioritizing total liquidity capture at available ticks. |
-| Limit Order | Imposes strict execution bands enforcing rigid protection against Johannesburg volatility. |
-| Stop Order | Contingency routines remaining utterly dormant until volatility snaps the trigger metric. |
-| Hidden/Pegged | Sophisticated European-origin algorithms tying the order to floating limits masked from tape. |
-| Iceberg Order | Segments massive block disclosures adhering strictly to MillenniumIT legacy routing rules. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 요하네스버그의 가용 틱 전체를 상대로 가격 제한 없이 즉시 유동성을 회수 체결하는 주문. |
+| 지정가주문 (Limit Order) | 남아공 시장의 변동성에 대항하여 엄격한 상하한선을 부여하는 표준 지정가 주문. |
+| 스톱 주문 (Stop Order) | 변동성이 트리거 메트릭을 파괴할 때까지 완전히 잠복 대기하는 비상 방어 주문. |
+| 히든 / 페그 주문 (Hidden / Pegged) | 테이프에서 수량을 은닉한 채 변동 가격선에 밀착 연동되는 유럽 기원의 알고리즘 주문. |
+| 아이스버그 주문 (Iceberg Order) | 밀레니엄 IT 규정에 부합하여 대량 블록을 작은 트랜치 조각으로 나누어 노출 및 리필하는 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

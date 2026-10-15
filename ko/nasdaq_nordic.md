@@ -125,13 +125,13 @@ Nasdaq Nordic 및 Baltic 시장은 2018년 1월 2일부터 시행된 **MiFID II 
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Sweeps optimally across the entire Nasdaq Nordic INET ecosystem. |
-| Limit Order | Imposes strict execution ceilings/floors targeting specific depth. |
-| Dark Pool (Nordic@Mid) | Executes completely obscured inside the specialized INET unlit matching enclave. |
-| SOR Routing Order | Highly integrated Nordic Smart Order Routing bouncing checks against primary and secondary venues. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 나스닥 노르딕 INET 에코시스템 전역을 상대로 최적으로 스윕 체결. |
+| 지정가주문 (Limit Order) | 특정 뎁스를 목표로 가격 상하한을 부과하는 표준 지정가 주문. |
+| 노르딕앳미드 다크풀 (Nordic@Mid) | INET 비노출 다크 인클레이브 내에서 북유럽 주식의 절대 중간값으로 완전 은닉 매칭. |
+| 스마트 오더 라우팅 (SOR) | 1차 로컬 장부뿐 아니라 유럽 타 MTF(Cboe Europe 등)의 호가창까지 비교 검색하여 최유리 가격을 쓸어담아오는 인공지능 라우팅 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

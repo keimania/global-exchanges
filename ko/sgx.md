@@ -1,6 +1,6 @@
 # Singapore Exchange (SGX)
 
-> **최종 수정일:** 2026-04-06
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -169,14 +169,14 @@ SGX는 2014년 출시한 **Designated Market Maker(DMM)** 프로그램을 운영
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Sweeps optimally across available liquidity boundaries within standard operating bands. |
-| Limit Order | Retains pricing integrity under intense volatility ensuring safety limits. |
-| Stop / Stop Limit | Traps dormant until a trigger threshold jolts the latent order into an active Market/Limit state. |
-| Session State (Auction) | Specifically encoded sequence designed to integrate seamlessly into designated system state auctions. |
-| Iceberg Order | Segments vast exposure into bite-sized replenished chunks to avoid institutional footprinting. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | Titan 매칭 엔진의 표준 운용 밴드 내에서 최적의 가용 유동성을 한도 없이 스윕 체결. |
+| 지정가주문 (Limit Order) | 격심한 시장 변동성 속에서도 지정된 가격 안전 한도를 엄격히 고수하는 핵심 주문. |
+| 스톱 / 스톱지정가 (Stop / Stop Limit) | 잠복 상태로 대기하다가 시장 시세가 트리거 기준 가격을 돌파하는 즉시 활성화되어 시장가 또는 지정가로 전환. |
+| 세션 상태 경매 주문 (Session State / Auction) | 시스템 상태가 개장 전/장마감 등 단일가 경매 상태로 스위칭될 때 결합 체결되도록 특별 인코딩된 주문. |
+| 아이스버그 주문 (Iceberg Order) | 거대 기관 물량을 일정 분할 크기로만 노출하고 체결 시마다 재보충하여 기관의 대량 거래 흔적을 은폐. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

@@ -1,6 +1,6 @@
 # Japan Exchange Group / Tokyo Stock Exchange (JPX / TSE)
 
-> **최종 수정일:** 2026-04-06
+> **최종 수정일:** 2026-10-15
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -158,14 +158,14 @@
 
 ## 4. 주문유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description | Conditional Rules |
-|-----------|-------------|-------------------|
-| Market Order (Naruyuki) | Forcefully executes at the best available price without limits until the order is entirely filled. Highly aggressive. | Cancelled if it hits Daily Price Limits without full execution. |
-| Limit Order (Sashine) | Conventional limit execution constrained by daily trading price bands established by previous close. | Placed into the book by Exact Price / Time Priority. |
-| FAS (Fill and Store) | Executes aggressively first; any remaining unfilled portion is securely stored as a resting limit order. | Default behavior for many Japanese retail brokerages. |
-| FAK (Fill and Kill) | Swallows all immediate available volume and instantaneously annihilates any residual quantity. | Prevents lagging traces on the order book. |
-| FOK (Fill or Kill) | A strict binary directive: either secure 100% of the volume perfectly, or completely abort the entire order. | Essential for arbitrage algorithms. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) | 조건부 규칙 |
+|---|---|---|
+| 시장가주문 (나리유키 / Naruyuki) | 가격 한도 없이 최우선 가용 호가를 상대하며 전량 체결될 때까지 공격적으로 진입하는 주문 (일일 가격제한폭 도달 시 제한). | 일일 가격제한 도달 시 취소 |
+| 지정가주문 (사시네 / Sashine) | 전일 종가 기준 일일 가격제한폭(상하한가) 내에서 가격과 시간 우선순위에 따라 정확히 집행되는 전통적 지정가 주문. | 엄격한 가격-시간 우선순위 등재 |
+| FAS (Fill and Store) | 즉시 가용한 유동성을 먼저 공격적으로 체결한 후, 미체결 잔여분은 오더북에 지정가 주문으로 안전하게 등재(Store)하는 주문. | 일본 소매 브로커 기본 동작 |
+| FAK (Fill and Kill) | 즉시 가용한 체결 가능 수량을 일거에 흡수한 뒤, 잔여 미체결 수량은 오더북에 흔적을 남기지 않고 즉각 전량 취소(Kill)하는 주문. | 호가창 잔재 방지 |
+| FOK (Fill or Kill) | 요구 수량 전체(100%)가 즉시 체결될 수 있으면 체결하고, 단 1주라도 부족하면 주문 전체를 즉시 파기하는 이진 조건 주문. | 차익거래 알고리즘 필수 모디파이어 |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

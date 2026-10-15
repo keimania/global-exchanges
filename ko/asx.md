@@ -155,14 +155,14 @@ ASX는 여러 유동성 강화 프로그램을 운영한다:
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Traditional liquidity scavenger lacking boundaries during lit hours. |
-| Limit Order | Foundational boundary constraint holding firm to defined tick values. |
-| Centre Point Order | Submits volume explicitly and exclusively into the dark ASX Centre Point unlit environment. |
-| Centre Point Sweep | Hybrid routing node checking the Centre Point midpoint first, then crashing the remaining size into the lit ASX TradeMarket bounds. |
-| Iceberg | Employs hidden quantities and random fractional delays in piece-meal visibility mapping. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 정규 거래시간 동안 가격 제한 없이 반대편 최우선 가용 호가를 스윕(Sweep)하여 즉시 체결하는 유동성 수취 주문. |
+| 지정가주문 (Limit Order) | 호주 규정 틱 단위 경계를 엄격히 준수하며 오더북에 가격 상하한선을 부여하는 표준 지정가 주문. |
+| 센터 포인트 주문 (Centre Point Order) | 공개 호가창(Lit Book)에 일체 노출되지 않고 ASX 자체 다크풀(Centre Point)에서 국가 최우선 호가 중간가격(Midpoint)으로 완전 익명 체결. |
+| 센터 포인트 스윕 (Centre Point Sweep) | 1차로 센터 포인트 다크풀의 비공개 중간가 물량을 먼저 스캔해 체결한 후, 남은 수량은 공개 장부(ASX Trade)로 쏟아부어 체결하는 고난도 하이브리드 라우팅 주문. |
+| 아이스버그 주문 (Iceberg Order) | 총 수량의 소량만 공개하되, 알고리즘 감시망을 교란하기 위해 표시 수량과 리필 주기에 무작위 난수 변형(Randomised display)을 적용하는 대량 은닉 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

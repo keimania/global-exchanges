@@ -1,6 +1,6 @@
 # NASDAQ Stock Market (NASDAQ)
 
-> **Last Updated:** 2026-04-03
+> **Last Updated:** 2026-10-15
 > **Research Tier:** Tier 1
 > **Domain:** Equities
 
@@ -65,7 +65,7 @@
 | Closing Cross | ~3:50 PM - 4:00 PM ET | ~20:50 - 21:00 UTC (EST) | Closing auction; single-price cross; ~16% of daily volume |
 | After-Hours | 4:00 PM - 8:00 PM ET | 21:00 - 01:00 UTC (EST) | Extended hours session; limited order types; lower liquidity |
 
-**Planned change (H2 2026, pending SEC approval):** Expansion to 23-hour trading per weekday. Day session 4:00 AM - 8:00 PM ET, 1-hour maintenance pause (8:00-9:00 PM), Night session 9:00 PM - 4:00 AM ET.
+**Current Operational Status (As of October 2026):** Active 23-hour continuous trading per weekday. Day session 4:00 AM - 8:00 PM ET, 1-hour maintenance pause (8:00-9:00 PM ET), Night session 9:00 PM - 4:00 AM ET providing seamless global liquidity.
 
 ### 2.3 Tick Sizes
 

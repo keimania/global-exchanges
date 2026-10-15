@@ -131,14 +131,14 @@
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description | Execution Protocol |
-|-----------|-------------|--------------------|
-| Readily Executable (Market) | Instantaneous absorption algorithm breaking into contra-book until filled or capped. | Added with Continuous Trading |
-| Limit Order | Fundamental order holding structure locked into precision price targeting. | Primary mechanism |
-| Rest of Day (ROD) | Persistent time constraint ensuring visibility throughout the active lit session. | Default Time-in-Force |
-| Immediate or Cancel (IOC) | Forceful liquidity strike dropping all unfulfilled elements via server-side purge. | Aggressive taking |
-| Fill or Kill (FOK) | Binary requirement enforcing a 100% matched volume or instantaneous total cancellation. | All-or-nothing sweep |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) | 실행 조건 / 프로토콜 |
+|---|---|---|
+| 시장가주문 (Readily Executable Market) | 연속 매매 도입과 함께 신설된 유형으로, 체결되거나 가격제한폭에 걸릴 때까지 상대방 오더북을 즉시 흡수하는 주문. | 연속매매 세션 신설 |
+| 지정가주문 (Limit Order) | 정밀한 가격 통제를 보장하며 대만 연속 매매 시스템의 중심축을 이루는 기본 주문. | 핵심 기본 매커니즘 |
+| 당일 유효 (ROD - Rest of Day) | 정규 매매 세션 종료 시까지 오더북에 호가를 지속 유지하는 기본 유효기간 주문. | 기본 유효기간 (TIF) |
+| 즉시 체결 후 취소 (IOC - Immediate or Cancel) | 즉시 체결 가능한 수량만 타격하고 잔여 수량은 서버 레벨에서 영구 소거하는 공격형 주문. | 적극적 유동성 수취 |
+| 전량 체결 또는 취소 (FOK - Fill or Kill) | 전체 수량 100%가 즉각 체결 가능하지 않으면 단 1주의 체결도 시도하지 않고 주문 전체를 취소 반환하는 올-오어-너씽 주문. | 전량 일괄 체결/소각 |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 

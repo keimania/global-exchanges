@@ -132,13 +132,13 @@ BSE는 매매 및 결제 목적으로 상장 증권을 그룹별로 분류한다
 
 ## 4. 주문 유형 (Order Types)
 
-### 4.1 Standard Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Sweeps optimally across the entire BSE BOLT Plus framework without restraint. |
-| Limit Order | Passive architecture holding firm to boundaries set by maker strategies. |
-| Stop Loss | Triggers defensive mechanisms once price thresholds invoke the contingency nodes. |
-| AMO | After Market Order targeting the initialization queue for the subsequent pre-open phase. |
+### 4.1 기본 주문유형 (Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | BSE BOLT Plus 프레임워크 전반을 상대로 제약 없이 유동성을 스윕 체결하는 시장가 주문. |
+| 지정가주문 (Limit Order) | 메이커 전략에 의해 설정된 가격 경계를 확고히 고수하는 패시브 오더북 대기 주문. |
+| 스톱로스 (Stop Loss): | 시세가 비상 방어 임계선을 침범하는 즉시 조건부 노드를 호출하여 손절 체결을 단행하는 보호 주문. |
+| 애프터 마켓 주문 (AMO): | 익일 개장 전 세션 부팅 시 초기화 대기열을 선점하도록 야간에 접수되는 스토리지 예약 주문. |
 
 ### 4.2 [Korean Deep-Dive] 매칭 엔진 및 알고리즘 심화 분석 
 
