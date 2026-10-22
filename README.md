@@ -1,14 +1,17 @@
 # 🌐 Global Exchange & Order Types Architecture (전세계 주요 증권거래소 주문 유형 및 전산 아키텍처)
 
-전세계 23개 주요 거래소(NYSE, NASDAQ, LSE, JPX, HKEX, Euronext, KRX 등)와 NASDAQ 옵션 시장(The Nasdaq Options Market)의 공식 규정집, 매칭 엔진 코어(INET, Optiq, Arrowhead, T7, Pillar, EXTRADE 등), 체결 알고리즘 및 호가 규칙을 총망라한 **이중 언어(한국어 🇰🇷 / English 🇺🇸)** 오픈 도큐멘테이션 프로젝트입니다.
+전세계 24개 주요 거래소 및 대체거래소(NYSE, NASDAQ, LSE, JPX, HKEX, Euronext, KRX, Nextrade NXT 등)와 NASDAQ 옵션 시장(The Nasdaq Options Market)의 공식 규정집, 매칭 엔진 코어(INET, Optiq, Arrowhead, T7, Pillar, EXTRADE, NextStation 등), 체결 알고리즘 및 호가 규칙을 총망라한 **이중 언어(한국어 🇰🇷 / English 🇺🇸)** 오픈 도큐멘테이션 프로젝트입니다.
 
 📱 **모바일 & 웹 라이브 뷰어**: [https://keimania.github.io/global-exchanges/](https://keimania.github.io/global-exchanges/)
 
 ---
 
-## 🏛️ 수록 거래소 목록 (Total 23 Exchanges + NOM Rules)
+## 🏛️ 수록 거래소 목록 (Total 24 Exchanges & ATS + NOM Rules)
 
 모든 문서는 **한국어 (`ko/`)** 및 **영어 (`en/`)** 버전으로 각각 완비되어 있으며, 웹 뷰어 상단 스위처를 통해 즉시 원클릭 전환이 가능합니다.
+
+### 0. 특별 비교 분석 (Cross-Exchange Master Analytics)
+- **[24개 글로벌 거래소 및 대체거래소(ATS) 종합 비교 매트릭스](comparison_matrix.md)**: 매칭엔진 코어 레이턴시(<15µs ~ 150µs), 12시간/24시간 세션, 틱사이즈, VI/LULD, T+1/T+2 청산결제, Maker-Taker 수수료 모델 전방위 비교
 
 ### 1. 북미 (North America)
 - **[NASDAQ (미국 나스닥)](nasdaq.md)**: INET / Eqlipse 4세대 엔진, MELO 10ms 안티-스푸핑, Pegged 프라이싱, MOC/LOC NOII 최소자승법, NOM 옵션 10대 주문 유형 및 WAIT 1초 지연 챔버
@@ -17,6 +20,7 @@
 
 ### 2. 아시아-태평양 (Asia-Pacific)
 - **[KRX (한국거래소)](krx.md)**: EXTRADE 플랫폼, 2025 신설 중간가호가 및 스톱지정가호가, 최유리/최우선지정가호가, 킬스위치 및 자전거래방지
+- **[Nextrade / NXT (넥스트레이드 한국 대체거래소)](nxt.md)**: 대한민국 최초 다자간매매체결회사(ATS), 08:00~20:00 12시간 매매 세션, 중간가(Midpoint) 호가 및 스톱지정가, 증권사 K-SOR 최선집행의무 연계, KRX CCP 청산 및 KSD 결제
 - **[HKEX (홍콩증권거래소)](hkex.md)**: OTP-C 플랫폼, 10호가 관통 ELO(Enhanced Limit Order), VCM 변동성 제어
 - **[JPX (도쿄증권거래소)](jpx.md)**: 후지츠 Arrowhead 4.0 엔진, 특기세호가(Tokubetsu Kehai) 3분 동결 이타요세(Itayose)
 - **[SSE (상하이증권거래소)](sse.md)**: 신세대 매칭 시스템, BOC (최우선 5호가 즉결 취소), ±10% 상하한 밴드 가드

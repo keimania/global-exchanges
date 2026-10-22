@@ -520,7 +520,7 @@
           </div>
           <div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white" id="clock-modal-title">글로벌 24시간 매매 세션 타임라인</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-300">전 세계 23개 거래소 실시간 개장/마감 현황 (KST / UTC)</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">전 세계 24개 거래소 및 대체거래소 실시간 개장/마감 현황 (KST / UTC)</p>
           </div>
         </div>
         <button id="btn-close-clock" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors">
@@ -624,10 +624,10 @@
 
   <!-- Core Data & Application Script -->
   <script>
-    // Exchange Directory Metadata (23 Exchanges + Special Reports + Options Rules)
+    // Exchange Directory Metadata (24 Exchanges/ATS + Special Reports + Options Rules)
     const EXCHANGES = [
       // Master Analytics Matrix
-      { id: 'comparison_matrix', name: 'Global Comparison Matrix', krName: '23개 거래소 종합 비교 매트릭스', file: 'comparison_matrix.md', country: 'Global', krCountry: '글로벌', flag: '📊', region: 'Special Reports', krRegion: '특별 분석 리포트', engine: 'Cross-Exchange Analytics' },
+      { id: 'comparison_matrix', name: 'Global Comparison Matrix', krName: '24개 거래소/대체거래소 종합 비교 매트릭스', file: 'comparison_matrix.md', country: 'Global', krCountry: '글로벌', flag: '📊', region: 'Special Reports', krRegion: '특별 분석 리포트', engine: 'Cross-Exchange Analytics' },
 
       // North America
       { id: 'nasdaq', name: 'NASDAQ', krName: '나스닥', file: 'nasdaq.md', country: 'United States', krCountry: '미국', flag: '🇺🇸', region: 'North America', krRegion: '북미', engine: 'INET / Eqlipse' },
@@ -636,6 +636,7 @@
       
       // Asia-Pacific
       { id: 'krx', name: 'KRX', krName: '한국거래소', file: 'krx.md', country: 'South Korea', krCountry: '대한민국', flag: '🇰🇷', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'EXTRADE Platform' },
+      { id: 'nxt', name: 'Nextrade (NXT)', krName: '넥스트레이드 (NXT)', file: 'nxt.md', country: 'South Korea', krCountry: '대한민국', flag: '🇰🇷', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'NextStation Platform' },
       { id: 'hkex', name: 'HKEX', krName: '홍콩증권거래소', file: 'hkex.md', country: 'Hong Kong', krCountry: '홍콩', flag: '🇭🇰', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'OTP-C Platform' },
       { id: 'jpx', name: 'JPX (TSE)', krName: '도쿄증권거래소', file: 'jpx.md', country: 'Japan', krCountry: '일본', flag: '🇯🇵', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'Arrowhead 4.0' },
       { id: 'sse', name: 'SSE', krName: '상하이증권거래소', file: 'sse.md', country: 'China', krCountry: '중국', flag: '🇨🇳', region: 'Asia-Pacific', krRegion: '아시아-태평양', engine: 'New Gen System' },
@@ -669,6 +670,7 @@
       { id: 'asx', openUtc: 0, closeUtc: 6, preUtc: 23, postUtc: 7, tz: 'UTC+10 (Sydney)' },
       { id: 'jpx', openUtc: 0, closeUtc: 6.5, preUtc: 23, postUtc: 7, tz: 'UTC+9 (Tokyo)' },
       { id: 'krx', openUtc: 0, closeUtc: 6.5, preUtc: 23, postUtc: 9, tz: 'UTC+9 (Seoul)' },
+      { id: 'nxt', openUtc: 0.01, closeUtc: 6.33, preUtc: 23, postUtc: 11, tz: 'UTC+9 (Seoul/NXT)' },
       { id: 'twse', openUtc: 1, closeUtc: 5.5, preUtc: 0.5, postUtc: 6, tz: 'UTC+8 (Taipei)' },
       { id: 'hkex', openUtc: 1.5, closeUtc: 8, preUtc: 1, postUtc: 8.15, tz: 'UTC+8 (Hong Kong)' },
       { id: 'sse', openUtc: 1.5, closeUtc: 7, preUtc: 1.25, postUtc: 7.5, tz: 'UTC+8 (Shanghai)' },
@@ -694,10 +696,12 @@
     // Global Order Type Catalog
     const ORDER_TYPES_CATALOG = [
       { name: 'M-ELO (Midpoint Extended Life Order)', krName: '미드포인트 수명 연장 주문', tag: 'dark', ex: ['nasdaq'], desc: '10ms 동안 호가창에 고정 대기한 주문 간에만 NBBO 중간가격으로 체결되는 초단타(HFT) 레이턴시 아비트라지 방어용 다크 주문' },
-      { name: 'Post-Only / Maker-Only', krName: '포스트 온리 (유동성 공급 전용)', tag: 'maker', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'euronext'], desc: '진입 즉시 유동성을 소비(Taker)하지 않고 오직 오더북에 등재되어 메이커 리베이트를 확보하는 주문. 충돌 시 리프라이싱' },
+      { name: 'Post-Only / Maker-Only', krName: '포스트 온리 (유동성 공급 전용)', tag: 'maker', ex: ['nasdaq', 'nyse', 'krx', 'nxt', 'hkex', 'euronext'], desc: '진입 즉시 유동성을 소비(Taker)하지 않고 오직 오더북에 등재되어 메이커 리베이트를 확보하는 주문. 충돌 시 리프라이싱' },
       { name: 'Intermarket Sweep Order (ISO)', krName: '시장간 스윕 주문', tag: 'sweep', ex: ['nasdaq', 'nyse', 'tmx'], desc: '타 거래소의 보호 호가(Protected Quotes)를 무시하고 해당 거래소의 복수 가격대를 즉시 쓸어담는 주문 (Reg NMS Rule 611 예외)' },
       { name: 'Iceberg / Reserve Order', krName: '빙산 호가 / 수량 숨김 주문', tag: 'dark', ex: ['krx', 'nasdaq', 'nyse', 'euronext', 'deutsche_borse', 'hkex'], desc: '전체 주문 수량 중 지정된 표시 수량(Peak/Display)만 호가창에 공개하고, 체결 시 숨겨진 잔여 수량이 자동으로 리로드되는 주문' },
-      { name: 'Dark / Hidden Midpoint', krName: '비표시 중간가 주문', tag: 'dark', ex: ['nasdaq', 'nyse', 'six', 'lse', 'asx'], desc: '외부 시세판에 일체 표시되지 않으며 최우선 매수/매도호가의 정중앙(Midpoint)에서 대기 및 무스프레드 체결' },
+      { name: 'Midpoint Order (중간가 호가)', krName: '중간가 호가 / 비표시 중간가', tag: 'dark', ex: ['nxt', 'nasdaq', 'nyse', 'six', 'lse', 'asx'], desc: '최우선 매수·매도호가의 정중앙(Midpoint)에서 대기하며 스프레드 비용을 50% 절감하는 주문. 한국 시장에서는 대체거래소(NXT)가 최초 도입' },
+      { name: 'Stop-Limit Order (스톱지정가 주문)', krName: '스톱지정가 주문', tag: 'maker', ex: ['nxt', 'nasdaq', 'nyse', 'tmx'], desc: '주가가 사전에 설정한 감시가격(Stop Price)에 도달하면 지정가 주문이 자동 제출되는 조건부 리스크 관리 주문 (NXT 신규 도입)' },
+      { name: 'GTP (Good Till Pre-market)', krName: '프리마켓 세션 한정 주문', tag: 'auction', ex: ['nxt'], desc: '넥스트레이드(NXT) 프리마켓(08:00~08:50)에만 효력이 유지되며, 정규장 개시 전 미체결 수량이 전량 자동 취소되는 세션 전용 주문' },
       { name: 'On the Open (MOO / LOO / OPG)', krName: '개장 단일가 주문', tag: 'auction', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'jpx'], desc: '정규장 개장 단일가 경매(Opening Cross)에만 참여하며, 미체결 잔량은 경매 직후 즉시 취소' },
       { name: 'On the Close (MOC / LOC)', krName: '장마감 단일가 주문', tag: 'auction', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'lse'], desc: '당일 공식 종가를 결정하는 장마감 동시호가/경매(Closing Cross) 전용 주문' },
       { name: 'WAIT (Delayed Delay Mechanism)', krName: '나스닥 NOM WAIT 타임락 플래그', tag: 'speedbump', ex: ['nasdaq', 'NASDAQ_OPTIONS_RULES'], desc: '주문 접수 즉시 1.0초(1,000,000µs) 동안 메모리 대기 챔버에 강제 보류 후 방출하는 NOM 전용 레이턴시 방어 주문' },
@@ -1178,14 +1182,26 @@
           let isOpen = false;
           let isPreOrPost = false;
 
-          // Check Session Hours
+          // Check Session Hours (handling UTC midnight wraps)
           if (session.openUtc < session.closeUtc) {
             isOpen = utcNow >= session.openUtc && utcNow < session.closeUtc;
-            isPreOrPost = (utcNow >= session.preUtc && utcNow < session.openUtc) || (utcNow >= session.closeUtc && utcNow < session.postUtc);
+            const isPre = session.preUtc > session.openUtc 
+              ? (utcNow >= session.preUtc || utcNow < session.openUtc)
+              : (utcNow >= session.preUtc && utcNow < session.openUtc);
+            const isPost = session.postUtc < session.closeUtc
+              ? (utcNow >= session.closeUtc || utcNow < session.postUtc)
+              : (utcNow >= session.closeUtc && utcNow < session.postUtc);
+            isPreOrPost = isPre || isPost;
           } else {
             // Over midnight UTC
             isOpen = utcNow >= session.openUtc || utcNow < session.closeUtc;
-            isPreOrPost = (utcNow >= session.preUtc && utcNow < session.openUtc) || (utcNow >= session.closeUtc && utcNow < session.postUtc);
+            const isPre = (session.preUtc > session.openUtc) 
+              ? (utcNow >= session.preUtc || utcNow < session.openUtc)
+              : (utcNow >= session.preUtc && utcNow < session.openUtc);
+            const isPost = (session.postUtc < session.closeUtc)
+              ? (utcNow >= session.closeUtc || utcNow < session.postUtc)
+              : (utcNow >= session.closeUtc && utcNow < session.postUtc);
+            isPreOrPost = isPre || isPost;
           }
 
           let statusBadge = '';
