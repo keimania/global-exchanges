@@ -1,6 +1,6 @@
 # Hong Kong Exchanges and Clearing Limited (HKEX)
 
-> **Last Updated:** 2026-04-06
+> **Last Updated:** 2026-10-22
 > **Research Tier:** Tier 1
 > **Domain:** Equities
 

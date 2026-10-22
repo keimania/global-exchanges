@@ -1,549 +1,614 @@
-# Korea Exchange (KRX)
+# Korea Exchange (KRX, 한국거래소)
 
-> **Last Updated:** 2026-04-13
-> **Research Tier:** Tier 1
-> **Domain:** Equities
-
----
-
-## 1. Overview & Profile
-
-| Item | Details |
-|------|---------|
-| Official Name | Korea Exchange (한국거래소) |
-| Abbreviation | KRX |
-| Website | https://www.krx.co.kr / https://global.krx.co.kr |
-| Year Established | 1956 (Korea Stock Exchange); 2005 (merged as KRX) |
-| Country / City | South Korea / Busan (headquarters), Seoul (equities operations) |
-| Ownership Structure | Private enterprise; owned by ~44 financial and government entities; removed from direct state control in 2015; supervised by FSC as public-service-related organization |
-| Parent Company / Group | Korea Exchange (sole entity; no parent) |
-| Regulatory Authority | Financial Services Commission (FSC) / Financial Supervisory Service (FSS) |
-| Market Capitalization (listed companies) | ~KRW 4,277 trillion (~USD 2.95 trillion) (January 2026) |
-| Total Listed Instruments | ~2,901 companies (KOSPI ~954, KOSDAQ ~1,700+, KONEX ~129) plus ETFs, ETNs, ELWs, REITs, bonds |
-| Average Daily Trading Volume | ~USD 20.7 billion (KOSPI, February 2026) |
-| Average Daily Trading Value | ~KRW 32.23 trillion (KOSPI, February 2026) |
-
-[Source: Wikipedia — Korea Exchange, accessed 2026-04-13]
-[Source: Social News XYZ, "KOSPI's Average Daily Trading Volume Exceeds $20.7 Billion in Feb", 2026-03-01]
-
-### Key Historical Milestones
-- **1956:** Korea Stock Exchange established in Busan (Daehan Stock Exchange)
-- **1963:** Reorganized as Korea Stock Exchange (KSE) under government oversight
-- **1988:** Electronic trading introduced (parallel with open outcry, inspired by TSE CATS)
-- **1996:** KOSDAQ market launched for technology and growth companies
-- **1997 (September):** Fully automated trading; trading floor eliminated
-- **2005 (January 27):** Korea Exchange (KRX) formed by merger of KSE, KOSDAQ market, and Korea Futures Exchange (KOFEX)
-- **2009 (March):** EXTURE trading system launched, consolidating three legacy systems
-- **2013 (July):** KONEX market launched for startups and SMEs
-- **2014:** EXTURE+ launched (sub-70 us latency, first Linux x86 in Korean capital markets)
-- **2015:** KRX removed from direct state control; became private enterprise
-- **2023 (January):** Exture 3.0 Phase 1 launched (trading + information distribution)
-- **2023 (October):** Exture 3.0 Phase 2 launched (clearing & settlement)
-- **2025 (March):** Nextrade (NXT) launched as Korea's first alternative exchange, ending KRX monopoly
-- **2025 (December):** KRX introduces maker-taker fee model (first fee change in 20 years)
-- **2026 (February):** KOSPI reaches 6,000 milestone
+> **최종 업데이트:** 2026-10-22
+> **조사 등급:** Tier 1
+> **도메인:** 주식
 
 ---
 
-## 2. Market Structure
+## 1. 개요 및 프로필 (Overview & Profile)
 
-### 2.1 Market Segments
-| Segment | Description | Listing Requirements (Summary) |
-|---------|-------------|-------------------------------|
-| **KOSPI (Main Board)** | Large-cap blue-chip market; Korea's primary equities market | Equity KRW 30B+; 3+ years operations; 500+ shareholders; 25%+ public float; clean audit opinion; financial performance (5 alternative paths including revenue KRW 100B+ or market cap KRW 1T+) [상장규정 Art. 29] |
-| **KOSDAQ** | Growth market for technology, venture, and mid-cap companies | Lower thresholds than KOSPI; targets innovative and growth companies |
-| **KONEX** | Third-tier market for startups and SMEs | Lowest thresholds; pre-KOSDAQ stage companies; viability questioned (only 129 listed as of Jan 2024, 1 new listing in 2024) |
+| 항목 | 내용 |
+|------|------|
+| 공식 명칭 | Korea Exchange (한국거래소) |
+| 약칭 | KRX |
+| 웹사이트 | https://www.krx.co.kr / https://global.krx.co.kr |
+| 설립 연도 | 1956년 (대한증권거래소); 2005년 (KRX로 통합) |
+| 국가 / 도시 | 대한민국 / 부산 (본사), 서울 (주식 운영) |
+| 소유 구조 | 민간 기업; 약 44개 금융기관 및 정부기관 소유; 2015년 공공기관 지정 해제; FSC (금융위원회) 공익적 관련 기관으로 감독 |
+| 모회사 / 그룹 | 한국거래소 (단독 법인; 모회사 없음) |
+| 규제 기관 | 금융위원회 (FSC) / 금융감독원 (FSS) |
+| 시가총액 (상장사 기준) | 약 4,277조 원 (약 USD 2.95조) (2026년 1월) |
+| 총 상장 종목 수 | 약 2,901개사 (KOSPI 약 954개, KOSDAQ 1,700개+, KONEX 약 129개) 및 ETF, ETN, ELW, 리츠, 채권 포함 |
+| 일평균 거래량 | 약 USD 207억 (KOSPI, 2026년 2월) |
+| 일평균 거래대금 | 약 32.23조 원 (KOSPI, 2026년 2월) |
 
-**Listed instrument types on KOSPI** [상장규정]:
-- Common shares (보통주권), Preferred/class shares (종류주권)
-- Foreign shares and DRs (외국주권/예탁증권)
-- SPAC shares (기업인수목적회사주권)
-- ETFs (상장지수펀드), Foreign ETFs
-- ETNs (상장지수증권)
-- ELWs (주식워런트증권)
-- REITs (부동산투자회사주권)
-- Debt securities (채무증권 — corporate bonds, government bonds, ABS, covered bonds)
-- Beneficiary certificates (수익증권)
-- Subscription rights certificates (신주인수권증권/증서)
-- Investment company shares, Ship investment company shares
+[출처: Wikipedia — Korea Exchange, 2026-04-13 접속]
+[출처: Social News XYZ, "KOSPI's Average Daily Trading Volume Exceeds $20.7 Billion in Feb", 2026-03-01]
 
-### 2.2 Trading Sessions
-| Session | Local Time (KST) | UTC | Description |
-|---------|-----------------|-----|-------------|
-| Pre-market block/basket trading | 08:00 - 09:00 | 23:00 - 00:00 | Off-hours block, basket, and competitive block trades |
-| Pre-market closing-price trading (시간외종가매매) | 08:30 - 08:40 | 23:30 - 23:40 | Trades at previous day's closing price |
-| Pre-open order collection | 08:30 - 09:00 | 23:30 - 00:00 | Orders accumulated for opening call auction |
-| **Opening Call Auction (개시 동시호가)** | ~09:00 | ~00:00 | Single-price determination for opening price |
-| **Continuous Trading (접속매매)** | 09:00 - 15:20 | 00:00 - 06:20 | Price-time priority matching |
-| Closing auction order collection | 15:20 - 15:30 | 06:20 - 06:30 | Orders accumulated for closing call auction |
-| **Closing Call Auction (장종료 동시호가)** | ~15:30 | ~06:30 | Single-price determination for closing price |
-| Post-market closing-price trading | 15:30 - 16:00 | 06:30 - 07:00 | Trades at closing price [업무규정 시행세칙 Art. 11] |
-| Post-market single-price trading (시간외단일가매매) | 16:00 - 18:00 | 07:00 - 09:00 | Call auction at 10-minute intervals; +/-10% of closing price [업무규정 Art. 34의2] |
-| Post-market block/basket trading | 15:40 - 18:00 | 06:40 - 09:00 | Off-hours block and basket trades |
+### 주요 연혁
 
-**Total trading window:** 08:00 - 18:00 KST (10 hours including off-hours sessions)
-
-[Source: 유가증권시장 업무규정 Art. 4; 업무규정 시행세칙 Art. 8, 11]
-
-### 2.3 Tick Sizes
-
-**Equities (주권), Foreign DRs, Subscription Rights, Beneficiary Certificates** [시행세칙 Art. 32(2)]:
-
-| Price Range (KRW) | Tick Size (KRW) |
-|--------------------|-----------------|
-| Below 2,000 | 1 |
-| 2,000 ~ < 5,000 | 5 |
-| 5,000 ~ < 20,000 | 10 |
-| 20,000 ~ < 50,000 | 50 |
-| 50,000 ~ < 200,000 | 100 |
-| 200,000 ~ < 500,000 | 500 |
-| 500,000 and above | 1,000 |
-
-**ETFs and ETNs:**
-
-| Price Range (KRW) | Tick Size (KRW) |
-|--------------------|-----------------|
-| Below 2,000 | 1 |
-| 2,000 and above | 5 |
-
-**ELWs:** KRW 5 (flat)
-
-### 2.4 Lot Sizes
-- **Standard lot:** 1 share (no board lot requirement) [시행세칙 Art. 33]
-- **ETF/ETN:** 1 unit
-- **ELW:** 10 units
-- **Odd lot trading:** Supported
-
-### 2.5 Market Maker / Liquidity Provider Programs
-
-**A. Liquidity Provider (유동성공급회원, LP)** [업무규정 Art. 20의2 ~ 20의8]:
-- Eligible for: Stocks, ETFs, ETNs, ELWs
-- Must be a settlement member (결제회원) with 투자매매업 license
-- **Spread obligation:** Must submit quotes within 5 minutes when spread exceeds contractual threshold:
-  - Stocks: within 3% spread ratio
-  - ETF/ETN (domestic underlying): within 2%; (foreign underlying): within 3%
-- **NAV tracking:** ETF/ETN deviation must not exceed 3% (domestic) / 6% (foreign)
-- LP position limit: Quote obligation exempted when holdings exceed 2% of listed shares
-- Performance evaluated by KRX; compensation from ETF trading fee pool
-
-**B. Market Maker (시장조성자)** [업무규정 Art. 20의9 ~ 20의11; 시행세칙 Art. 31-12 ~ 31-22]:
-- For low-liquidity stocks (저유동성종목) designated by KRX
-- Continuous two-sided quoting obligation
-- Must maintain minimum quote maintenance amount within contractual spread
-- Start quoting within 3 minutes of market open
-- Quarterly evaluation; penalty points for non-compliance can lead to 1-year suspension
-- Compensation from KRX trading fee revenue on designated stocks
-- Buy obligation exempted when position exceeds 0.2% of listed shares or KRW 100M
+- **1956년:** 부산에 대한증권거래소 설립
+- **1963년:** 정부 감독 하에 한국증권거래소(KSE)로 재편
+- **1988년:** 전자거래 도입 (공개호가 병행, TSE CATS 벤치마킹)
+- **1996년:** 기술·성장 기업 대상 KOSDAQ 시장 개설
+- **1997년 9월:** 완전 자동화 매매 전환; 거래소 영업장 폐지
+- **2005년 1월 27일:** 한국증권거래소(KSE), KOSDAQ 시장, 한국선물거래소(KOFEX) 통합으로 Korea Exchange (KRX) 출범
+- **2009년 3월:** EXTURE (엑스처) 매매시스템 가동, 기존 3개 시스템 통합
+- **2013년 7월:** 스타트업·중소기업 대상 KONEX 시장 개설
+- **2014년:** EXTURE+ 가동 (왕복지연 70μs 미만, 한국 자본시장 최초 Linux x86 적용)
+- **2015년:** KRX 공공기관 지정 해제; 민간 기업으로 전환
+- **2023년 1월:** Exture 3.0 (엑스처 3.0) Phase 1 가동 (매매 + 정보배포)
+- **2023년 10월:** Exture 3.0 Phase 2 가동 (청산·결제)
+- **2025년 3월:** Nextrade (NXT, 넥스트레이드) 출범 — 한국 최초 대체거래소, KRX 독점 종식
+- **2025년 12월:** KRX, 메이커-테이커 수수료 체계 도입 (20년 만의 수수료 개편)
+- **2026년 2월:** KOSPI 6,000p 달성
 
 ---
 
-## 3. Trading Mechanism
+## 2. 시장 구조 (Market Structure)
 
-### 3.1 Auction Mechanisms
+### 2.1 시장 부문 (Market Segments)
 
-**Opening Auction (개시 동시호가)** [업무규정 Art. 23]:
-- Call auction (단일가격에 의한 개별경쟁매매) at market open (~09:00)
-- Orders collected 08:30-09:00; executed at single equilibrium price
-- Price determination: the price where aggregate sell volume equals aggregate buy volume (합치가격)
-- If multiple match prices exist, select the price closest to previous close [Art. 23④⑤]
+| 부문 | 설명 | 상장 요건 (요약) |
+|------|------|-----------------|
+| **KOSPI (유가증권시장)** | 대형 우량주 시장; 한국 주식시장의 핵심 | 자기자본 300억 원 이상; 영업 3년 이상; 주주 500인 이상; 유동주식비율 25% 이상; 적정 감사의견; 재무 요건 (매출액 1,000억 원 또는 시가총액 1조 원 등 5가지 대안 경로) [상장규정 제29조] |
+| **KOSDAQ** | 기술·벤처·중형주 성장 시장 | KOSPI 대비 완화된 요건; 혁신·성장 기업 대상 |
+| **KONEX** | 스타트업·중소기업 대상 제3시장 | 최저 요건; KOSDAQ 이전 단계; 실효성 논란 (2024년 1월 기준 129개 상장, 2024년 신규 상장 1건) |
 
-**Closing Auction (장종료 동시호가)** [업무규정 Art. 23]:
-- Orders collected 15:20-15:30; executed at single closing price
-- 조건부지정가호가 (conditional limit orders) convert to market orders for closing auction
+**KOSPI 상장 가능 증권 종류** [상장규정]:
+- 보통주권, 종류주권
+- 외국주권 / 예탁증권 (DR)
+- SPAC (기업인수목적회사) 주권
+- ETF (상장지수펀드), 외국 ETF
+- ETN (상장지수증권)
+- ELW (주식워런트증권)
+- 부동산투자회사(REITs) 주권
+- 채무증권 (회사채, 국채, ABS, 커버드본드)
+- 수익증권
+- 신주인수권증권 / 신주인수권증서
+- 투자회사 주권, 선박투자회사 주권
 
-**Volatility Interruption Auction** [업무규정 Art. 26의2]:
-- Triggered when VI conditions are met (see Section 8)
-- 2-minute call auction with random end within 30 seconds [시행세칙 Art. 35(1)(4)]
+### 2.2 매매시간 (Trading Sessions)
 
-**Off-Hours Single-Price Trading (시간외단일가매매)** [업무규정 Art. 34의2]:
-- Call auctions at 10-minute intervals from 16:00 to 18:00
-- Price range: +/-10% of the day's closing price, within daily price limits
+| 세션 | 국내 시간 (KST) | UTC | 설명 |
+|------|----------------|-----|------|
+| 시간외 블록·바스켓 매매 (장전) | 08:00 - 09:00 | 23:00 - 00:00 | 시간외 블록·바스켓·경쟁대량 거래 |
+| 시간외종가매매 (장전) | 08:30 - 08:40 | 23:30 - 23:40 | 전일 종가로 거래 |
+| 장전 호가 접수 | 08:30 - 09:00 | 23:30 - 00:00 | 개시 동시호가를 위한 호가 수집 |
+| **개시 동시호가** | ~09:00 | ~00:00 | 시가 결정을 위한 단일가 경쟁매매 |
+| **접속매매** | 09:00 - 15:20 | 00:00 - 06:20 | 가격-시간 우선 원칙에 따른 연속 체결 |
+| 장종료 동시호가 호가 접수 | 15:20 - 15:30 | 06:20 - 06:30 | 장종료 동시호가를 위한 호가 수집 |
+| **장종료 동시호가** | ~15:30 | ~06:30 | 종가 결정을 위한 단일가 경쟁매매 |
+| 시간외종가매매 (장후) | 15:30 - 16:00 | 06:30 - 07:00 | 종가로 거래 [업무규정 시행세칙 제11조] |
+| 시간외단일가매매 | 16:00 - 18:00 | 07:00 - 09:00 | 10분 간격 단일가 경쟁매매; 종가 대비 ±10% [업무규정 제34조의2] |
+| 시간외 블록·바스켓 매매 (장후) | 15:40 - 18:00 | 06:40 - 09:00 | 시간외 블록·바스켓 거래 |
 
-### 3.2 Continuous Trading
-- **Order-driven** market with price-time priority (가격-시간 우선원칙)
-- Continuous matching (접속매매 / 복수가격에 의한 개별경쟁매매) [업무규정 Art. 24]
-- Execution price = the earlier (선행) order's price when lowest ask meets highest bid
+**총 매매 가능 시간:** 08:00 - 18:00 KST (시간외 세션 포함 10시간)
 
-### 3.3 Price Discovery
+[출처: 유가증권시장 업무규정 제4조; 업무규정 시행세칙 제8조, 제11조]
 
-**Priority rules** [업무규정 Art. 22②]:
+### 2.3 호가단위 (Tick Sizes)
 
-| Priority | Rule | Detail |
-|----------|------|--------|
-| 1. Price priority (가격우선) | Art. 22②1 | Lower sell price > higher sell price; Higher buy price > lower buy price; Market orders have priority over limit orders |
-| 2. Time priority (시간우선) | Art. 22②2 | Same price: earlier submission takes priority |
-| 3. Simultaneous order rules | Art. 22③ | For call auctions: orders at limit-up (buys) or limit-down (sells) during price determination treated as simultaneous |
+**주권, 외국 DR, 신주인수권증권, 수익증권** [시행세칙 제32조②]:
 
----
+| 가격 범위 (원) | 호가단위 (원) |
+|--------------|-------------|
+| 2,000원 미만 | 1 |
+| 2,000원 이상 ~ 5,000원 미만 | 5 |
+| 5,000원 이상 ~ 20,000원 미만 | 10 |
+| 20,000원 이상 ~ 50,000원 미만 | 50 |
+| 50,000원 이상 ~ 200,000원 미만 | 100 |
+| 200,000원 이상 ~ 500,000원 미만 | 500 |
+| 500,000원 이상 | 1,000 |
 
-## 4. Order Types
+**ETF 및 ETN:**
 
-### 4.1 Standard Order Types
-| Order Type | Korean | Description | Article |
-|-----------|--------|-------------|---------|
-| Limit Order | 지정가호가 | Specify issue, quantity, and price | Art. 2④1 |
-| Market Order | 시장가호가 | Specify issue and quantity; price determined by matching | Art. 2④2 |
-| Conditional Limit | 조건부지정가호가 | Limit order during continuous session; converts to market at closing auction | Art. 2④3 |
-| Best Limit (opposite-side) | 최유리지정가호가 | Auto-priced at best opposing quote (sell at best bid, buy at best ask) | Art. 2④4 |
-| Best Priority (own-side) | 최우선지정가호가 | Auto-priced at own-side best quote (sell at best ask, buy at best bid) | Art. 2④5 |
+| 가격 범위 (원) | 호가단위 (원) |
+|--------------|-------------|
+| 2,000원 미만 | 1 |
+| 2,000원 이상 | 5 |
 
-### 4.2 Advanced Order Types
-| Order Type | Korean | Description | Article |
-|-----------|--------|-------------|---------|
-| Competitive Block Order | 경쟁대량매매호가 | For VWAP/block trades; minimum KRW 500M based on base price | Art. 2④6 |
-| **Mid-Price Order** | 중간가호가 | **NEW (2025.2.5)** — Priced at midpoint of best bid/ask | Art. 2④7 |
-| **Stop Limit Order** | 스톱지정가호가 | **NEW (2025.2.5)** — Limit order activated when stop price is triggered | Art. 2④8 |
-| Target Price Order | 목표가주문 | Client-level VWAP-targeting order | Art. 2⑤6 |
+**ELW:** 5원 (단일 적용)
 
-### 4.3 Time-in-Force Options
-| TIF | Description | Article |
-|-----|-------------|---------|
-| DAY | Default; valid for the trading day | |
-| IOC (Immediate or Cancel) | Execute available quantity immediately, cancel remainder | 시행세칙 Art. 108(12) |
-| FOK (Fill or Kill) | Execute entire quantity or cancel all | 시행세칙 Art. 108(12) |
+### 2.4 매매단위 (Lot Sizes)
+- **기본 매매단위:** 1주 (최소 거래단위 없음) [시행세칙 제33조]
+- **ETF/ETN:** 1좌
+- **ELW:** 10증서
+- **단주 매매:** 지원
 
-**Restrictions:**
-- Market/conditional limit orders prohibited for: short-selling, LP/MM quotes, treasury stock, off-hours sessions
-- Mid-price orders prohibited during: call auctions, all off-hours sessions, LP/MM quotes, short-selling
-- Stop limit orders prohibited during: call auctions, all off-hours sessions
+### 2.5 시장조성자 / 유동성공급자 제도 (Market Maker / Liquidity Provider Programs)
 
-### 4.4 Order Modification / Cancellation
-- Orders may be modified or cancelled before execution
-- Modification allowed for: price, quantity (decrease only or change), order type conditions
-- **Kill switch (접속해제 호가취소):** Members may pre-register for automatic mass cancellation if connectivity is severed [업무규정 Art. 13의2]
-- **Bulk cancellation (일괄호가취소):** HFT traders can cancel all orders by HFT ID within a security type [시행세칙 Art. 17-2]
-- **Account-level kill switch:** Cancel all orders or block new orders for specific algo accounts; 10-minute cooldown before reactivation [시행세칙 Art. 130-2]
-- **Self-trade prevention:** Required for HFT; 3 modes (cancel resting, cancel incoming, cancel both) [시행세칙 Art. 13-2]
+**A. 유동성공급회원 (LP, Liquidity Provider)** [업무규정 제20조의2 ~ 제20조의8]:
+- 대상 종목: 주권, ETF, ETN, ELW
+- 결제회원이어야 하며 투자매매업 인가 필요
+- **호가제출 의무:** 스프레드가 계약상 기준 초과 시 5분 이내 호가 제출:
+  - 주권: 스프레드율 3% 이내
+  - ETF/ETN (국내 기초자산): 2% 이내; (해외 기초자산): 3% 이내
+- **NAV 추적:** ETF/ETN 괴리율은 3% (국내) / 6% (해외) 이내 유지
+- LP 포지션 한도: 보유량이 상장주식 수의 2% 초과 시 호가 의무 면제
+- KRX의 성과 평가; ETF 거래수수료 재원에서 보상
 
----
-
-## 5. Trading System (Technology)
-
-| Item | Details |
-|------|---------|
-| System Name | Exture 3.0 (엑스처 3.0) |
-| Vendor / In-house | In-house (KRX) with KOSCOM as primary technology partner |
-| Architecture | Memory-based order book; layered/tiered architecture; flexible, expandable with market-specific multi-matching capabilities |
-| Matching Engine | Zero-latency design goal; memory-based matching |
-| Round-trip Latency | ~49 us [estimated] (30% improvement over EXTURE+ worst-case 70 us) |
-| Order Processing Capacity | 100,000+ TPS (inherited from EXTURE+ baseline) |
-| Messages Per Second | Not publicly disclosed; derivative bandwidth expanded from 45 Mbps to 100 Mbps |
-| Launch Year | 2023 (Phase 1: January 25; Phase 2: October 4) |
-
-[Source: Seoul Finance, "Exture 3.0 Launch", 2023-01-25]
-[Source: KRX Global — EXTURE+ Trading System]
-[Source: CEO Score Daily, "Exture 3.0 Phase 2", 2023-09-26]
-
-### System History
-| Period | System | Notes |
-|--------|--------|-------|
-| 1956-1988 | Manual / Open Outcry | Physical trading floor in Busan |
-| 1988-1997 | Computer-assisted trading | Electronic trading introduced; parallel with open outcry |
-| 1997-2009 | Fully automated (legacy) | Trading floor eliminated September 1997; separate systems for KSE, KOSDAQ, KOFEX |
-| 2009-2014 | EXTURE | Launched March 2009; consolidated 3 exchange systems; ~20 ms latency; 250 TPS; 40M quotes/day |
-| 2014-2023 | EXTURE+ | Sub-70 us worst-case latency; 20,000+ TPS matching; 100,000+ TPS throughput; first Linux x86 in Korean capital markets; FIX/FAST protocol support; DMA support |
-| 2023-present | **Exture 3.0** | 30% faster than EXTURE+; low-latency extended to entire system (info distribution, clearing/settlement); Phase 1: trading + data; Phase 2: clearing + settlement; unified clearing/settlement UI (on-exchange + OTC integrated); integrated real-time risk calculation and simulation |
-
-### Technology Stack
-- **Platform:** Linux-based x86 servers
-- **Architecture:** Memory-based order book with layered design
-- **Protocols:** FIX/FAST for order entry and market data
-- **DMA:** Supported
-- **Algorithmic trading:** Supported with HFT registration requirement
-
-### Disaster Recovery / Business Continuity
-- **Primary DC (equities):** Seoul area
-- **Primary DC (derivatives):** Busan
-- **DR architecture:** Seoul and Busan interchangeable failover backup
-- **Backup system (예비시스템):** Can be activated if primary system fails [시행세칙 Art. 42(4)]
-- **System failure threshold:** Trading hours may be changed when failures affect firms responsible for 75%+ of total trading volume [시행세칙 Art. 8(2)]
+**B. 시장조성자 (Market Maker)** [업무규정 제20조의9 ~ 제20조의11; 시행세칙 제31조의12 ~ 제31조의22]:
+- KRX가 지정한 저유동성종목 대상
+- 계속적인 양방향 호가 제출 의무
+- 계약상 스프레드 범위 내에서 최소 호가 유지 금액 유지 의무
+- 개장 후 3분 이내 호가 제출 시작
+- 분기별 평가; 위반 시 벌점 누적으로 1년 정지 가능
+- KRX의 지정 종목 거래수수료 수익에서 보상
+- 보유량이 상장주식 수의 0.2% 또는 1억 원 초과 시 매수 의무 면제
 
 ---
 
-## 6. Market Data
+## 3. 매매 메커니즘 (Trading Mechanism)
 
-### 6.1 Data Feed Protocols
-| Protocol | Description | Use Case |
-|----------|-------------|----------|
-| FIX/FAST | Standard financial protocols supported by EXTURE+ and Exture 3.0 | Order entry and market data |
-| KRX proprietary | Direct market data feed via KOSCOM infrastructure | Real-time production data |
-| STOCK-NET | KOSCOM's dedicated high-speed financial network | Connects KRX, securities firms, KOFIA, institutional investors |
+### 3.1 경쟁매매 방식 (Auction Mechanisms)
 
-### 6.2 Data Levels
-- **Level 1:** Best bid/ask, last trade price, volume
-- **Level 2:** Depth of book (multiple price levels)
-- **Full depth:** Available through KRX real-time market data products
+**개시 동시호가** [업무규정 제23조]:
+- 장 개시 시점(~09:00) 단일가격에 의한 개별경쟁매매 (콜 옥션)
+- 08:30-09:00 호가 수집 후 단일 균형 가격으로 체결
+- 가격 결정 방식: 매도 총수량과 매수 총수량이 일치하는 합치가격
+- 복수의 합치가격 존재 시 전일 종가에 가장 가까운 가격 선택 [제23조④⑤]
 
-### 6.3 Distribution Infrastructure
-- **Primary distributor:** KOSCOM (Korea Securities Computing Corporation)
-- **Distribution methods:**
-  - Real-time via dedicated high-speed network (STOCK-NET)
-  - Real-time via internet
-  - FTP batch (end-of-day)
-- **Recipients:** Securities/futures firms, domestic/foreign institutional investors, information providers, media
-- **International access:** ICE Global Network provides access to KRX native data feed and execution services
+**장종료 동시호가** [업무규정 제23조]:
+- 15:20-15:30 호가 수집 후 단일 종가로 체결
+- 조건부지정가호가는 장종료 동시호가 시 시장가호가로 전환
 
-[Source: KOSCOM — Market Data Service]
-[Source: ICE Developer — Korea Exchange]
+**변동성 완화 장치 경매 (VI 경매)** [업무규정 제26조의2]:
+- VI 발동 조건 충족 시 발동 (제8절 참조)
+- 2분 단일가 매매 + 30초 이내 랜덤 종료 [시행세칙 제35조①④]
 
-### 6.4 Historical Data
-- **KRX Data Marketplace:** Official data portal at data.krx.co.kr
-- Both free and paid tiers available
-- Historical daily data, corporate actions, indices, and reference data
+**시간외단일가매매** [업무규정 제34조의2]:
+- 16:00~18:00 10분 간격 단일가 경쟁매매
+- 가격 범위: 당일 종가 대비 ±10% (일일 가격제한폭 이내)
 
----
+### 3.2 접속매매 (Continuous Trading)
+- **주문주도형** 시장; 가격-시간 우선원칙 적용
+- 복수가격에 의한 개별경쟁매매 (접속매매) [업무규정 제24조]
+- 체결 가격 = 최우선 매도호가와 최우선 매수호가가 일치할 때 선행 호가의 가격
 
-## 7. Connectivity & Access
+### 3.3 가격 결정 (Price Discovery)
 
-### 7.1 Membership / Participation
-- **회원 (Member):** Governed by 회원관리규정; must be licensed financial institution [업무규정 Art. 2①]
-- **결제회원 (Settlement/Clearing Member):** Settles trades in own name [Art. 2②]
-- **매매전문회원 (Trading-only Member):** Trades in own name but delegates settlement to clearing member [Art. 2③]
-- Foreign participants access via licensed Korean broker-dealers or registered QFI framework
+**우선순위 원칙** [업무규정 제22조②]:
 
-### 7.2 Connection Methods
-| Method | Description |
-|--------|-------------|
-| Dedicated line | KOSCOM STOCK-NET high-speed financial network |
-| Co-location | Proximity hosting at KOSCOM data centers |
-| Internet | Available for lower-speed access and retail platforms |
-| DMA | Direct Market Access supported since EXTURE+ |
-
-### 7.3 Co-location / Proximity Services
-- **Seoul DC:** Primary for equities (KOSPI, KOSDAQ) co-location
-- **Busan DC (KOSCOM):** Primary for derivatives market co-location and proximity hosting
-- **Services:** Rack space, cross-connects, proximity hosting
-- **International connectivity:** IPC (Itiviti) connected to KOSCOM Busan facility; ICE Global Network provides access
-- **Equal-length cross-connects:** Standard practice for fair-access co-location
-
-[Source: KOSCOM — STOCK-NET; WatersTechnology, "IPC connects to KOSCOM Busan facility"]
-
-### 7.4 API Protocols
-| Protocol | Use Case |
-|----------|----------|
-| FIX | International standard order entry; supported by EXTURE+ and Exture 3.0 |
-| FAST | Market data compression protocol |
-| KRX Native/Binary | Proprietary high-performance protocol for co-located participants |
-
-### 7.5 Certification / Testing
-- Detailed technical specifications governed by 「회원시스템 접속 등에 관한 지침」 (Member System Connection Guidelines)
-- Members must disclose: order generation entity, location, input device, transmission medium, pre-trade check method, and geographic location of check system [시행세칙 Art. 104-2]
-- HFT systems require connectivity tests before registration and annually [시행세칙 Art. 131-4]
+| 우선순위 | 원칙 | 내용 |
+|---------|------|------|
+| 1. 가격우선 | 제22조②1호 | 낮은 매도가 > 높은 매도가; 높은 매수가 > 낮은 매수가; 시장가호가는 지정가호가보다 우선 |
+| 2. 시간우선 | 제22조②2호 | 동일 가격: 먼저 제출된 호가 우선 |
+| 3. 동시 호가 규칙 | 제22조③ | 동시호가 중: 가격 결정 시 상한가(매수) 또는 하한가(매도) 호가는 동시 제출된 것으로 간주 |
 
 ---
 
-## 8. Risk Controls & Circuit Breakers
+## 4. 호가 유형 (Order Types)
 
-### 8.1 Price Limits
+### 4.1 기본 호가 유형
 
-**Daily price limits** [업무규정 Art. 20]:
+| 호가 유형 | 한국어 | 설명 | 관련 조항 |
+|----------|--------|------|---------|
+| 지정가호가 | 지정가호가 | 종목, 수량, 가격 지정 | 제2조④1호 |
+| 시장가호가 | 시장가호가 | 종목, 수량만 지정; 가격은 매매 시 결정 | 제2조④2호 |
+| 조건부지정가호가 | 조건부지정가호가 | 접속매매 중 지정가; 장종료 동시호가 시 시장가로 전환 | 제2조④3호 |
+| 최유리지정가호가 | 최유리지정가호가 | 최우선 상대호가로 자동 지정 (매도 시 최우선 매수호가, 매수 시 최우선 매도호가) | 제2조④4호 |
+| 최우선지정가호가 | 최우선지정가호가 | 자기 측 최우선호가로 자동 지정 (매도 시 최우선 매도호가, 매수 시 최우선 매수호가) | 제2조④5호 |
 
-| Type | Threshold | Notes |
-|------|-----------|-------|
-| Standard equities | **+/- 30%** of base price (기준가격) | Art. 20② |
-| Leveraged ETF/ETN | 30% x leverage multiple (e.g., 2x = +/-60%) | Art. 20② |
-| IPO first trading day | **+300% / -60%** of base price | 시행세칙 Art. 31(3) |
-| Delisting trading (정리매매) | **No price limit** | Art. 20③ |
-| Off-hours single-price trading | **+/- 10%** of closing price (within daily limits) | Art. 34의2③ |
+### 4.2 고급 호가 유형
 
-### 8.2 Circuit Breakers
+| 호가 유형 | 한국어 | 설명 | 관련 조항 |
+|----------|--------|------|---------|
+| 경쟁대량매매호가 | 경쟁대량매매호가 | VWAP·블록 거래용; 기준가격 기준 최소 5억 원 이상 | 제2조④6호 |
+| **중간가호가** | 중간가호가 | **신설 (2025.2.5)** — 최우선 매수·매도 호가의 중간 가격으로 지정 | 제2조④7호 |
+| **스톱지정가호가** | 스톱지정가호가 | **신설 (2025.2.5)** — 스톱 가격 도달 시 발동되는 지정가호가 | 제2조④8호 |
+| 목표가주문 | 목표가주문 | 고객 단위 VWAP 목표 주문 | 제2조⑤6호 |
 
-**Market-Wide Circuit Breaker (SAPI, 시장전체 매매거래중단)** [업무규정 Art. 25; 시행세칙 Art. 39]:
+### 4.3 호가 유효 시간 (Time-in-Force Options)
 
-| Level | Trigger | Halt Duration | Conditions |
-|-------|---------|---------------|------------|
-| Level 1 | KOSPI drops **8%+** from previous close, sustained **1 minute** | **20-minute halt** (then 10-min call auction to resume) | Once per day; not triggered after 14:50 |
-| Level 2 | KOSPI drops **15%+** from previous close AND 1%+ further from Level 1 halt, sustained 1 min | **20-minute halt** | Once per day; not triggered after 14:50 |
-| Level 3 | KOSPI drops **20%+** from previous close AND 1%+ further from Level 2 halt, sustained 1 min | **Trading halted for remainder of day** | Applies even after 14:50 |
+| TIF | 설명 | 관련 조항 |
+|-----|------|---------|
+| DAY | 기본값; 당일 유효 | |
+| IOC (Immediate or Cancel) | 즉시 가능한 수량 체결 후 잔량 취소 | 시행세칙 제108조(12) |
+| FOK (Fill or Kill) | 전량 체결 또는 전량 취소 | 시행세칙 제108조(12) |
 
-**Program Trading Sidecar (프로그램매매호가 효력정지)** [업무규정 Art. 16; 시행세칙 Art. 20]:
-- Trigger: KOSPI 200 front-month futures price rises/falls **5%+** from base price, sustained 1 minute
-- Effect: Program trading orders suspended for **5 minutes**
-- Applied **once per day**; not triggered after 14:50
+**제한 사항:**
+- 시장가호가·조건부지정가호가 사용 불가: 공매도, 유동성공급·시장조성 호가, 자기주식 매매, 시간외 세션
+- 중간가호가 사용 불가: 동시호가 세션 전체, 시간외 세션 전체, LP/MM 호가, 공매도
+- 스톱지정가호가 사용 불가: 동시호가 세션 전체, 시간외 세션 전체
 
-**Volatility Interruption (VI, 종목별 매매계약체결방법 변경)** [업무규정 Art. 26의2; 시행세칙 Art. 41-2]:
-
-| Type | Trigger | Duration |
-|------|---------|----------|
-| **Static VI** — KOSPI 200 constituents | **3%** from last call auction price (reference price) | 2-minute call auction + random 30-sec close |
-| **Static VI** — Other stocks/ETF/ETN | **6%** from reference price | 2-minute call auction + random 30-sec close |
-| **Static VI** — During closing auction | Thresholds halved: 2% (KOSPI 200) / 4% (others); **1%** on derivatives last trading day | 2-minute call auction |
-| **Dynamic VI** — All equities/ETF/ETN | **10%** from last trade price | 2-minute call auction + random 30-sec close |
-
-**VI Exceptions:** Delisting trading, short-term overheated stocks, abnormal surge stocks, cautionary stocks, IPO day stocks, prices within 3 tick sizes of prior price for stocks below KRW 1,000.
-
-### 8.3 Pre-trade Risk Controls
-
-**Order validation checks (회원의 호가 사전통제의무)** [업무규정 Art. 11의2; 시행세칙 Art. 12-2]:
-- Members **must** validate orders before submission to KRX system
-- Required checks:
-  1. Account validation (account number, type)
-  2. Instrument validation (security code, trading suspension status)
-  3. **Quantity limits** by market cap tier:
-     - Market cap >= KRW 10T: max KRW 100B / base price per order
-     - Market cap KRW 100B ~ 10T: max 1% of listed shares
-     - Market cap KRW 20B ~ 100B: max KRW 1B / base price
-     - Market cap < KRW 20B: max 5% of listed shares
-  4. Price validation (tick size, price limit compliance)
-  5. Order type validation per session
-  6. Margin requirements
-  7. HFT account validation
-
-**Algorithm trading controls** [업무규정 Art. 104의2]:
-- Algo trading accounts must be registered with KRX
-- Members must identify and manage algo trading risks
-- Account-level kill switch available for emergencies
-
-**High-frequency trading (HFT) controls** [업무규정 Art. 104의3-4]:
-- HFT participants must be **registered** with KRX before trading
-- Require: system adequacy, sufficient knowledge/experience
-- HFT accounts separately registered
-- KRX may revoke registration with 6-month re-registration ban
-- Members must refuse orders from unregistered HFT participants
-- Record retention: 10 years for all HFT-related records
-
-### 8.4 Kill Switch
-- **Disconnect kill switch (접속해제 호가취소):** Automatic mass cancellation when member-exchange connection is severed [업무규정 Art. 13의2]
-- **Bulk order cancellation (일괄호가취소):** HFT traders cancel all orders by HFT ID [시행세칙 Art. 17-2]
-- **Account-level kill switch (계좌단위호가처리):** Cancel all orders or block new orders for specific algo accounts; 10-minute cooldown [시행세칙 Art. 130-2]
-
-**Erroneous trade relief** [업무규정 Art. 28, 28의2]:
-- KRX may correct erroneous trade executions
-- Large erroneous trade relief (대규모착오매매 구제) available for trades risking settlement failure and market disruption
-
-**Short selling controls** [업무규정 Art. 17, 18]:
-- Naked short selling prohibited
-- Covered short selling permitted with uptick rule: cannot sell below last trade price unless last price was an uptick
-- KRX may restrict short selling on specific stocks per 시행세칙 criteria
-- **Overheated stock rules** [시행세칙 Art. 24-3]: When price drops 5-10% AND short ratio is 3x market average AND short volume is 6x 40-day average, 1-day short selling ban applies
-
-**Short-term overheated stock (단기과열종목) designation** [시행세칙 Art. 133-134]:
-- Triggers: Price up 130%+ vs 40-day avg, turnover 600%+ vs 40-day avg, volatility 150%+ vs 40-day avg
-- Effect: 3 trading days of 30-minute interval single-price auction (extendable)
+### 4.4 호가 정정 / 취소 (Order Modification / Cancellation)
+- 체결 전 정정 또는 취소 가능
+- 정정 가능 사항: 가격, 수량 (감소 또는 변경), 주문 유형 조건
+- **접속해제 호가취소 (Kill Switch):** 회원은 접속 단절 시 미체결 호가 일괄 취소를 사전 등록 가능 [업무규정 제13조의2]
+- **일괄호가취소 (Bulk Cancellation):** HFT 거래자는 HFT ID별로 특정 증권 유형의 전체 호가 취소 가능 [시행세칙 제17조의2]
+- **계좌단위 킬스위치 (Account-level Kill Switch):** 특정 알고리즘 계좌의 전체 호가 취소 또는 신규 호가 차단; 재활성화까지 10분 대기 [시행세칙 제130조의2]
+- **자기매매 방지 (Self-trade Prevention):** HFT 거래자에게 필수; 3가지 방식 (기존 호가 취소, 신규 호가 취소, 양방 취소) [시행세칙 제13조의2]
 
 ---
 
-## 9. Regulatory Framework
+### 4.5 실전 호가창(Order Book) 체결 및 변동성 완화장치(VI) 발동 시뮬레이션
 
-### 9.1 Supervising Authority
-- **FSC (Financial Services Commission, 금융위원회):** Highest financial authority; policy formulation, licensing, and approval
-- **FSS (Financial Supervisory Service, 금융감독원):** FSC's enforcement arm; examinations, investigations, sanctions across all financial sectors
+#### 1) 동적 VI(Dynamic Volatility Interruption) 발동 및 단일가 전환 시나리오
 
-### 9.2 Key Regulations
-- **Financial Investment Services and Capital Markets Act (자본시장법, FSCMA):** Primary securities law; function-based regulation (same activities = same rules regardless of entity type); covers stocks, bonds, collective investment schemes, derivatives
-- **유가증권시장 업무규정:** KRX KOSPI Market Business Regulations (trading rules, order types, circuit breakers)
-- **유가증권시장 상장규정:** KRX KOSPI Market Listing Regulations (listing requirements, delisting criteria)
-- **유가증권시장 공시규정:** KRX KOSPI Market Disclosure Regulations (timely, periodic, fair, query disclosure)
-- **회원관리규정:** KRX Member Management Regulations
+KOSPI 200 구성 대형주의 연속 접속매매 중 호가창이 다음과 같다고 가정합니다:
+- **직전 체결가 (동적 기준가)**: 100,000원
+- **동적 VI 발동 임계치**: $\pm 3\%$ (상한 기준가: **103,000원**)
+- **호가창 잔량**:
+  - 매도 1호가: 101,000원 (1,000주)
+  - 매도 2호가: 102,000원 (1,500주)
+  - 매도 3호가: 103,000원 (1,000주)
+  - 매도 4호가: 104,000원 (2,000주)
 
-### 9.3 Market Surveillance
-- **KRX as SRO:** Self-regulatory functions including market surveillance, listed company supervision, market manipulation prevention, delisting authority
-- **Market Surveillance Committee:** Prevents market manipulation; investigates abnormal transactions
-- May impose sanctions including delisting or trading suspensions
-- Refers cases to FSS for further enforcement
+```mermaid
+flowchart TD
+    Order["대규모 시장가 매수 5,000주 유입"]
+    Fill1["1단계: 101,000원에 1,000주 체결 (누적 1,000주)"]
+    Fill2["2단계: 102,000원에 1,500주 체결 (누적 2,500주)"]
+    Fill3["3단계: 103,000원에 1,000주 체결 (누적 3,500주)"]
+    VICheck{"다음 체결 예정가 (104,000원) > 동적 VI 상한선 (103,000원)?"}
+    Trigger["즉시 접속매매 동결 및 동적 VI 발동!"]
+    Auction["2분간 호가 접수 단일가 매매 전환 (30초 랜덤엔드)"]
+    Reopen["단일 합치가격 결정 후 접속매매 정상 재개"]
 
-### 9.4 Reporting Requirements
-- **Disclosure types:** Timely (수시공시), Periodic (정기공시), Fair (공정공시), Query (조회공시), Voluntary (자율공시), Clarification (해명공시) [공시규정 Art. 7-28]
-- **Material event triggers:** Same-day disclosure required for events exceeding 5% of revenue, 5% of equity capital, 10% of equity capital, etc. (thresholds halved for large-cap companies with KRW 2T+ total assets) [공시규정 Art. 7]
-- **Settlement results:** 30% YoY change in revenue/operating income/net income triggers disclosure (15% for large-cap)
-- **English-language disclosure:** Mandatory for companies with total assets >= KRW 10T (unless foreign ownership < 5%) or >= KRW 2T with >= 30% foreign ownership; deadline 3 trading days [공시규정 Art. 48]
-- **Penalty system:** Demerit points (벌점) for violations; max KRW 1 billion monetary penalty; unfaithful disclosure designation with ticker marking
-- **Trading halts on disclosure:** 30-minute halt for material disclosures; full-day halt for serious infractions [공시규정 Art. 40]
+    Order --> Fill1 --> Fill2 --> Fill3 --> VICheck
+    VICheck -->|Yes| Trigger --> Auction --> Reopen
+```
 
-### 9.5 Cross-border Arrangements
-- QFI (Qualified Foreign Investor) scheme for foreign institutional access (quota limits abolished)
-- Foreign companies may list on KOSPI under modified requirements [상장규정 Art. 53]
-  - Fast-track for large foreign companies: 5+ years listed overseas, market cap KRW 2T+, revenue KRW 2T+
-  - Must appoint Korean listing agent and disclosure agent
-  - Accepted accounting standards: K-IFRS, IFRS, or US GAAP
-- Settlement cycle: **T+2** (standard) [업무규정 Art. 7]
-
----
-
-## 10. Fees & Revenue Model
-
-### 10.1 Trading Fees
-
-**Exchange fees (as of March 2025):**
-
-| Fee Type | Structure | Rate |
-|----------|-----------|------|
-| Exchange trading fee (거래수수료) | Ad valorem | 0.0022763% of trade value |
-| Clearing fee (결제수수료) | Ad valorem | 0.0013633% of trade value |
-| **Total** | | **0.0036396%** (~0.036 bps) |
-| Short selling fee | Ad valorem | 0.00329% total |
-
-[Source: Mirae Asset Securities — fee schedule, accessed 2026-04-13]
-
-**New Maker-Taker Fee Structure (December 2025):**
-
-| Type | Rate | Change vs. Old Single Rate (0.0023%) |
-|------|------|--------------------------------------|
-| Maker | 0.00134% | -41.7% |
-| Taker | 0.00182% | -20.9% |
-
-First fee structure change in 20 years; initially a 2-month trial, introduced in response to competition from Nextrade (NXT).
-
-[Source: KED Global, "Korea Exchange cuts fees", 2025-10-02]
-
-### 10.2 Other Fees
-- **Listing eligibility review fee:** KRW 5,000,000
-- **Initial listing fees (상장수수료):** Graduated by market cap range; detailed schedule in 상장규정 시행세칙 별표 10
-- **Annual listing fees (연부과금):** Graduated by market cap range; paid annually while listed
-- **Market data fees (시세정보이용료):** Available through KRX Data Marketplace (data.krx.co.kr) with free and paid tiers; detailed schedule via KOSCOM
-- **Brokerage commissions (위탁수수료):** Set freely by member firms; must be filed with KRX and publicly disclosed [업무규정 Art. 100]
-- **ESG bond fee exemption:** Available through December 31, 2025 [상장규정 시행세칙 별표10-4]
-- **Auction commission (경매위탁수수료):** Up to KRW 100M: 0.3%; KRW 100M-500M: 0.2%; above KRW 500M: 0.1% [시행세칙 Art. 141]
-
-[Source: Baker McKenzie — Cross-Border Listings Guide: South Korea]
+| 단계 (Step) | 호가 및 체결 이벤트 | 체결 수량 / 가격 | 오더북 잔여 매도 호가 | VI 상태 |
+|---|---|---|---|---|
+| **Step 0** | 초기 상태 | 기준가 100,000원 | 101,000(1,000) / 102,000(1,500) / 103,000(1,000) / 104,000(2,000) | 정상 접속매매 |
+| **Step 1** | 시장가 매수 5,000주 진입 | 1,000주 @ 101,000원 | 102,000(1,500) / 103,000(1,000) / 104,000(2,000) | 정상 매칭 루프 진행 |
+| **Step 2** | 연속 매칭 | 1,500주 @ 102,000원 | 103,000(1,000) / 104,000(2,000) | 정상 매칭 루프 진행 |
+| **Step 3** | 한계 호가 도달 | 1,000주 @ 103,000원 | 104,000(2,000) (잔여 매수 1,500주 미체결) | 동적 VI 임계가 도달 |
+| **Step 4** | **동적 VI 자동 발동** | **체결 즉시 중단 (104,000원 체결 거부)** | 미체결 매수 1,500주는 단일가 호가로 흡수 | **동적 VI 발동 (2분 단일가 경매 전환)** |
+| **Step 5** | 2분 단일가 경매 종료 | 103,500원에 합치 체결 | 새로운 균형 가격 형성 후 연속매매 재개 | **정상 접속매매 복귀** |
 
 ---
 
-## 11. Recent Developments
+#### 2) KRX Exture 3.0 전문 통신 프로토콜 헤더 구조
 
-### System Upgrades (Last 5 Years)
-- **2023 (January):** Exture 3.0 Phase 1 — trading and information distribution systems; 30% latency improvement; extended low-latency to entire market system
-- **2023 (October):** Exture 3.0 Phase 2 — clearing and settlement systems; unified UI for on-exchange + OTC; integrated real-time risk calculation
-- **2025 (February):** New order types introduced — Mid-Price Order (중간가호가) and Stop Limit Order (스톱지정가호가)
-- **2025:** Quote price unit improvement — max 0.5% reduced to 0.25% for stocks and stock futures
+KRX 회원사 게이트웨이와 매칭 엔진 간에 오가는 TCP/IP 전문은 고정 바이트 길이의 바이너리/ASCII 공통 헤더를 포함합니다.
 
-### New Products / Segments
-- **2024 (September):** Korea Value-up Index launched (100 best-practice companies for corporate governance)
-- **2025 (March):** Nextrade (NXT) launched as Korea's first alternative exchange with 12-hour trading (08:00-20:00); captured 30%+ market share by July
-- **2025 (April):** KRX contract to supply clearing/settlement system to Thai Stock Exchange
-- **Crypto ETFs:** Under consideration
-
-### Regulatory Changes
-- **2024 (February):** Corporate Value-up Program announced to address "Korea discount"
-- **2025 (March):** Short selling restrictions lifted; all listed stocks available for shorting
-- **2025 (December):** Maker-taker fee model introduced (first fee change in 20 years)
-- **Self-trade prevention:** Made mandatory for HFT participants
-
-### Strategic Initiatives
-- **Extended trading hours:** Plan for 12-hour trading; pre-market 07:00-08:00, after-hours 16:00-20:00; targeting 24-hour trading by December 2027
-- **ETF pre/after-market trading:** September 2026 launch for KRX; November for NXT
-- **T+1 settlement study:** KRX inspecting North America's T+1 experience (WFE CLEAR 2026 conference, Toronto); concerns about foreign investor time zone challenges
-- **KOSPI milestones:** 3,549 (Oct 2025), 4,000 (Oct 2025), 5,000 (Jan 2026), 6,000 (Feb 2026)
-
-[Source: Korea Herald — KRX extended hours; Seoul Economic Daily — T+1 settlement; KED Global — Nextrade, fee cuts, Value-up]
+| 필드명 | 길이 (Bytes) | 타입 | 설명 |
+|---|---|---|---|
+| `TR_CODE` (전문구분코드) | 5 | ASCII | `B6011` (호가접수), `B6012` (호가정정), `B6013` (호가취소), `B6021` (체결통보) |
+| `MEMB_NO` (회원사코드) | 5 | ASCII | 증권사/선물사 고유 5자리 회원 번호 |
+| `SESSION_ID` (세션식별자) | 3 | ASCII | 거래소 접속 라인 및 파티션 세션 ID |
+| `TR_SEQ` (전문일련번호) | 9 | Integer | 일중 단조 증가 시퀀스 번호 (메시지 유실 검증용) |
+| `SEND_TIME` (전송시각) | 9 | ASCII | `HHMMSSuuu` (시분초 마이크로초 단위 타임스탬프) |
+| `BODY_LEN` (개별전문길이) | 4 | Integer | 공통헤더 이후의 가변 바디 패킷 바이트 길이 |
 
 ---
 
-## Sources
-1. [KRX Global Website](https://global.krx.co.kr) — EXTURE+ Trading System specifications
-2. [Wikipedia — Korea Exchange](https://en.wikipedia.org/wiki/Korea_Exchange) — Overview and history
-3. [KOSCOM](https://www.koscom.co.kr/eng/main/contents.do?menuNo=300005) — Trading system and market data
-4. [Seoul Finance](https://www.seoulfn.com/news/articleView.html?idxno=477662) — Exture 3.0 Phase 1 launch
-5. [CEO Score Daily](https://m.ceoscoredaily.com/page/view/2023092616475531974) — Exture 3.0 Phase 2 launch
-6. [KED Global](https://www.kedglobal.com) — Fee changes, Nextrade, Value-up Index
-7. [Chambers Practice Guides](https://practiceguides.chambers.com/practice-guides/financial-services-regulation-2025/south-korea) — Regulatory framework
-8. [Mirae Asset Securities](https://securities.miraeasset.com/imf/200/imf606.do) — Fee schedule
-9. [Baker McKenzie — Cross-Border Listings Guide](https://resourcehub.bakermckenzie.com) — Listing fees
-10. [Korea Herald](https://www.koreaherald.com/article/10548345) — Extended trading hours
-11. [Seoul Economic Daily](https://en.sedaily.com) — T+1 settlement, ETF trading hours
-12. 유가증권시장 업무규정 (전문, 2026.01.29) — KRX KOSPI Business Regulations
-13. 유가증권시장 업무규정 시행세칙 (전문, 2026.04.01) — Business Regulations Enforcement Rules
-14. 유가증권시장 상장규정 (전문, 2025.07.10) — KOSPI Listing Regulations
-15. 유가증권시장 상장규정 시행세칙 (전문, 2025.11.11) — Listing Regulations Enforcement Rules
-16. 유가증권시장 공시규정 (전문, 2025.08.01) — KOSPI Disclosure Regulations
-17. 유가증권시장 공시규정 시행세칙 (전문, 2025.08.01) — Disclosure Regulations Enforcement Rules
+## 5. 매매시스템 (Trading System)
+
+| 항목 | 내용 |
+|------|------|
+| 시스템 명칭 | Exture 3.0 (엑스처 3.0) |
+| 개발 / 운영 주체 | 자체 개발 (KRX); KOSCOM (한국증권컴퓨팅) 주요 기술 파트너 |
+| 아키텍처 | 메모리 기반 호가장부; 계층형 구조; 시장별 복수 매칭 기능 지원 |
+| 매칭 엔진 | 제로 레이턴시 설계 목표; 메모리 기반 매칭 |
+| 왕복 지연 (Round-trip Latency) | 약 49μs [추정] (EXTURE+ 최악 기준 70μs 대비 30% 개선) |
+| 주문 처리 용량 | 100,000+ TPS (EXTURE+ 기준 상속) |
+| 초당 메시지 수 | 미공개; 파생상품 대역폭 45Mbps → 100Mbps 확장 |
+| 가동 연도 | 2023년 (Phase 1: 1월 25일; Phase 2: 10월 4일) |
+
+[출처: Seoul Finance, "Exture 3.0 Launch", 2023-01-25]
+[출처: KRX Global — EXTURE+ Trading System]
+[출처: CEO Score Daily, "Exture 3.0 Phase 2", 2023-09-26]
+
+### 시스템 연혁
+
+| 기간 | 시스템 | 비고 |
+|------|--------|------|
+| 1956-1988 | 수동 / 공개 호가 | 부산 물리적 거래소 |
+| 1988-1997 | 컴퓨터 보조 매매 | 전자 매매 도입; 공개 호가 병행 |
+| 1997-2009 | 완전 자동화 (레거시) | 1997년 9월 거래소 영업장 폐지; KSE, KOSDAQ, KOFEX 별도 시스템 운영 |
+| 2009-2014 | EXTURE | 2009년 3월 가동; 3개 거래소 시스템 통합; 지연 약 20ms; 250 TPS; 하루 4,000만 건 호가 처리 |
+| 2014-2023 | EXTURE+ | 최악 왕복 지연 70μs 미만; 매칭 20,000+ TPS; 처리 100,000+ TPS; 한국 자본시장 최초 Linux x86 적용; FIX/FAST 프로토콜 지원; DMA 지원 |
+| 2023-현재 | **Exture 3.0** | EXTURE+ 대비 30% 고속화; 전체 시스템(정보배포·청산·결제)에 저지연 확대 적용; Phase 1: 매매 + 데이터; Phase 2: 청산 + 결제; 장내·OTC 통합 청산결제 UI; 실시간 위험 산출·시뮬레이션 통합 |
+
+### 기술 스택 (Technology Stack)
+- **플랫폼:** Linux 기반 x86 서버
+- **아키텍처:** 메모리 기반 호가장부, 계층형 설계
+- **프로토콜:** 주문 접수 및 시장 데이터에 FIX/FAST 사용
+- **DMA:** 지원
+- **알고리즘 매매:** HFT 등록 요건을 전제로 지원
+
+### 재해 복구 / 업무 연속성 (Disaster Recovery / Business Continuity)
+- **주전산센터 (주식):** 서울 지역
+- **주전산센터 (파생):** 부산
+- **DR 아키텍처:** 서울-부산 상호 교체 가능 페일오버 백업
+- **예비시스템:** 주시스템 장애 시 가동 가능 [시행세칙 제42조④]
+- **시스템 장애 기준:** 전체 거래량의 75% 이상을 담당하는 회원사에 영향을 미치는 장애 발생 시 매매시간 변경 가능 [시행세칙 제8조②]
+
+---
+
+## 6. 시장 데이터 (Market Data)
+
+### 6.1 데이터 피드 프로토콜 (Data Feed Protocols)
+
+| 프로토콜 | 설명 | 용도 |
+|---------|------|------|
+| FIX/FAST | EXTURE+ 및 Exture 3.0 지원 표준 금융 프로토콜 | 주문 접수 및 시장 데이터 |
+| KRX 자체 프로토콜 | KOSCOM 인프라를 통한 직접 시장 데이터 피드 | 실시간 운영 데이터 |
+| STOCK-NET | KOSCOM의 전용 고속 금융 네트워크 | KRX, 증권사, KOFIA, 기관투자자 연결 |
+
+### 6.2 데이터 레벨 (Data Levels)
+- **Level 1:** 최우선 매수·매도호가, 최근 체결 가격, 거래량
+- **Level 2:** 호가 잔량 (복수 가격 단계)
+- **풀 뎁스 (Full Depth):** KRX 실시간 시장 데이터 상품을 통해 제공
+
+### 6.3 배포 인프라 (Distribution Infrastructure)
+- **주요 배포 기관:** KOSCOM (한국증권컴퓨팅)
+- **배포 방식:**
+  - 전용 고속 네트워크(STOCK-NET)를 통한 실시간 배포
+  - 인터넷을 통한 실시간 배포
+  - FTP 배치 (장 종료 후)
+- **수신 대상:** 증권·선물 회원사, 국내외 기관투자자, 정보제공업체, 언론
+- **해외 접근:** ICE Global Network를 통해 KRX 원본 데이터 피드 및 주문 체결 서비스 접근 가능
+
+[출처: KOSCOM — Market Data Service]
+[출처: ICE Developer — Korea Exchange]
+
+### 6.4 과거 데이터 (Historical Data)
+- **KRX 데이터 마켓플레이스:** 공식 데이터 포털 data.krx.co.kr
+- 무료 및 유료 플랜 모두 제공
+- 일별 과거 데이터, 기업 행위, 지수, 기준 데이터
+
+---
+
+## 7. 접속 및 참여 (Connectivity & Access)
+
+### 7.1 회원 자격 (Membership / Participation)
+- **회원:** 회원관리규정 적용; 인가받은 금융기관이어야 함 [업무규정 제2조①]
+- **결제회원 (Settlement/Clearing Member):** 자기 명의로 결제 수행 [제2조②]
+- **매매전문회원 (Trading-only Member):** 자기 명의로 매매하되 결제는 결제회원에 위탁 [제2조③]
+- 외국인 참여자는 인가받은 국내 브로커-딜러 또는 적격외국투자자(QFI) 제도를 통해 접근
+
+### 7.2 접속 방법 (Connection Methods)
+
+| 방식 | 설명 |
+|------|------|
+| 전용선 | KOSCOM STOCK-NET 고속 금융 전용망 |
+| 코로케이션 (Co-location) | KOSCOM 데이터센터 내 근접 호스팅 |
+| 인터넷 | 저속 접속 및 리테일 플랫폼용 |
+| DMA (Direct Market Access) | EXTURE+ 이후 직접 시장 접근 지원 |
+
+### 7.3 코로케이션 / 근접 서비스 (Co-location / Proximity Services)
+- **서울 DC:** KOSPI, KOSDAQ 코로케이션 주센터
+- **부산 DC (KOSCOM):** 파생상품 시장 코로케이션 및 근접 호스팅 주센터
+- **서비스 내용:** 랙 공간, 크로스커넥트, 근접 호스팅
+- **국제 접속:** IPC (Itiviti)가 KOSCOM 부산 시설에 연결; ICE Global Network 접근 제공
+- **동일 길이 크로스커넥트:** 공정 접근 코로케이션의 표준 관행
+
+[출처: KOSCOM — STOCK-NET; WatersTechnology, "IPC connects to KOSCOM Busan facility"]
+
+### 7.4 API 프로토콜 (API Protocols)
+
+| 프로토콜 | 용도 |
+|---------|------|
+| FIX | 국제 표준 주문 접수; EXTURE+ 및 Exture 3.0 지원 |
+| FAST | 시장 데이터 압축 프로토콜 |
+| KRX 자체 / 바이너리 | 코로케이션 참여자를 위한 고성능 독자 프로토콜 |
+
+### 7.5 인증 / 테스트 (Certification / Testing)
+- 상세 기술 규격은 「회원시스템 접속 등에 관한 지침」에 따름
+- 회원은 주문 생성 주체, 위치, 입력 장치, 전송 매체, 사전 거래 확인 방식 및 확인 시스템 지리적 위치 공개 의무 [시행세칙 제104조의2]
+- HFT 시스템은 등록 전 및 연간 접속 테스트 필수 [시행세칙 제131조의4]
+
+---
+
+## 8. 위험 관리 및 서킷브레이커 (Risk Controls & Circuit Breakers)
+
+### 8.1 가격제한폭 (Price Limits)
+
+**일일 가격제한폭** [업무규정 제20조]:
+
+| 유형 | 기준 | 비고 |
+|------|------|------|
+| 일반 주권 | 기준가격 대비 **±30%** | 제20조② |
+| 레버리지 ETF/ETN | 30% × 레버리지 배수 (예: 2배 = ±60%) | 제20조② |
+| IPO 첫 거래일 | 기준가격 대비 **+300% / -60%** | 시행세칙 제31조③ |
+| 정리매매 | **가격제한폭 없음** | 제20조③ |
+| 시간외단일가매매 | 종가 대비 **±10%** (일일 가격제한폭 이내) | 제34조의2③ |
+
+### 8.2 서킷브레이커 (Circuit Breakers)
+
+**시장전체 매매거래중단 (SAPI, Market-Wide Circuit Breaker)** [업무규정 제25조; 시행세칙 제39조]:
+
+| 단계 | 발동 기준 | 중단 시간 | 조건 |
+|------|---------|---------|------|
+| 1단계 | KOSPI가 전일 종가 대비 **8%** 이상 하락 상태 **1분** 지속 | **20분 중단** (이후 10분 단일가 매매 후 재개) | 하루 1회; 14시 50분 이후 미발동 |
+| 2단계 | KOSPI가 전일 종가 대비 **15%** 이상 하락 AND 1단계 중단 기준 대비 1% 이상 추가 하락 상태 1분 지속 | **20분 중단** | 하루 1회; 14시 50분 이후 미발동 |
+| 3단계 | KOSPI가 전일 종가 대비 **20%** 이상 하락 AND 2단계 중단 기준 대비 1% 이상 추가 하락 상태 1분 지속 | **당일 매매 종료** | 14시 50분 이후에도 적용 |
+
+**프로그램매매호가 효력정지 (사이드카, Program Trading Sidecar)** [업무규정 제16조; 시행세칙 제20조]:
+- 발동 기준: KOSPI 200 최근월 선물 가격이 기준가격 대비 **5%** 이상 등락 상태 1분 지속
+- 효과: 프로그램매매 호가 **5분** 효력 정지
+- 하루 **1회** 적용; 14시 50분 이후 미발동
+
+**변동성 완화 장치 (VI, Volatility Interruption)** [업무규정 제26조의2; 시행세칙 제41조의2]:
+
+| 유형 | 발동 기준 | 지속 시간 |
+|------|---------|---------|
+| **정적VI** — KOSPI 200 구성 종목 | 직전 단일가 (기준가격) 대비 **3%** 이상 변동 | 2분 단일가 + 랜덤 30초 종료 |
+| **정적VI** — 기타 주권/ETF/ETN | 기준가격 대비 **6%** 이상 변동 | 2분 단일가 + 랜덤 30초 종료 |
+| **정적VI** — 장종료 동시호가 중 | 기준 절반 적용: 2% (KOSPI 200) / 4% (기타); 파생 최종 거래일 **1%** | 2분 단일가 |
+| **동적VI** — 전체 주권/ETF/ETN | 직전 체결 가격 대비 **10%** 이상 변동 | 2분 단일가 + 랜덤 30초 종료 |
+
+**VI 적용 제외:** 정리매매 종목, 단기과열종목, 이상급등 종목, 투자주의 종목, IPO 당일 종목, 1,000원 미만 종목에서 직전 가격 대비 3틱 이내 가격.
+
+### 8.3 사전 거래 위험 관리 (Pre-trade Risk Controls)
+
+**호가 사전통제 의무** [업무규정 제11조의2; 시행세칙 제12조의2]:
+- 회원은 KRX 시스템 제출 전 호가를 **반드시** 검증해야 함
+- 필수 검증 항목:
+  1. 계좌 확인 (계좌번호, 유형)
+  2. 종목 확인 (종목코드, 매매거래 정지 여부)
+  3. **수량 한도** (시가총액 구간별):
+     - 시가총액 10조 원 이상: 호가 당 최대 기준가격 기준 1,000억 원
+     - 시가총액 1,000억 원 이상 ~ 10조 원 미만: 최대 상장주식 수의 1%
+     - 시가총액 200억 원 이상 ~ 1,000억 원 미만: 호가 당 최대 기준가격 기준 10억 원
+     - 시가총액 200억 원 미만: 최대 상장주식 수의 5%
+  4. 가격 확인 (호가단위, 가격제한폭 준수)
+  5. 세션별 호가 유형 확인
+  6. 증거금 요건
+  7. HFT 계좌 확인
+
+**알고리즘 매매 관리** [업무규정 제104조의2]:
+- 알고리즘 매매 계좌는 KRX에 등록 필수
+- 회원은 알고리즘 매매 위험을 식별하고 관리해야 함
+- 긴급 시 계좌단위 킬스위치 사용 가능
+
+**고빈도매매(HFT) 관리** [업무규정 제104조의3~4]:
+- HFT 참여자는 매매 전 KRX에 **등록** 필수
+- 요건: 시스템 적절성, 충분한 지식·경험
+- HFT 계좌 별도 등록
+- KRX는 등록 취소 시 6개월 재등록 금지 가능
+- 회원은 미등록 HFT 참여자의 주문 거부 의무
+- 기록 보관: HFT 관련 모든 기록 10년 보관
+
+### 8.4 킬스위치 (Kill Switch)
+- **접속해제 호가취소 (Disconnect Kill Switch):** 회원-거래소 접속 단절 시 미체결 호가 자동 일괄 취소 [업무규정 제13조의2]
+- **일괄호가취소 (Bulk Order Cancellation):** HFT 거래자는 HFT ID별 전체 호가 취소 [시행세칙 제17조의2]
+- **계좌단위호가처리 (Account-level Kill Switch):** 특정 알고리즘 계좌의 전체 호가 취소 또는 신규 호가 차단; 10분 대기 [시행세칙 제130조의2]
+
+**착오매매 구제** [업무규정 제28조, 제28조의2]:
+- KRX는 착오 체결 정정 가능
+- 결제 불이행 및 시장 교란 위험이 있는 거래에 대해 대규모착오매매 구제 가능
+
+**공매도 관리** [업무규정 제17조, 제18조]:
+- 무차입 공매도(Naked Short Selling) 금지
+- 차입 공매도(Covered Short Selling) 허용; 업틱룰 적용: 최근 체결 가격이 상승한 경우에만 그 가격 이하로 매도 불가
+- KRX는 시행세칙 기준에 따라 특정 종목의 공매도 제한 가능
+- **이상급등 종목 규정** [시행세칙 제24조의3]: 가격 5~10% 하락 AND 공매도 비율이 시장 평균의 3배 AND 공매도 거래량이 40일 평균의 6배인 경우, 1거래일 공매도 금지 적용
+
+**단기과열종목 지정** [시행세칙 제133조~제134조]:
+- 지정 기준: 40일 평균 대비 가격 130% 이상 상승, 거래회전율 600% 이상, 변동성 150% 이상
+- 효과: 3거래일간 30분 간격 단일가 경쟁매매 적용 (연장 가능)
+
+---
+
+## 9. 규제 체계 (Regulatory Framework)
+
+### 9.1 감독 기관 (Supervising Authority)
+- **금융위원회 (FSC, Financial Services Commission):** 최상위 금융 기관; 정책 수립, 인가, 승인
+- **금융감독원 (FSS, Financial Supervisory Service):** 금융위원회 집행 기관; 전 금융 분야 검사·조사·제재
+
+### 9.2 주요 규정 (Key Regulations)
+- **자본시장법 (FSCMA, Financial Investment Services and Capital Markets Act):** 핵심 증권법; 기능별 규제 방식 (동일 행위 = 법인 유형과 관계없이 동일 규제); 주식, 채권, 집합투자, 파생상품 포괄
+- **유가증권시장 업무규정:** KRX KOSPI 시장 업무 규정 (매매 규칙, 호가 유형, 서킷브레이커)
+- **유가증권시장 상장규정:** KRX KOSPI 시장 상장 규정 (상장 요건, 상장 폐지 기준)
+- **유가증권시장 공시규정:** KRX KOSPI 시장 공시 규정 (수시공시, 정기공시, 공정공시, 조회공시)
+- **회원관리규정:** KRX 회원 관리 규정
+
+### 9.3 시장 감시 (Market Surveillance)
+- **KRX의 자율규제기관(SRO) 기능:** 시장 감시, 상장사 감독, 시장 조작 방지, 상장 폐지 권한 포함
+- **시장감시위원회:** 시장 조작 방지; 이상 거래 조사
+- 상장 폐지 또는 매매 정지를 포함한 제재 부과 가능
+- 추가 조치를 위해 금융감독원에 사건 이첩 가능
+
+### 9.4 공시 요건 (Reporting Requirements)
+- **공시 유형:** 수시공시, 정기공시, 공정공시, 조회공시, 자율공시, 해명공시 [공시규정 제7조~제28조]
+- **중요 사항 발생 기준:** 매출액의 5%, 자기자본의 5%, 자기자본의 10% 초과 사건은 당일 공시 필수 (총자산 2조 원 이상 대형사는 기준 절반 적용) [공시규정 제7조]
+- **결산 결과:** 전년 대비 매출액·영업이익·당기순이익이 30% 이상 변동 시 공시 (대형사는 15%)
+- **영문 공시:** 총자산 10조 원 이상 (외국인 보유 비율 5% 미만 제외) 또는 총자산 2조 원 이상이면서 외국인 보유 비율 30% 이상인 회사는 영문 공시 의무; 기한 3거래일 [공시규정 제48조]
+- **제재 체계:** 위반 시 벌점(벌점) 부과; 최대 10억 원 금전 제재; 불성실공시법인 지정 및 종목 표시
+- **공시에 따른 매매 정지:** 중요 공시 시 30분 정지; 중대한 위반 시 당일 전체 정지 [공시규정 제40조]
+
+### 9.5 국경 간 거래 (Cross-border Arrangements)
+- 외국 기관투자자 접근을 위한 적격외국투자자(QFI) 제도 (한도 폐지)
+- 외국 회사의 KOSPI 상장 가능 (완화된 요건 적용) [상장규정 제53조]
+  - 대형 외국 회사 패스트트랙: 해외 상장 5년 이상, 시가총액 2조 원 이상, 매출액 2조 원 이상
+  - 국내 상장 대리인 및 공시 대리인 선임 필수
+  - 인정 회계기준: K-IFRS, IFRS 또는 US GAAP
+- 결제 주기: **T+2** (표준) [업무규정 제7조]
+
+---
+
+## 10. 수수료 및 수익 모델 (Fees & Revenue Model)
+
+### 10.1 거래 수수료 (Trading Fees)
+
+**거래소 수수료 (2025년 3월 기준):**
+
+| 수수료 유형 | 구조 | 요율 |
+|-----------|------|------|
+| 거래수수료 | 종가비례 | 거래대금의 0.0022763% |
+| 결제수수료 | 종가비례 | 거래대금의 0.0013633% |
+| **합계** | | **0.0036396%** (약 0.036bp) |
+| 공매도 수수료 | 종가비례 | 합계 0.00329% |
+
+[출처: 미래에셋증권 — 수수료 안내, 2026-04-13 접속]
+
+**신규 메이커-테이커 수수료 체계 (2025년 12월):**
+
+| 유형 | 요율 | 기존 단일 요율 (0.0023%) 대비 변화 |
+|------|------|----------------------------------|
+| 메이커 (Maker) | 0.00134% | -41.7% |
+| 테이커 (Taker) | 0.00182% | -20.9% |
+
+20년 만의 첫 수수료 체계 개편; 초기 2개월 시범 운영; Nextrade (NXT) 경쟁에 대응하여 도입.
+
+[출처: KED Global, "Korea Exchange cuts fees", 2025-10-02]
+
+### 10.2 기타 수수료 (Other Fees)
+- **상장적격성 심사료:** 500만 원
+- **상장수수료 (Initial Listing Fees):** 시가총액 구간별 누진 적용; 상세 내역은 상장규정 시행세칙 별표 10
+- **연부과금 (Annual Listing Fees):** 시가총액 구간별 누진 적용; 상장 유지 기간 동안 매년 납부
+- **시세정보이용료 (Market Data Fees):** KRX 데이터 마켓플레이스(data.krx.co.kr)를 통해 무료·유료 제공; 상세 내역은 KOSCOM 통해 확인
+- **위탁수수료 (Brokerage Commissions):** 회원사가 자유롭게 설정; KRX에 신고 후 공개 의무 [업무규정 제100조]
+- **ESG 채권 수수료 면제:** 2025년 12월 31일까지 적용 [상장규정 시행세칙 별표10의4]
+- **경매위탁수수료:** 1억 원 이하: 0.3%; 1억 원 초과 ~ 5억 원 이하: 0.2%; 5억 원 초과: 0.1% [시행세칙 제141조]
+
+[출처: Baker McKenzie — Cross-Border Listings Guide: South Korea]
+
+---
+
+## 11. 최근 동향 (Recent Developments)
+
+### 시스템 업그레이드 (최근 5년)
+- **2023년 1월:** Exture 3.0 Phase 1 — 매매 및 정보 배포 시스템; 지연 30% 개선; 전체 시장 시스템에 저지연 확대 적용
+- **2023년 10월:** Exture 3.0 Phase 2 — 청산·결제 시스템; 장내·OTC 통합 UI; 실시간 위험 산출 통합
+- **2025년 2월:** 신규 호가 유형 도입 — 중간가호가 및 스톱지정가호가
+- **2025년:** 호가가격단위 개선 — 주권 및 주식선물 최대 0.5% → 0.25%로 축소
+
+### 신규 상품 / 시장 (New Products / Segments)
+- **2024년 9월:** 코리아 밸류업 지수 출시 (기업 지배구조 우수 100개사)
+- **2025년 3월:** Nextrade (NXT, 넥스트레이드) 출범 — 한국 최초 대체거래소; 08:00~20:00 12시간 매매; 7월까지 시장점유율 30% 이상 확보
+- **2025년 4월:** KRX, 태국 증권거래소에 청산·결제 시스템 공급 계약 체결
+- **암호화폐 ETF:** 검토 중
+
+### 규제 변경 (Regulatory Changes)
+- **2024년 2월:** '코리아 디스카운트' 해소를 위한 기업 밸류업 프로그램 발표
+- **2025년 3월:** 공매도 제한 해제; 전체 상장 종목 공매도 허용
+- **2025년 12월:** 메이커-테이커 수수료 체계 도입 (20년 만의 첫 수수료 개편)
+- **자기매매 방지:** HFT 참여자에게 의무화
+
+### 전략적 이니셔티브 (Strategic Initiatives)
+- **매매시간 연장:** 12시간 매매 계획; 장전 07:00~08:00, 장후 16:00~20:00; 2027년 12월 24시간 매매 목표
+- **ETF 장전·장후 매매:** KRX 2026년 9월, NXT 11월 도입 예정
+- **T+1 결제 검토:** KRX, 북미 T+1 경험 조사 중 (WFE CLEAR 2026 컨퍼런스, 토론토); 외국인 투자자 시간대 문제 우려
+- **KOSPI 마일스톤:** 3,549p (2025년 10월), 4,000p (2025년 10월), 5,000p (2026년 1월), 6,000p (2026년 2월)
+
+[출처: Korea Herald — KRX 매매시간 연장; 서울경제 — T+1 결제; KED Global — Nextrade, 수수료 인하, 밸류업]
+
+---
+
+## 출처 (Sources)
+
+1. [KRX Global Website](https://global.krx.co.kr) — EXTURE+ Trading System 사양
+2. [Wikipedia — Korea Exchange](https://en.wikipedia.org/wiki/Korea_Exchange) — 개요 및 연혁
+3. [KOSCOM](https://www.koscom.co.kr/eng/main/contents.do?menuNo=300005) — 매매시스템 및 시장 데이터
+4. [Seoul Finance](https://www.seoulfn.com/news/articleView.html?idxno=477662) — Exture 3.0 Phase 1 가동
+5. [CEO Score Daily](https://m.ceoscoredaily.com/page/view/2023092616475531974) — Exture 3.0 Phase 2 가동
+6. [KED Global](https://www.kedglobal.com) — 수수료 개편, Nextrade, 밸류업 지수
+7. [Chambers Practice Guides](https://practiceguides.chambers.com/practice-guides/financial-services-regulation-2025/south-korea) — 규제 체계
+8. [미래에셋증권](https://securities.miraeasset.com/imf/200/imf606.do) — 수수료 안내
+9. [Baker McKenzie — Cross-Border Listings Guide](https://resourcehub.bakermckenzie.com) — 상장 수수료
+10. [Korea Herald](https://www.koreaherald.com/article/10548345) — 매매시간 연장
+11. [Seoul Economic Daily](https://en.sedaily.com) — T+1 결제, ETF 매매시간
+12. 유가증권시장 업무규정 (전문, 2026.01.29) — KRX KOSPI 시장 업무규정
+13. 유가증권시장 업무규정 시행세칙 (전문, 2026.04.01) — 업무규정 시행세칙
+14. 유가증권시장 상장규정 (전문, 2025.07.10) — KOSPI 상장규정
+15. 유가증권시장 상장규정 시행세칙 (전문, 2025.11.11) — 상장규정 시행세칙
+16. 유가증권시장 공시규정 (전문, 2025.08.01) — KOSPI 공시규정
+17. 유가증권시장 공시규정 시행세칙 (전문, 2025.08.01) — 공시규정 시행세칙

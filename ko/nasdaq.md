@@ -1,6 +1,6 @@
 # NASDAQ Stock Market (NASDAQ)
 
-> **최종 수정일:** 2026-10-15
+> **최종 업데이트:** 2026-10-22
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
@@ -359,6 +359,102 @@ Chapter VI, Section 18은 알고리즘 오작동, 통신 버그, 팻핑거(Fat-f
     2. **Volume-Based Threshold**: 15초 내에 특정 기초자산 전체 옵션 시리즈에서 체결된 총 계약 수가 사전 설정 한도에 도달할 때.
     3. **Multi-Trigger Threshold**: 복수의 기초자산에 걸쳐 Percentage 및 Volume 임계치 트리거가 발생한 횟수가 설정값을 초과할 때.
   - 이 세 조건 중 하나라도 충족되는 마이크로초 찰나에, 시스템은 해당 마켓 메이커가 나스닥 옵션 시장 전체에 깔아둔 **수만 개의 호가와 주문을 일거에 전량 강제 회수 및 말소(Automated Mass Purge)**하여 금융 시스템 마비와 마켓메이커 파산을 물리적으로 방어합니다.
+
+---
+
+### 4.5 실전 호가창(Order Book) 체결 시뮬레이션 및 바이너리 패킷 명세
+
+#### 1) 실전 시나리오: Post-Only 주문의 락/크로스 방지 리프라이싱(Repricing) 시뮬레이션
+
+기초 옵션 종목(MPV = $0.05)의 현재 NOM 오더북 상태가 다음과 같다고 가정합니다:
+- **Inside Bid (최우선 매수)**: $2.00 (100계약)
+- **Inside Offer (최우선 매도)**: $2.05 (50계약)
+- **Spread**: $0.05
+
+```mermaid
+flowchart TD
+    PO["신규 진입: 매수 Post-Only 40계약 @ $2.05"]
+    Check{"내부 Inside Offer ($2.05)와 충돌(Locking)?"}
+    Reprice["체결 방지 및 $0.01 안쪽 리프라이싱:<br>실제 지정가 = $2.04 ($2.05 - $0.01)"]
+    Display["외부 시세판(OPRA/ITCH) 디스플레이 라운딩:<br>MPV 경계선($0.05) 내림(Floor) -> $2.00 표시"]
+    Execution["사후 시장가 매도 30계약 유입 시:<br>$2.04 단가로 우선 체결 (Taker에게 $0.01 개선 이익)"]
+
+    PO --> Check
+    Check -->|Yes| Reprice
+    Reprice --> Display
+    Display --> Execution
+```
+
+| 단계 (Step) | 이벤트 (Event) | 주문 상세 | 내부 오더북 (Internal Book) | 외부 공표 시세 (Displayed BBO) | 비고 |
+|---|---|---|---|---|---|
+| **Step 0** | 초기 상태 | - | 매수: $2.00 (100)<br>매도: $2.05 (50) | **$2.00 × $2.05** | 스프레드 $0.05 |
+| **Step 1** | 공격적 Post-Only 유입 | 매수 40계약 @ **$2.05** (Post-Only) | 체결 차단 후 **$2.04**로 리프라이싱 대기 | **$2.00 × $2.05** (디스플레이 불변) | Inside Offer와 Lock 충돌 방지, $0.01 안쪽 등재 |
+| **Step 2** | 일반 시장가 매도 진입 | 매도 30계약 (Market) | **$2.04**에 30계약 체결 완료 (잔여 10계약) | **$2.00 × $2.05** | 테이커는 $2.00이 아닌 **$2.04에 매도 체결(가격 개선)**, 메이커는 리베이트 수취 |
+
+---
+
+#### 2) 나스닥 OUCH 5.0 주문 진입(Enter Order) 바이너리 패킷 명세
+
+OUCH 프로토콜은 나스닥의 네이티브 초저지연 바이너리 프로토콜입니다. 주문 입력 시 전송되는 `Enter Order (Type 'O')` 메시지의 바이트 오프셋 구조는 다음과 같습니다:
+
+| 바이트 오프셋 (Offset) | 길이 (Bytes) | 필드명 (Field Name) | 데이터 타입 | 설명 및 유효값 |
+|---|---|---|---|---|
+| **0** | 1 | `Type` | Alpha | 메시지 유형 식별자: `'O'` (Enter Order) |
+| **1** | 14 | `Order Token` | Binary / Text | 참가자 고유 주문 추적 토큰 (Day 기준 유일값) |
+| **15** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy (매수), `'S'` = Sell (매도) |
+| **16** | 4 | `Shares` | Integer (Big-Endian) | 주문 수량 (계약 수 또는 주식 수) |
+| **20** | 8 | `Stock / Symbol` | Alpha (Left-padded) | 심볼 식별자 (예: `AAPL    `, ASCII) |
+| **28** | 4 | `Price` | Integer (4 Decimals) | 지정가 ($100.25 -> `1002500` 정수 표현) |
+| **32** | 4 | `Time-in-Force` | Integer | `0` = DAY, `99998` = IOC, `99999` = OPG |
+| **36** | 4 | `Firm / MPID` | Alpha | 참가자 식별 브로커 코드 (예: `NSDQ`) |
+| **40** | 1 | `Display` | Alpha | `'Y'` = Visible (표시), `'N'` = Hidden (비표시) |
+| **41** | 1 | `Capacity` | Alpha | `'A'` = Agency (위탁), `'P'` = Principal (자기) |
+| **42** | 1 | `Intermarket Sweep` | Alpha | `'Y'` = ISO 주문, `'N'` = 일반 주문 |
+| **43** | 4 | `Minimum Quantity` | Integer | 최소 체결 요구 수량 (MQO 조건) |
+| **47** | 1 | `Cross Type` | Alpha | `'N'` = 연속매매, `'O'` = Opening, `'C'` = Closing |
+
+---
+
+#### 3) 나스닥 TotalView-ITCH 5.0 호가 추가(Add Order) 바이너리 시세 패킷 명세
+
+TotalView-ITCH 피드는 오더북의 모든 개별 주문을 주문 레벨(Order-by-Order)로 전달하는 멀티캐스트 시세 프로토콜입니다.
+
+| 바이트 오프셋 (Offset) | 길이 (Bytes) | 필드명 (Field Name) | 데이터 타입 | 설명 |
+|---|---|---|---|---|
+| **0** | 1 | `Message Type` | Alpha | `'A'` (Add Order with No MPID Attribution) |
+| **1** | 2 | `Stock Locate` | Integer | 나스닥 내부 종목 식별 정수 코드 |
+| **3** | 2 | `Tracking Number` | Integer | 내부 시퀀싱 트래킹 번호 |
+| **5** | 6 | `Timestamp` | Integer (Nanoseconds) | 자정 이후 경과한 **나노초(ns)** 타임스탬프 |
+| **11** | 8 | `Order Reference Number`| Integer (64-bit) | 해당 주문의 글로벌 유일 오더북 참조 ID |
+| **19** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy, `'S'` = Sell |
+| **20** | 4 | `Shares` | Integer (32-bit) | 호가창에 신규 등재되는 공개 수량 |
+| **24** | 8 | `Stock` | Alpha (ASCII) | 종목 심볼명 |
+| **32** | 4 | `Price` | Integer (4 Decimals) | 표시 호가 (고정소수점 4자리 정수) |
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ingress: OUCH 바이너리 패킷 유입
+    Ingress --> RiskValidation: 게이트웨이 파싱 및 포맷 검증
+    RiskValidation --> HoldingChamber: TIF="WAIT" 플래그 감지 시 (1초 보류)
+    HoldingChamber --> OrderBook: 1.0초 경과 후 방출
+    RiskValidation --> OrderBook: 일반 주문 (Pre-trade Risk 통과)
+    RiskValidation --> Rejected: OPP / 스프레드 한도 초과 시
+    
+    state OrderBook {
+        [*] --> MarketableCheck
+        MarketableCheck --> Executed: 마켓터블 (즉시 체결)
+        MarketableCheck --> Repriced: Post-Only 충돌 시 리프라이싱
+        MarketableCheck --> Resting: 지정가 대기 (B-Tree 큐 안착)
+    }
+
+    Resting --> Executed: 반대편 주문 도달 시 체결
+    Resting --> Cancelled: Cancel-Replace 또는 취소 전문 수신
+    Executed --> [*]
+    Cancelled --> [*]
+    Rejected --> [*]
+```
+
+---
 
 ## 5. 매매시스템 (Trading System)
 

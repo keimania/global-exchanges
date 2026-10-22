@@ -40,6 +40,9 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"></script>
 
+  <!-- Mermaid.js (Diagram Rendering) -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -81,6 +84,10 @@
       font-weight: 600;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
+      color: #0369a1;
+    }
+    .dark .prose-custom h3 {
+      color: #7dd3fc;
     }
     .prose-custom h4 {
       font-size: 1.02rem;
@@ -112,10 +119,11 @@
     }
     .prose-custom blockquote {
       border-left: 4px solid #0284c7;
-      padding-left: 1rem;
+      padding: 0.6rem 1rem;
       margin: 1rem 0;
-      opacity: 0.9;
-      font-style: italic;
+      background: rgba(2, 132, 199, 0.05);
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-style: normal;
     }
     .prose-custom hr {
       margin: 2rem 0;
@@ -174,6 +182,22 @@
       background-color: rgba(255, 255, 255, 0.05);
     }
 
+    /* Mermaid Container */
+    .mermaid {
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 0.75rem;
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+    }
+    .dark .mermaid {
+      background: rgba(15, 23, 42, 0.6);
+      border-color: rgba(148, 163, 184, 0.15);
+    }
+
     /* Code blocks */
     .prose-custom pre {
       background-color: #1e293b;
@@ -192,6 +216,19 @@
     }
     .dark .prose-custom :not(pre) > code {
       color: #38bdf8;
+    }
+
+    /* Scroll Spy Active State */
+    .toc-active-item {
+      color: #0284c7 !important;
+      font-weight: 700 !important;
+      border-left: 2px solid #0284c7;
+      background-color: rgba(2, 132, 199, 0.08);
+    }
+    .dark .toc-active-item {
+      color: #38bdf8 !important;
+      border-left-color: #38bdf8;
+      background-color: rgba(56, 189, 248, 0.1);
     }
 
     /* Custom Scrollbar */
@@ -224,7 +261,7 @@
           GX
         </div>
         <div>
-          <h1 class="text-xs sm:text-sm font-bold leading-tight tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 truncate max-w-[150px] sm:max-w-xs">
+          <h1 class="text-xs sm:text-sm font-bold leading-tight tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 truncate max-w-[140px] sm:max-w-xs">
             <span id="current-exchange-name">NASDAQ</span>
           </h1>
           <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Order Types & Engine Specs</p>
@@ -235,6 +272,24 @@
     <!-- Quick Actions Header -->
     <div class="flex items-center space-x-1 sm:space-x-1.5">
       
+      <!-- Split-Screen Compare Mode Toggle -->
+      <button id="btn-split-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1 text-xs font-semibold" title="좌우 분할 비교 뷰 (Split Screen)">
+        <i data-lucide="columns-2" class="w-4 h-4 text-sky-500"></i>
+        <span class="hidden md:inline" id="btn-split-text">분할비교</span>
+      </button>
+
+      <!-- Global Trading Clock Trigger -->
+      <button id="btn-clock-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1 text-xs font-semibold" title="24시간 글로벌 장시간 타임라인">
+        <i data-lucide="clock" class="w-4 h-4 text-emerald-500"></i>
+        <span class="hidden lg:inline" id="btn-clock-text">마켓시계</span>
+      </button>
+
+      <!-- Order Types Explorer Trigger -->
+      <button id="btn-order-types-toggle" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1 text-xs font-semibold" title="주문 유형 크로스 필터 탐색기">
+        <i data-lucide="tags" class="w-4 h-4 text-amber-500"></i>
+        <span class="hidden lg:inline" id="btn-order-types-text">주문유형</span>
+      </button>
+
       <!-- Language Toggle Switch (KO / EN) -->
       <div class="flex items-center p-0.5 rounded-lg bg-slate-200/80 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 text-[11px] font-bold">
         <button id="lang-ko-btn" class="px-2 py-1 rounded-md transition-all flex items-center gap-1">
@@ -246,8 +301,9 @@
       </div>
 
       <!-- Quick Search Trigger -->
-      <button id="btn-search-trigger" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors" title="거래소 검색">
+      <button id="btn-search-trigger" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-1.5" title="통합 전문 검색 (Cmd+K)">
         <i data-lucide="search" class="w-4 h-4"></i>
+        <span class="hidden xl:inline text-[10px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-400 font-mono">⌘K</span>
       </button>
 
       <!-- Theme Toggle -->
@@ -299,7 +355,7 @@
       <!-- Sidebar Footer -->
       <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
         <span class="flex items-center gap-1.5 font-medium">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 24 Documents (KO/EN)
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 25 Documents (KO/EN)
         </span>
         <div class="flex items-center gap-1">
           <button id="font-decrease" class="px-1.5 py-0.5 rounded hover:bg-slate-200 dark:hover:bg-slate-800 font-mono font-bold" title="글자 크기 축소">A-</button>
@@ -309,7 +365,7 @@
       </div>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Area: Single View Container -->
     <main class="flex-1 overflow-y-auto relative flex flex-col h-[calc(100vh-57px)]" id="main-scroll-container">
       
       <!-- Top Status Banner -->
@@ -321,7 +377,7 @@
           <span id="badge-lang-indicator" class="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold">KO</span>
         </div>
         <div class="flex items-center gap-2 text-xs">
-          <button id="btn-toc-toggle" class="flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
+          <button id="btn-toc-toggle" class="xl:hidden flex items-center gap-1 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-sky-500 transition-colors">
             <i data-lucide="list" class="w-3.5 h-3.5"></i>
             <span id="toc-btn-text">목차 (TOC)</span>
           </button>
@@ -332,21 +388,40 @@
         </div>
       </div>
 
-      <!-- Markdown Render Container -->
-      <div class="flex-1 px-4 sm:px-8 py-6 max-w-4xl mx-auto w-full">
-        <!-- Loading Spinner -->
-        <div id="loading" class="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
-          <div class="w-8 h-8 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
-          <p class="text-xs font-medium" id="loading-text">데이터를 불러오는 중입니다...</p>
+      <!-- Main Dual / Single Content Flex Container -->
+      <div class="flex-1 flex px-4 sm:px-8 py-6 max-w-7xl mx-auto w-full gap-8">
+        
+        <!-- Markdown Render Container -->
+        <div class="flex-1 min-w-0 max-w-4xl mx-auto">
+          <!-- Loading Spinner -->
+          <div id="loading" class="flex flex-col items-center justify-center py-20 text-slate-400 space-y-3">
+            <div class="w-8 h-8 border-3 border-sky-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-xs font-medium" id="loading-text">데이터를 불러오는 중입니다...</p>
+          </div>
+
+          <!-- Rendered Article -->
+          <article id="markdown-body" class="prose-custom hidden text-[15px] leading-relaxed">
+            <!-- Markdown injected here -->
+          </article>
         </div>
 
-        <!-- Rendered Article -->
-        <article id="markdown-body" class="prose-custom hidden text-[15px] leading-relaxed">
-          <!-- Markdown injected here -->
-        </article>
+        <!-- Desktop Sticky Scroll-Spy TOC Sidebar -->
+        <aside id="desktop-toc-container" class="hidden xl:block w-64 shrink-0 sticky top-4 self-start max-h-[calc(100vh-120px)] overflow-y-auto p-4 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md shadow-sm text-xs">
+          <div class="font-bold text-xs text-slate-900 dark:text-white mb-2.5 pb-2 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="list-tree" class="w-3.5 h-3.5 text-sky-500"></i>
+              <span id="desktop-toc-title">문서 목차</span>
+            </span>
+            <span class="text-[10px] text-slate-400 font-mono" id="desktop-toc-count"></span>
+          </div>
+          <div id="desktop-toc-content" class="space-y-1 text-slate-600 dark:text-slate-400">
+            <!-- Injected dynamically -->
+          </div>
+        </aside>
+
       </div>
 
-      <!-- Bottom Floating Controls for Mobile -->
+      <!-- Bottom Floating Controls -->
       <div class="sticky bottom-4 right-4 self-end z-30 flex items-center gap-2 pr-4 pb-2">
         <button id="btn-scroll-top" class="p-3 rounded-full bg-slate-900/90 dark:bg-slate-800/90 text-white shadow-xl backdrop-blur border border-slate-700/50 hover:bg-sky-600 transition-all opacity-0 pointer-events-none transform translate-y-2" title="맨 위로">
           <i data-lucide="chevron-up" class="w-5 h-5"></i>
@@ -355,9 +430,69 @@
 
     </main>
 
+    <!-- Split-Screen Compare Mode Container (Hidden by default) -->
+    <div id="split-screen-container" class="flex-1 hidden overflow-hidden flex-col h-[calc(100vh-57px)] bg-slate-100 dark:bg-slate-950">
+      <!-- Split View Control Bar -->
+      <div class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-2 flex items-center justify-between text-xs">
+        <div class="flex items-center space-x-3">
+          <span class="font-bold text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+            <i data-lucide="columns-2" class="w-4 h-4"></i>
+            <span id="split-mode-label">좌우 분할 비교 모드 (Split Compare)</span>
+          </span>
+          <label class="flex items-center gap-1.5 text-slate-600 dark:text-slate-300 cursor-pointer">
+            <input type="checkbox" id="split-sync-scroll" checked class="rounded text-sky-500 focus:ring-sky-500">
+            <span id="split-sync-label">스크롤 동기화</span>
+          </label>
+        </div>
+        <button id="btn-close-split" class="px-2.5 py-1 rounded bg-slate-200 dark:bg-slate-800 hover:bg-red-500 hover:text-white transition-colors flex items-center gap-1 font-semibold">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+          <span id="btn-close-split-text">단일 뷰로 복귀</span>
+        </button>
+      </div>
+
+      <!-- Split Dual Columns -->
+      <div class="flex-1 flex flex-col md:flex-row overflow-hidden divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
+        
+        <!-- Left Pane -->
+        <div class="flex-1 flex flex-col overflow-hidden h-full">
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-500 font-mono">LEFT:</span>
+              <select id="split-left-select" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded px-2 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-sky-500"></select>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="split-left-ko" class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white">KO</button>
+              <button id="split-left-en" class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">EN</button>
+            </div>
+          </div>
+          <div id="split-left-scroll" class="flex-1 overflow-y-auto p-4 sm:p-6">
+            <article id="split-left-body" class="prose-custom text-sm leading-relaxed"></article>
+          </div>
+        </div>
+
+        <!-- Right Pane -->
+        <div class="flex-1 flex flex-col overflow-hidden h-full">
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-slate-500 font-mono">RIGHT:</span>
+              <select id="split-right-select" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded px-2 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-sky-500"></select>
+            </div>
+            <div class="flex items-center gap-1">
+              <button id="split-right-ko" class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300">KO</button>
+              <button id="split-right-en" class="px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white">EN</button>
+            </div>
+          </div>
+          <div id="split-right-scroll" class="flex-1 overflow-y-auto p-4 sm:p-6">
+            <article id="split-right-body" class="prose-custom text-sm leading-relaxed"></article>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
-  <!-- TOC Modal / Drawer (Mobile & Desktop) -->
+  <!-- TOC Modal (Mobile) -->
   <div id="toc-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-md w-full max-h-[80vh] flex flex-col overflow-hidden">
       <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
@@ -375,27 +510,125 @@
     </div>
   </div>
 
-  <!-- Search Modal -->
+  <!-- Global Trading Clock Modal -->
+  <div id="clock-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+        <div class="flex items-center space-x-2.5">
+          <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-500">
+            <i data-lucide="clock" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white" id="clock-modal-title">글로벌 24시간 매매 세션 타임라인</h3>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">전 세계 23개 거래소 실시간 개장/마감 현황 (KST / UTC)</p>
+          </div>
+        </div>
+        <button id="btn-close-clock" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Real-time Live Clocks Bar -->
+      <div class="p-4 bg-sky-500/5 border-b border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4 text-center">
+        <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm">
+          <div class="text-[10px] uppercase font-bold text-sky-600 dark:text-sky-400 tracking-wider">한국 표준시 (KST, UTC+9)</div>
+          <div id="live-clock-kst" class="font-mono text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">--:--:--</div>
+        </div>
+        <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm">
+          <div class="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">협정 세계시 (UTC)</div>
+          <div id="live-clock-utc" class="font-mono text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">--:--:--</div>
+        </div>
+      </div>
+
+      <!-- Region Filter Tabs -->
+      <div class="px-4 pt-3 flex items-center space-x-1 border-b border-slate-200 dark:border-slate-800 text-xs overflow-x-auto">
+        <button class="clock-filter-btn px-3 py-1.5 font-bold border-b-2 border-sky-500 text-sky-600 dark:text-sky-400" data-region="all">전체 (All)</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Asia-Pacific">아시아·태평양</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Europe">유럽</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="North America">북미</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Emerging & Middle East">중동·신흥국</button>
+      </div>
+
+      <!-- Market Sessions List -->
+      <div id="clock-exchange-list" class="p-4 overflow-y-auto space-y-2.5 text-xs">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Types Explorer Modal -->
+  <div id="order-types-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+        <div class="flex items-center space-x-2.5">
+          <div class="p-2 rounded-lg bg-amber-500/10 text-amber-500">
+            <i data-lucide="tags" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white" id="order-types-modal-title">글로벌 주문 유형 크로스 필터 탐색기</h3>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">속성별/알고리즘별 주문 분류 및 채택 거래소 비교</p>
+          </div>
+        </div>
+        <button id="btn-close-order-types" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Tag Filters -->
+      <div class="p-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 flex flex-wrap gap-1.5 text-xs">
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500 text-white" data-tag="all">전체 (All)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="dark">#비표시/다크/미드포인트</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="maker">#메이커전용(Post-Only)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="sweep">#시장간스윕(ISO)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="auction">#경매/단일가(Cross)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="speedbump">#초단타방어(Speedbump/WAIT)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="options">#옵션전용(Options)</button>
+      </div>
+
+      <!-- Order Types Grid List -->
+      <div id="order-types-catalog" class="p-4 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal with Full-Text Capability -->
   <div id="search-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden flex items-start justify-center pt-16 px-4">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-lg w-full overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Search Input Header -->
       <div class="p-3 border-b border-slate-200 dark:border-slate-800 flex items-center gap-2">
         <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
-        <input type="text" id="global-search-input" placeholder="거래소명, 국가, 매칭 엔진 검색 (예: NASDAQ, Optiq, 홍콩, T7)..." 
+        <input type="text" id="global-search-input" placeholder="거래소명 또는 본문 키워드 검색 (예: Iceberg, Midpoint, LULD, Eqlipse, 동시호가)..." 
           class="flex-1 bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none">
         <button id="btn-close-search" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
-      <div id="global-search-results" class="max-h-80 overflow-y-auto p-2 space-y-1 text-xs">
-        <!-- Search items dynamically injected -->
+
+      <!-- Search Mode Tabs -->
+      <div class="px-3 pt-2 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800 flex items-center space-x-2 text-xs">
+        <button id="search-tab-exchanges" class="px-3 py-1.5 font-bold border-b-2 border-sky-500 text-sky-600 dark:text-sky-400">거래소 목록</button>
+        <button id="search-tab-fulltext" class="px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1">
+          <span>본문 전문 검색 (25개 문서)</span>
+          <span id="fulltext-index-badge" class="text-[9px] px-1 py-0.2 rounded bg-slate-200 dark:bg-slate-800 font-mono">준비중</span>
+        </button>
+      </div>
+
+      <!-- Search Results Area -->
+      <div id="global-search-results" class="max-h-96 overflow-y-auto p-2 space-y-1 text-xs">
+        <!-- Results injected dynamically -->
       </div>
     </div>
   </div>
 
   <!-- Core Data & Application Script -->
   <script>
-    // Exchange Directory Metadata (23 Exchanges + Options Rules)
+    // Exchange Directory Metadata (23 Exchanges + Special Reports + Options Rules)
     const EXCHANGES = [
+      // Master Analytics Matrix
+      { id: 'comparison_matrix', name: 'Global Comparison Matrix', krName: '23개 거래소 종합 비교 매트릭스', file: 'comparison_matrix.md', country: 'Global', krCountry: '글로벌', flag: '📊', region: 'Special Reports', krRegion: '특별 분석 리포트', engine: 'Cross-Exchange Analytics' },
+
       // North America
       { id: 'nasdaq', name: 'NASDAQ', krName: '나스닥', file: 'nasdaq.md', country: 'United States', krCountry: '미국', flag: '🇺🇸', region: 'North America', krRegion: '북미', engine: 'INET / Eqlipse' },
       { id: 'nyse', name: 'NYSE', krName: '뉴욕증권거래소', file: 'nyse.md', country: 'United States', krCountry: '미국', flag: '🇺🇸', region: 'North America', krRegion: '북미', engine: 'Pillar Engine' },
@@ -428,24 +661,80 @@
       { id: 'tadawul', name: 'Saudi Tadawul', krName: '사우디 타다울', file: 'tadawul.md', country: 'Saudi Arabia', krCountry: '사우디', flag: '🇸🇦', region: 'Emerging & Middle East', krRegion: '신흥국 & 중동', engine: 'Nasdaq X-Stream' },
 
       // Special Regulatory Documents
-      { id: 'NASDAQ_OPTIONS_RULES', name: 'NASDAQ Options Rules', krName: '나스닥 옵션 규정집', file: 'NASDAQ_OPTIONS_RULES.md', country: 'United States', krCountry: '미국', flag: '📘', region: 'Special Regulations', krRegion: '특별 규정집', engine: 'NOM Rules 208P' }
+      { id: 'NASDAQ_OPTIONS_RULES', name: 'NASDAQ Options Rules', krName: '나스닥 옵션 규정집', file: 'NASDAQ_OPTIONS_RULES.md', country: 'United States', krCountry: '미국', flag: '📘', region: 'Special Reports', krRegion: '특별 규정집', engine: 'NOM Rules 208P' }
+    ];
+
+    // Global Trading Hours Data (Standard Continuous Sessions in UTC)
+    const TRADING_SESSIONS = [
+      { id: 'asx', openUtc: 0, closeUtc: 6, preUtc: 23, postUtc: 7, tz: 'UTC+10 (Sydney)' },
+      { id: 'jpx', openUtc: 0, closeUtc: 6.5, preUtc: 23, postUtc: 7, tz: 'UTC+9 (Tokyo)' },
+      { id: 'krx', openUtc: 0, closeUtc: 6.5, preUtc: 23, postUtc: 9, tz: 'UTC+9 (Seoul)' },
+      { id: 'twse', openUtc: 1, closeUtc: 5.5, preUtc: 0.5, postUtc: 6, tz: 'UTC+8 (Taipei)' },
+      { id: 'hkex', openUtc: 1.5, closeUtc: 8, preUtc: 1, postUtc: 8.15, tz: 'UTC+8 (Hong Kong)' },
+      { id: 'sse', openUtc: 1.5, closeUtc: 7, preUtc: 1.25, postUtc: 7.5, tz: 'UTC+8 (Shanghai)' },
+      { id: 'szse', openUtc: 1.5, closeUtc: 7, preUtc: 1.25, postUtc: 7.5, tz: 'UTC+8 (Shenzhen)' },
+      { id: 'sgx', openUtc: 1, closeUtc: 9, preUtc: 0.5, postUtc: 9.1, tz: 'UTC+8 (Singapore)' },
+      { id: 'bursa_malaysia', openUtc: 1, closeUtc: 9, preUtc: 0.5, postUtc: 9.5, tz: 'UTC+8 (Kuala Lumpur)' },
+      { id: 'nse_india', openUtc: 3.75, closeUtc: 10, preUtc: 3.5, postUtc: 10.5, tz: 'UTC+5.5 (Mumbai)' },
+      { id: 'bse', openUtc: 3.75, closeUtc: 10, preUtc: 3.5, postUtc: 10.5, tz: 'UTC+5.5 (Mumbai)' },
+      { id: 'tadawul', openUtc: 7, closeUtc: 12, preUtc: 6.5, postUtc: 12.5, tz: 'UTC+3 (Riyadh)' },
+      { id: 'jse', openUtc: 7, closeUtc: 15, preUtc: 6.5, postUtc: 15.2, tz: 'UTC+2 (Johannesburg)' },
+      { id: 'deutsche_borse', openUtc: 7, closeUtc: 15.5, preUtc: 6, postUtc: 18, tz: 'UTC+1 (Frankfurt)' },
+      { id: 'euronext', openUtc: 7, closeUtc: 15.5, preUtc: 5.25, postUtc: 16.5, tz: 'UTC+1 (Paris/Amsterdam)' },
+      { id: 'six', openUtc: 7, closeUtc: 15.5, preUtc: 5, postUtc: 16.5, tz: 'UTC+1 (Zurich)' },
+      { id: 'borsa_italiana', openUtc: 7, closeUtc: 15.5, preUtc: 5.5, postUtc: 16.5, tz: 'UTC+1 (Milan)' },
+      { id: 'bme', openUtc: 7, closeUtc: 15.5, preUtc: 6.5, postUtc: 16.5, tz: 'UTC+1 (Madrid)' },
+      { id: 'lse', openUtc: 8, closeUtc: 16.5, preUtc: 5, postUtc: 17.25, tz: 'UTC+0 (London)' },
+      { id: 'nasdaq_nordic', openUtc: 8, closeUtc: 16.5, preUtc: 7, postUtc: 17, tz: 'UTC+1 (Stockholm)' },
+      { id: 'nyse', openUtc: 13.5, closeUtc: 20, preUtc: 8, postUtc: 24, tz: 'UTC-5 (New York)' },
+      { id: 'nasdaq', openUtc: 13.5, closeUtc: 20, preUtc: 8, postUtc: 24, tz: 'UTC-5 (New York)' },
+      { id: 'tmx', openUtc: 13.5, closeUtc: 20, preUtc: 11, postUtc: 21, tz: 'UTC-5 (Toronto)' }
+    ];
+
+    // Global Order Type Catalog
+    const ORDER_TYPES_CATALOG = [
+      { name: 'M-ELO (Midpoint Extended Life Order)', krName: '미드포인트 수명 연장 주문', tag: 'dark', ex: ['nasdaq'], desc: '10ms 동안 호가창에 고정 대기한 주문 간에만 NBBO 중간가격으로 체결되는 초단타(HFT) 레이턴시 아비트라지 방어용 다크 주문' },
+      { name: 'Post-Only / Maker-Only', krName: '포스트 온리 (유동성 공급 전용)', tag: 'maker', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'euronext'], desc: '진입 즉시 유동성을 소비(Taker)하지 않고 오직 오더북에 등재되어 메이커 리베이트를 확보하는 주문. 충돌 시 리프라이싱' },
+      { name: 'Intermarket Sweep Order (ISO)', krName: '시장간 스윕 주문', tag: 'sweep', ex: ['nasdaq', 'nyse', 'tmx'], desc: '타 거래소의 보호 호가(Protected Quotes)를 무시하고 해당 거래소의 복수 가격대를 즉시 쓸어담는 주문 (Reg NMS Rule 611 예외)' },
+      { name: 'Iceberg / Reserve Order', krName: '빙산 호가 / 수량 숨김 주문', tag: 'dark', ex: ['krx', 'nasdaq', 'nyse', 'euronext', 'deutsche_borse', 'hkex'], desc: '전체 주문 수량 중 지정된 표시 수량(Peak/Display)만 호가창에 공개하고, 체결 시 숨겨진 잔여 수량이 자동으로 리로드되는 주문' },
+      { name: 'Dark / Hidden Midpoint', krName: '비표시 중간가 주문', tag: 'dark', ex: ['nasdaq', 'nyse', 'six', 'lse', 'asx'], desc: '외부 시세판에 일체 표시되지 않으며 최우선 매수/매도호가의 정중앙(Midpoint)에서 대기 및 무스프레드 체결' },
+      { name: 'On the Open (MOO / LOO / OPG)', krName: '개장 단일가 주문', tag: 'auction', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'jpx'], desc: '정규장 개장 단일가 경매(Opening Cross)에만 참여하며, 미체결 잔량은 경매 직후 즉시 취소' },
+      { name: 'On the Close (MOC / LOC)', krName: '장마감 단일가 주문', tag: 'auction', ex: ['nasdaq', 'nyse', 'krx', 'hkex', 'lse'], desc: '당일 공식 종가를 결정하는 장마감 동시호가/경매(Closing Cross) 전용 주문' },
+      { name: 'WAIT (Delayed Delay Mechanism)', krName: '나스닥 NOM WAIT 타임락 플래그', tag: 'speedbump', ex: ['nasdaq', 'NASDAQ_OPTIONS_RULES'], desc: '주문 접수 즉시 1.0초(1,000,000µs) 동안 메모리 대기 챔버에 강제 보류 후 방출하는 NOM 전용 레이턴시 방어 주문' },
+      { name: 'One-Cancels-the-Other (OCO)', krName: '양자택일 주문', tag: 'options', ex: ['nasdaq', 'NASDAQ_OPTIONS_RULES'], desc: '마켓메이커 전용 양방향 페어 주문. 한쪽 체결 시 반대쪽 호가를 마이크로초 단위로 즉각 원자적 자동 취소' },
+      { name: 'Price Improving Order (PIO)', krName: '가격 개선 주문', tag: 'options', ex: ['nasdaq', 'NASDAQ_OPTIONS_RULES'], desc: '$0.05/$0.10 MPV 종목에 $0.01 서브틱으로 접수되며 체결 시 실제 페니 가격으로 체결되어 테이커에게 가격 개선 제공' },
+      { name: 'Market On Opening / Closing Auction', krName: '동시호가 시장가/지정가', tag: 'auction', ex: ['krx', 'jpx', 'hkex', 'sse', 'szse'], desc: '단일가격 개별경쟁매매로 시가 및 종가를 결정하는 전통 콜옥션 주문' },
+      { name: 'Discretionary Order (DISC)', krName: '재량 주문', tag: 'maker', ex: ['nasdaq', 'nyse'], desc: '표시 가격 외에 추가적인 체결 허용 가격 범위를 설정하여 상대 호가가 범위 내 진입 시 적극 체결' }
     ];
 
     // Current Application State
     let currentId = 'nasdaq';
     let currentLang = localStorage.getItem('preferredLang') || 'ko'; // default: 'ko'
     let currentFontSize = parseInt(localStorage.getItem('docFontSize')) || 15;
+    let isSplitMode = false;
+    let fullTextIndex = [];
+    let isIndexing = false;
 
-    // Marked Standard Configuration (Do NOT override table method directly to avoid [object Object]undefined)
+    // Marked Standard Configuration
     marked.setOptions({
       gfm: true,
       breaks: false,
       highlight: function(code, lang) {
+        if (lang === 'mermaid') {
+          return code;
+        }
         if (lang && hljs.getLanguage(lang)) {
           return hljs.highlight(code, { language: lang }).value;
         }
         return hljs.highlightAuto(code).value;
       }
+    });
+
+    // Initialize Mermaid
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: document.documentElement.classList.contains('dark') ? 'dark' : 'neutral',
+      securityLevel: 'loose'
     });
 
     // Language Toggle Handling
@@ -466,6 +755,10 @@
         document.getElementById('share-btn-text').textContent = '공유';
         document.getElementById('toc-modal-title').textContent = '문서 목차 (Table of Contents)';
         document.getElementById('loading-text').textContent = '데이터를 불러오는 중입니다...';
+        document.getElementById('desktop-toc-title').textContent = '문서 목차';
+        document.getElementById('btn-split-text').textContent = '분할비교';
+        document.getElementById('btn-clock-text').textContent = '마켓시계';
+        document.getElementById('btn-order-types-text').textContent = '주문유형';
       } else {
         enBtn.className = 'px-2 py-1 rounded-md bg-white dark:bg-slate-700 text-sky-600 dark:text-sky-400 shadow-sm transition-all flex items-center gap-1';
         koBtn.className = 'px-2 py-1 rounded-md text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition-all flex items-center gap-1';
@@ -476,13 +769,16 @@
         document.getElementById('share-btn-text').textContent = 'Share';
         document.getElementById('toc-modal-title').textContent = 'Table of Contents';
         document.getElementById('loading-text').textContent = 'Loading document...';
+        document.getElementById('desktop-toc-title').textContent = 'Table of Contents';
+        document.getElementById('btn-split-text').textContent = 'Split View';
+        document.getElementById('btn-clock-text').textContent = 'Trading Clock';
+        document.getElementById('btn-order-types-text').textContent = 'Order Types';
       }
 
-      // Re-render sidebar with updated language priority
       renderSidebar(document.getElementById('sidebar-search').value);
-
-      // Reload current exchange content
-      loadExchange(currentId);
+      if (!isSplitMode) {
+        loadExchange(currentId);
+      }
     }
 
     // Group Exchanges by Region
@@ -520,7 +816,7 @@
           <div class="space-y-0.5">`;
 
         filtered.forEach(ex => {
-          const isActive = ex.id === currentId;
+          const isActive = ex.id === currentId && !isSplitMode;
           const activeClasses = isActive 
             ? 'bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 font-semibold border-l-2 border-sky-500' 
             : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60';
@@ -552,7 +848,55 @@
       navList.innerHTML = html;
     }
 
-    // Load and Render Markdown Document
+    // Process and Render HTML with Markdown, Tables, Math, and Mermaid
+    async function processAndRenderMarkdown(markdownText, targetElement) {
+      // 1. Marked standard parse
+      targetElement.innerHTML = marked.parse(markdownText);
+
+      // 2. Wrap all <table> elements
+      targetElement.querySelectorAll('table').forEach(table => {
+        if (!table.parentElement.classList.contains('table-container')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-container';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+
+      // 3. Transform Mermaid code blocks into <div class="mermaid">
+      const mermaidCodeBlocks = targetElement.querySelectorAll('pre code.language-mermaid');
+      mermaidCodeBlocks.forEach(code => {
+        const pre = code.parentElement;
+        const div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = code.textContent;
+        pre.parentNode.insertBefore(div, pre);
+        pre.remove();
+      });
+
+      // 4. Render KaTeX Math
+      renderMathInElement(targetElement, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+      });
+
+      // 5. Run Mermaid Diagrams
+      const mermaidNodes = targetElement.querySelectorAll('.mermaid');
+      if (mermaidNodes.length > 0) {
+        try {
+          await mermaid.run({ nodes: mermaidNodes });
+        } catch (e) {
+          console.warn('Mermaid rendering issue:', e);
+        }
+      }
+    }
+
+    // Load and Render Single Exchange Document
     async function loadExchange(id) {
       const ex = EXCHANGES.find(e => e.id === id) || EXCHANGES[0];
       currentId = ex.id;
@@ -566,10 +910,7 @@
       document.getElementById('badge-engine').textContent = ex.engine;
       document.title = `${ex.name} - Global Exchange Architecture`;
 
-      // Update Sidebar active state
       renderSidebar(document.getElementById('sidebar-search').value);
-
-      // Close mobile sidebar if open
       closeSidebar();
 
       // Show Loading
@@ -578,57 +919,25 @@
       loading.classList.remove('hidden');
       body.classList.add('hidden');
 
-      // Resolve file path based on language
-      let targetFile = '';
-      if (currentLang === 'ko') {
-        targetFile = `ko/${ex.file}`;
-      } else {
-        targetFile = `en/${ex.file}`;
-      }
+      const targetFile = currentLang === 'ko' ? `ko/${ex.file}` : `en/${ex.file}`;
 
       try {
         let response = await fetch(targetFile);
         if (!response.ok) {
-          // Fallback to root directory if subfolder fetch fails
           response = await fetch(ex.file);
           if (!response.ok) throw new Error(`HTTP ${response.status}: Failed to load ${targetFile}`);
         }
         const markdown = await response.text();
 
-        // 1. Parse markdown using standard marked parser (Clean output, no [object Object]undefined)
-        body.innerHTML = marked.parse(markdown);
+        await processAndRenderMarkdown(markdown, body);
 
-        // 2. Safe DOM Post-processing: Wrap all <table> elements in responsive scrollable container
-        body.querySelectorAll('table').forEach(table => {
-          if (!table.parentElement.classList.contains('table-container')) {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'table-container';
-            table.parentNode.insertBefore(wrapper, table);
-            wrapper.appendChild(table);
-          }
-        });
-
-        // 3. Render KaTeX math in markdown body
-        renderMathInElement(body, {
-          delimiters: [
-            {left: '$$', right: '$$', display: true},
-            {left: '$', right: '$', display: false},
-            {left: '\\(', right: '\\)', display: false},
-            {left: '\\[', right: '\\]', display: true}
-          ],
-          throwOnError: false
-        });
-
-        // 4. Build Table of Contents
         buildTOC();
+        setupScrollSpy();
 
         loading.classList.add('hidden');
         body.classList.remove('hidden');
 
-        // Scroll to top of document
         document.getElementById('main-scroll-container').scrollTop = 0;
-
-        // Refresh Lucide icons
         lucide.createIcons();
 
       } catch (err) {
@@ -644,32 +953,423 @@
       }
     }
 
-    // Build Table of Contents
+    // Build Table of Contents for both Desktop Sticky & Mobile Modal
     function buildTOC() {
       const body = document.getElementById('markdown-body');
       const headings = body.querySelectorAll('h1, h2, h3');
-      const tocContainer = document.getElementById('toc-content');
+      const modalTocContainer = document.getElementById('toc-content');
+      const desktopTocContainer = document.getElementById('desktop-toc-content');
+      const desktopTocCount = document.getElementById('desktop-toc-count');
       
       if (headings.length === 0) {
-        tocContainer.innerHTML = `<p class="text-slate-400 text-center py-4">${currentLang === 'ko' ? '목차가 없습니다.' : 'No headings found.'}</p>`;
+        modalTocContainer.innerHTML = `<p class="text-slate-400 text-center py-4">${currentLang === 'ko' ? '목차가 없습니다.' : 'No headings found.'}</p>`;
+        desktopTocContainer.innerHTML = `<p class="text-slate-400 text-center py-4">${currentLang === 'ko' ? '목차가 없습니다.' : 'No headings found.'}</p>`;
+        desktopTocCount.textContent = '0 items';
         return;
       }
 
+      desktopTocCount.textContent = `${headings.length} items`;
       let html = '';
       headings.forEach((heading, idx) => {
         const id = 'heading-' + idx;
         heading.id = id;
         const level = heading.tagName.toLowerCase();
-        const indent = level === 'h1' ? 'font-bold text-slate-900 dark:text-white pt-1' : (level === 'h2' ? 'pl-3 font-semibold text-sky-600 dark:text-sky-400' : 'pl-6 text-slate-500');
+        const indent = level === 'h1' ? 'font-bold text-slate-900 dark:text-white pt-1' : (level === 'h2' ? 'pl-2.5 font-semibold text-slate-700 dark:text-slate-300' : 'pl-5 text-slate-500 dark:text-slate-400 text-[11px]');
 
         html += `
-          <a href="#${id}" class="block py-1 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${indent} truncate" onclick="closeTOC();">
+          <a href="#${id}" data-target="${id}" class="toc-link block py-1 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors ${indent} truncate">
             ${heading.textContent}
           </a>
         `;
       });
 
-      tocContainer.innerHTML = html;
+      modalTocContainer.innerHTML = html;
+      desktopTocContainer.innerHTML = html;
+
+      // Add click handlers for smooth jump
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('data-target');
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            closeTOC();
+          }
+        });
+      });
+    }
+
+    // Desktop Scroll-Spy TOC Implementation
+    function setupScrollSpy() {
+      const scrollContainer = document.getElementById('main-scroll-container');
+      const headings = document.getElementById('markdown-body').querySelectorAll('h1, h2, h3');
+      if (headings.length === 0) return;
+
+      scrollContainer.onscroll = () => {
+        let currentHeadingId = null;
+        const scrollPosition = scrollContainer.scrollTop + 120;
+
+        headings.forEach(heading => {
+          if (heading.offsetTop <= scrollPosition) {
+            currentHeadingId = heading.id;
+          }
+        });
+
+        if (currentHeadingId) {
+          document.querySelectorAll('.toc-link').forEach(link => {
+            if (link.getAttribute('data-target') === currentHeadingId) {
+              link.classList.add('toc-active-item');
+            } else {
+              link.classList.remove('toc-active-item');
+            }
+          });
+        }
+
+        // Scroll to top button visibility
+        const scrollTopBtn = document.getElementById('btn-scroll-top');
+        if (scrollContainer.scrollTop > 300) {
+          scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+        } else {
+          scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+        }
+      };
+    }
+
+    // Split-Screen Compare Mode Implementation
+    function setupSplitScreen() {
+      const splitBtn = document.getElementById('btn-split-toggle');
+      const closeSplitBtn = document.getElementById('btn-close-split');
+      const singleView = document.getElementById('main-scroll-container');
+      const splitView = document.getElementById('split-screen-container');
+      const leftSelect = document.getElementById('split-left-select');
+      const rightSelect = document.getElementById('split-right-select');
+
+      // Populate Select Options
+      const optionsHtml = EXCHANGES.map(e => `<option value="${e.id}">${e.flag} ${e.name} (${e.krName})</option>`).join('');
+      leftSelect.innerHTML = optionsHtml;
+      rightSelect.innerHTML = optionsHtml;
+
+      leftSelect.value = currentId;
+      rightSelect.value = currentId === 'nasdaq' ? 'krx' : 'nasdaq';
+
+      let leftLang = 'ko';
+      let rightLang = 'en';
+
+      async function renderPane(side, id, lang) {
+        const ex = EXCHANGES.find(e => e.id === id) || EXCHANGES[0];
+        const bodyEl = document.getElementById(`split-${side}-body`);
+        bodyEl.innerHTML = `<div class="py-12 text-center text-slate-400"><div class="w-6 h-6 border-2 border-sky-500 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>로딩중...</div>`;
+
+        const targetFile = lang === 'ko' ? `ko/${ex.file}` : `en/${ex.file}`;
+        try {
+          let res = await fetch(targetFile);
+          if (!res.ok) res = await fetch(ex.file);
+          const md = await res.text();
+          await processAndRenderMarkdown(md, bodyEl);
+          lucide.createIcons();
+        } catch (e) {
+          bodyEl.innerHTML = `<div class="p-4 text-red-500">문서 로드 실패: ${e.message}</div>`;
+        }
+      }
+
+      function updateSplitLangButtons() {
+        const lKo = document.getElementById('split-left-ko');
+        const lEn = document.getElementById('split-left-en');
+        const rKo = document.getElementById('split-right-ko');
+        const rEn = document.getElementById('split-right-en');
+
+        lKo.className = leftLang === 'ko' ? 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white' : 'px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+        lEn.className = leftLang === 'en' ? 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white' : 'px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+
+        rKo.className = rightLang === 'ko' ? 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white' : 'px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+        rEn.className = rightLang === 'en' ? 'px-2 py-0.5 rounded text-[11px] font-bold bg-sky-500 text-white' : 'px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300';
+      }
+
+      splitBtn.addEventListener('click', () => {
+        isSplitMode = true;
+        singleView.classList.add('hidden');
+        splitView.classList.remove('hidden');
+        splitView.classList.add('flex');
+        updateSplitLangButtons();
+        renderPane('left', leftSelect.value, leftLang);
+        renderPane('right', rightSelect.value, rightLang);
+      });
+
+      closeSplitBtn.addEventListener('click', () => {
+        isSplitMode = false;
+        splitView.classList.add('hidden');
+        splitView.classList.remove('flex');
+        singleView.classList.remove('hidden');
+        loadExchange(currentId);
+      });
+
+      leftSelect.addEventListener('change', () => renderPane('left', leftSelect.value, leftLang));
+      rightSelect.addEventListener('change', () => renderPane('right', rightSelect.value, rightLang));
+
+      document.getElementById('split-left-ko').addEventListener('click', () => { leftLang = 'ko'; updateSplitLangButtons(); renderPane('left', leftSelect.value, leftLang); });
+      document.getElementById('split-left-en').addEventListener('click', () => { leftLang = 'en'; updateSplitLangButtons(); renderPane('left', leftSelect.value, leftLang); });
+      document.getElementById('split-right-ko').addEventListener('click', () => { rightLang = 'ko'; updateSplitLangButtons(); renderPane('right', rightSelect.value, rightLang); });
+      document.getElementById('split-right-en').addEventListener('click', () => { rightLang = 'en'; updateSplitLangButtons(); renderPane('right', rightSelect.value, rightLang); });
+
+      // Synchronized Scrolling
+      const leftScroll = document.getElementById('split-left-scroll');
+      const rightScroll = document.getElementById('split-right-scroll');
+      const syncCheckbox = document.getElementById('split-sync-scroll');
+
+      let isLeftScrolling = false;
+      let isRightScrolling = false;
+
+      leftScroll.addEventListener('scroll', () => {
+        if (!syncCheckbox.checked || isRightScrolling) return;
+        isLeftScrolling = true;
+        const percentage = leftScroll.scrollTop / (leftScroll.scrollHeight - leftScroll.clientHeight);
+        rightScroll.scrollTop = percentage * (rightScroll.scrollHeight - rightScroll.clientHeight);
+        setTimeout(() => { isLeftScrolling = false; }, 50);
+      });
+
+      rightScroll.addEventListener('scroll', () => {
+        if (!syncCheckbox.checked || isLeftScrolling) return;
+        isRightScrolling = true;
+        const percentage = rightScroll.scrollTop / (rightScroll.scrollHeight - rightScroll.clientHeight);
+        leftScroll.scrollTop = percentage * (leftScroll.scrollHeight - leftScroll.clientHeight);
+        setTimeout(() => { isRightScrolling = false; }, 50);
+      });
+    }
+
+    // Global Trading Hours Clock Implementation
+    function setupTradingClock() {
+      const clockBtn = document.getElementById('btn-clock-toggle');
+      const clockModal = document.getElementById('clock-modal');
+      const clockClose = document.getElementById('btn-close-clock');
+      const kstEl = document.getElementById('live-clock-kst');
+      const utcEl = document.getElementById('live-clock-utc');
+      const exchangeListEl = document.getElementById('clock-exchange-list');
+
+      function updateClockTime() {
+        const now = new Date();
+        const utcHours = now.getUTCHours();
+        const utcMinutes = now.getUTCMinutes();
+        const utcSeconds = now.getUTCSeconds();
+        const utcCurrent = utcHours + utcMinutes / 60;
+
+        utcEl.textContent = `${String(utcHours).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')} UTC`;
+
+        const kstDate = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+        const kstHours = kstDate.getUTCHours();
+        const kstMinutes = kstDate.getUTCMinutes();
+        const kstSeconds = kstDate.getUTCSeconds();
+        kstEl.textContent = `${String(kstHours).padStart(2, '0')}:${String(kstMinutes).padStart(2, '0')}:${String(kstSeconds).padStart(2, '0')} KST`;
+
+        return utcCurrent;
+      }
+
+      function renderSessionsList(filterRegion = 'all') {
+        const utcNow = updateClockTime();
+        let html = '';
+
+        TRADING_SESSIONS.forEach(session => {
+          const ex = EXCHANGES.find(e => e.id === session.id);
+          if (!ex) return;
+          if (filterRegion !== 'all' && ex.region !== filterRegion) return;
+
+          let isOpen = false;
+          let isPreOrPost = false;
+
+          // Check Session Hours
+          if (session.openUtc < session.closeUtc) {
+            isOpen = utcNow >= session.openUtc && utcNow < session.closeUtc;
+            isPreOrPost = (utcNow >= session.preUtc && utcNow < session.openUtc) || (utcNow >= session.closeUtc && utcNow < session.postUtc);
+          } else {
+            // Over midnight UTC
+            isOpen = utcNow >= session.openUtc || utcNow < session.closeUtc;
+            isPreOrPost = (utcNow >= session.preUtc && utcNow < session.openUtc) || (utcNow >= session.closeUtc && utcNow < session.postUtc);
+          }
+
+          let statusBadge = '';
+          if (isOpen) {
+            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> 정규장 거래중 (OPEN)</span>';
+          } else if (isPreOrPost) {
+            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/30 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 시간외 거래 (Pre/Post)</span>';
+          } else {
+            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-medium">휴장 (CLOSED)</span>';
+          }
+
+          const kstOpenH = Math.floor((session.openUtc + 9) % 24);
+          const kstOpenM = Math.round(((session.openUtc + 9) % 1) * 60);
+          const kstCloseH = Math.floor((session.closeUtc + 9) % 24);
+          const kstCloseM = Math.round(((session.closeUtc + 9) % 1) * 60);
+          const kstRange = `${String(kstOpenH).padStart(2, '0')}:${String(kstOpenM).padStart(2, '0')} ~ ${String(kstCloseH).padStart(2, '0')}:${String(kstCloseM).padStart(2, '0')} KST`;
+
+          html += `
+            <div class="p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-850 flex items-center justify-between hover:border-sky-500/40 transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="text-xl">${ex.flag}</span>
+                <div>
+                  <div class="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+                    <span>${ex.krName}</span>
+                    <span class="text-[10px] text-slate-400 font-normal">(${ex.name})</span>
+                  </div>
+                  <div class="text-[10px] text-slate-400 font-mono">${kstRange} · ${session.tz}</div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                ${statusBadge}
+                <button onclick="document.getElementById('clock-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-sky-500" title="해당 거래소로 이동">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        exchangeListEl.innerHTML = html;
+        lucide.createIcons();
+      }
+
+      clockBtn.addEventListener('click', () => {
+        clockModal.classList.remove('hidden');
+        renderSessionsList('all');
+      });
+
+      clockClose.addEventListener('click', () => {
+        clockModal.classList.add('hidden');
+      });
+
+      clockModal.addEventListener('click', (e) => {
+        if (e.target === clockModal) clockModal.classList.add('hidden');
+      });
+
+      document.querySelectorAll('.clock-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.clock-filter-btn').forEach(b => {
+            b.classList.remove('border-b-2', 'border-sky-500', 'text-sky-600', 'dark:text-sky-400', 'font-bold');
+            b.classList.add('text-slate-500');
+          });
+          btn.classList.add('border-b-2', 'border-sky-500', 'text-sky-600', 'dark:text-sky-400', 'font-bold');
+          btn.classList.remove('text-slate-500');
+          renderSessionsList(btn.getAttribute('data-region'));
+        });
+      });
+
+      setInterval(updateClockTime, 1000);
+    }
+
+    // Order Types Explorer Modal Implementation
+    function setupOrderTypesExplorer() {
+      const btn = document.getElementById('btn-order-types-toggle');
+      const modal = document.getElementById('order-types-modal');
+      const closeBtn = document.getElementById('btn-close-order-types');
+      const catalogEl = document.getElementById('order-types-catalog');
+
+      function renderCatalog(filterTag = 'all') {
+        const filtered = filterTag === 'all' 
+          ? ORDER_TYPES_CATALOG 
+          : ORDER_TYPES_CATALOG.filter(item => item.tag === filterTag);
+
+        catalogEl.innerHTML = filtered.map(item => `
+          <div class="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-850 hover:border-amber-500/40 transition-colors flex flex-col justify-between space-y-2.5">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-slate-900 dark:text-white text-xs">${item.krName}</span>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold uppercase">#${item.tag}</span>
+              </div>
+              <div class="text-[11px] font-mono text-slate-400 mb-2">${item.name}</div>
+              <p class="text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed">${item.desc}</p>
+            </div>
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 flex-wrap">
+              <span class="text-[10px] text-slate-400 font-semibold mr-1">채택 거래소:</span>
+              ${item.ex.map(id => {
+                const ex = EXCHANGES.find(e => e.id === id);
+                if (!ex) return '';
+                return `
+                  <button onclick="document.getElementById('order-types-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-[10px] font-mono text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-0.5">
+                    <span>${ex.flag}</span>
+                    <span>${ex.name.split(' ')[0]}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        lucide.createIcons();
+      }
+
+      btn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        renderCatalog('all');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+      });
+
+      document.querySelectorAll('.order-type-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('.order-type-chip').forEach(c => {
+            c.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300';
+          });
+          chip.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500 text-white';
+          renderCatalog(chip.getAttribute('data-tag'));
+        });
+      });
+    }
+
+    // Full-Text Background Indexing & Search Implementation
+    async function startFullTextIndexing() {
+      if (isIndexing) return;
+      isIndexing = true;
+      const badge = document.getElementById('fulltext-index-badge');
+      badge.textContent = '인덱싱중...';
+
+      for (const ex of EXCHANGES) {
+        try {
+          const koRes = await fetch(`ko/${ex.file}`);
+          if (koRes.ok) {
+            const text = await koRes.text();
+            indexDocument(ex.id, ex.name, ex.krName, ex.flag, 'ko', text);
+          }
+          const enRes = await fetch(`en/${ex.file}`);
+          if (enRes.ok) {
+            const text = await enRes.text();
+            indexDocument(ex.id, ex.name, ex.krName, ex.flag, 'en', text);
+          }
+        } catch (e) {
+          // ignore error for optional index
+        }
+      }
+
+      badge.textContent = `${fullTextIndex.length}개 항목 인덱싱 완료`;
+      badge.className = 'text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-500 font-mono font-bold';
+      isIndexing = false;
+    }
+
+    function indexDocument(id, name, krName, flag, lang, text) {
+      const lines = text.split('\n');
+      let currentHeading = '개요';
+
+      lines.forEach((line, idx) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith('#')) {
+          currentHeading = trimmed.replace(/^#+\s*/, '');
+        } else if (trimmed.length > 25 && !trimmed.startsWith('|---')) {
+          fullTextIndex.push({
+            id,
+            name,
+            krName,
+            flag,
+            lang,
+            heading: currentHeading,
+            text: trimmed,
+            line: idx + 1
+          });
+        }
+      });
     }
 
     // Global Search Modal Logic
@@ -679,48 +1379,105 @@
       const searchClose = document.getElementById('btn-close-search');
       const searchInput = document.getElementById('global-search-input');
       const searchResults = document.getElementById('global-search-results');
+      const tabExchanges = document.getElementById('search-tab-exchanges');
+      const tabFulltext = document.getElementById('search-tab-fulltext');
+
+      let searchMode = 'exchanges'; // 'exchanges' or 'fulltext'
 
       function openSearch() {
         searchModal.classList.remove('hidden');
         searchInput.value = '';
-        renderSearchResults('');
+        renderResults('');
         setTimeout(() => searchInput.focus(), 50);
+        startFullTextIndexing();
       }
 
       function closeSearch() {
         searchModal.classList.add('hidden');
       }
 
-      function renderSearchResults(q) {
-        const query = q.toLowerCase().trim();
-        const matches = EXCHANGES.filter(ex => 
-          ex.name.toLowerCase().includes(query) ||
-          ex.krName.toLowerCase().includes(query) ||
-          ex.country.toLowerCase().includes(query) ||
-          ex.krCountry.toLowerCase().includes(query) ||
-          ex.engine.toLowerCase().includes(query) ||
-          ex.region.toLowerCase().includes(query) ||
-          ex.krRegion.toLowerCase().includes(query)
-        );
-
-        if (matches.length === 0) {
-          searchResults.innerHTML = `<div class="p-4 text-center text-slate-400">${currentLang === 'ko' ? '검색 결과가 없습니다.' : 'No results found.'}</div>`;
-          return;
+      function setTab(mode) {
+        searchMode = mode;
+        if (mode === 'exchanges') {
+          tabExchanges.className = 'px-3 py-1.5 font-bold border-b-2 border-sky-500 text-sky-600 dark:text-sky-400';
+          tabFulltext.className = 'px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1';
+        } else {
+          tabFulltext.className = 'px-3 py-1.5 font-bold border-b-2 border-sky-500 text-sky-600 dark:text-sky-400 flex items-center gap-1';
+          tabExchanges.className = 'px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200';
         }
+        renderResults(searchInput.value);
+      }
 
-        searchResults.innerHTML = matches.map(ex => `
-          <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
-               onclick="loadExchange('${ex.id}'); document.getElementById('search-modal').classList.add('hidden');">
-            <div class="flex items-center space-x-3 truncate">
-              <span class="text-xl">${ex.flag}</span>
-              <div class="truncate">
-                <div class="font-bold text-slate-800 dark:text-slate-100 text-xs">${ex.name} <span class="text-slate-400 font-normal">(${ex.krName})</span></div>
-                <div class="text-[10px] text-slate-400">${currentLang === 'ko' ? ex.krCountry : ex.country} · ${ex.engine}</div>
+      function renderResults(q) {
+        const query = q.toLowerCase().trim();
+
+        if (searchMode === 'exchanges') {
+          const matches = EXCHANGES.filter(ex => 
+            ex.name.toLowerCase().includes(query) || 
+            ex.krName.toLowerCase().includes(query) || 
+            ex.country.toLowerCase().includes(query) || 
+            ex.krCountry.toLowerCase().includes(query) ||
+            ex.engine.toLowerCase().includes(query) ||
+            ex.region.toLowerCase().includes(query) ||
+            ex.krRegion.toLowerCase().includes(query)
+          );
+
+          if (matches.length === 0) {
+            searchResults.innerHTML = `<div class="p-6 text-center text-slate-400 text-xs">${currentLang === 'ko' ? '일치하는 거래소가 없습니다.' : 'No exchanges found.'}</div>`;
+            return;
+          }
+
+          searchResults.innerHTML = matches.map(ex => `
+            <div class="flex items-center justify-between p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+                 onclick="loadExchange('${ex.id}'); document.getElementById('search-modal').classList.add('hidden');">
+              <div class="flex items-center space-x-3 truncate">
+                <span class="text-xl">${ex.flag}</span>
+                <div class="truncate">
+                  <div class="font-bold text-slate-800 dark:text-slate-100 text-xs">${ex.name} <span class="text-slate-400 font-normal">(${ex.krName})</span></div>
+                  <div class="text-[10px] text-slate-400">${currentLang === 'ko' ? ex.krCountry : ex.country} · ${ex.engine}</div>
+                </div>
               </div>
+              <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-500/20">${ex.id.toUpperCase()}</span>
             </div>
-            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border border-sky-500/20">${ex.id.toUpperCase()}</span>
-          </div>
-        `).join('');
+          `).join('');
+
+        } else {
+          // Full-Text Search
+          if (!query || query.length < 2) {
+            searchResults.innerHTML = `<div class="p-6 text-center text-slate-400 text-xs">2글자 이상의 검색어를 입력하세요.</div>`;
+            return;
+          }
+
+          const matches = fullTextIndex.filter(item => 
+            item.text.toLowerCase().includes(query) || 
+            item.heading.toLowerCase().includes(query)
+          ).slice(0, 30);
+
+          if (matches.length === 0) {
+            searchResults.innerHTML = `<div class="p-6 text-center text-slate-400 text-xs">본문 검색 결과가 없습니다.</div>`;
+            return;
+          }
+
+          searchResults.innerHTML = matches.map(item => {
+            const regex = new RegExp(`(${query})`, 'gi');
+            const highlighted = item.text.replace(regex, '<mark class="bg-amber-300 dark:bg-amber-600/60 text-inherit font-bold px-0.5 rounded">$1</mark>');
+
+            return `
+              <div class="p-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors border-b border-slate-100 dark:border-slate-800/50"
+                   onclick="loadExchange('${item.id}'); document.getElementById('search-modal').classList.add('hidden');">
+                <div class="flex items-center justify-between text-[11px] mb-1">
+                  <span class="font-bold text-sky-600 dark:text-sky-400 flex items-center gap-1">
+                    <span>${item.flag}</span>
+                    <span>${item.krName}</span>
+                    <span class="text-slate-400 font-normal">› ${item.heading}</span>
+                  </span>
+                  <span class="font-mono text-[9px] px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-500">${item.lang.toUpperCase()}</span>
+                </div>
+                <p class="text-[11.5px] text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">${highlighted}</p>
+              </div>
+            `;
+          }).join('');
+        }
       }
 
       searchTrigger.addEventListener('click', openSearch);
@@ -729,11 +1486,13 @@
         if (e.target === searchModal) closeSearch();
       });
 
+      tabExchanges.addEventListener('click', () => setTab('exchanges'));
+      tabFulltext.addEventListener('click', () => setTab('fulltext'));
+
       searchInput.addEventListener('input', (e) => {
-        renderSearchResults(e.target.value);
+        renderResults(e.target.value);
       });
 
-      // Keyboard Shortcut (Cmd+K / Ctrl+K)
       window.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
           e.preventDefault();
@@ -782,7 +1541,7 @@
       localStorage.setItem('docFontSize', size);
     }
 
-    // Event Listeners Registration
+    // Register Event Listeners
     document.getElementById('lang-ko-btn').addEventListener('click', () => setLanguage('ko'));
     document.getElementById('lang-en-btn').addEventListener('click', () => setLanguage('en'));
 
@@ -800,35 +1559,23 @@
     document.getElementById('font-reset').addEventListener('click', () => setFontSize(15));
     document.getElementById('font-increase').addEventListener('click', () => setFontSize(Math.min(20, currentFontSize + 1)));
 
-    // Sidebar Search input
     document.getElementById('sidebar-search').addEventListener('input', (e) => {
       renderSidebar(e.target.value);
     });
 
-    // Copy Link Button
     document.getElementById('btn-copy-link').addEventListener('click', () => {
       navigator.clipboard.writeText(window.location.href).then(() => {
         alert(currentLang === 'ko' ? '문서 링크가 클립보드에 복사되었습니다!' : 'Document URL copied to clipboard!');
       });
     });
 
-    // Scroll to Top Button Visibility
-    const scrollContainer = document.getElementById('main-scroll-container');
-    const scrollTopBtn = document.getElementById('btn-scroll-top');
-    scrollContainer.addEventListener('scroll', () => {
-      if (scrollContainer.scrollTop > 300) {
-        scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
-      } else {
-        scrollTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
-      }
-    });
-    scrollTopBtn.addEventListener('click', () => {
-      scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('btn-scroll-top').addEventListener('click', () => {
+      document.getElementById('main-scroll-container').scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // Hash Route Listener
     window.addEventListener('hashchange', () => {
-      parseUrlHash();
+      if (!isSplitMode) parseUrlHash();
     });
 
     function parseUrlHash() {
@@ -856,6 +1603,9 @@
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       setupGlobalSearch();
+      setupSplitScreen();
+      setupTradingClock();
+      setupOrderTypesExplorer();
 
       // Restore Theme
       if (localStorage.getItem('theme') === 'light') {
@@ -881,7 +1631,6 @@
         }
       }
 
-      // Set initial language UI
       setLanguage(currentLang);
     });
   </script>

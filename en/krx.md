@@ -1,6 +1,6 @@
 # Korea Exchange (KRX)
 
-> **Last Updated:** 2026-04-13
+> **Last Updated:** 2026-10-22
 > **Research Tier:** Tier 1
 > **Domain:** Equities
 
@@ -214,6 +214,58 @@
 - **Bulk cancellation (일괄호가취소):** HFT traders can cancel all orders by HFT ID within a security type [시행세칙 Art. 17-2]
 - **Account-level kill switch:** Cancel all orders or block new orders for specific algo accounts; 10-minute cooldown before reactivation [시행세칙 Art. 130-2]
 - **Self-trade prevention:** Required for HFT; 3 modes (cancel resting, cancel incoming, cancel both) [시행세칙 Art. 13-2]
+
+---
+
+### 4.5 Live Order Book Matching Simulation & Volatility Interruption (VI) Mechanics
+
+#### 1) Live Simulation: Dynamic Volatility Interruption (Dynamic VI) Trigger Scenario
+
+Assume continuous trading in a KOSPI 200 constituent stock with the following book state:
+- **Last Execution Price (Dynamic Reference Price)**: 100,000 KRW
+- **Dynamic VI Threshold**: $\pm 3\%$ (Upper trigger price: **103,000 KRW**)
+- **Resting Sell Order Book**:
+  - Ask Level 1: 101,000 KRW (1,000 shares)
+  - Ask Level 2: 102,000 KRW (1,500 shares)
+  - Ask Level 3: 103,000 KRW (1,000 shares)
+  - Ask Level 4: 104,000 KRW (2,000 shares)
+
+```mermaid
+flowchart TD
+    Order["Large Market Buy Order: 5,000 shares"]
+    Fill1["Fill 1: 1,000 shares @ 101,000 KRW"]
+    Fill2["Fill 2: 1,500 shares @ 102,000 KRW"]
+    Fill3["Fill 3: 1,000 shares @ 103,000 KRW (Cumulative: 3,500 shares)"]
+    VICheck{"Next Potential Match (104,000 KRW) > Dynamic VI Limit (103,000 KRW)?"}
+    Trigger["Continuous Execution Frozen Instantly! Dynamic VI Triggered"]
+    Auction["Transition to 2-minute Call Auction (30s random end)"]
+    Reopen["Single Equilibrium Clearing Price Established -> Resume Continuous Matching"]
+
+    Order --> Fill1 --> Fill2 --> Fill3 --> VICheck
+    VICheck -->|Yes| Trigger --> Auction --> Reopen
+```
+
+| Step | Market Event | Executed Shares / Price | Remaining Resting Asks | VI Status |
+|---|---|---|---|---|
+| **Step 0** | Baseline State | Reference: 100,000 KRW | 101,000(1,000) / 102,000(1,500) / 103,000(1,000) / 104,000(2,000) | Normal Continuous Execution |
+| **Step 1** | Market Buy 5,000 shares enters | 1,000 @ 101,000 KRW | 102,000(1,500) / 103,000(1,000) / 104,000(2,000) | Continuous Matching Active |
+| **Step 2** | Next book level sweep | 1,500 @ 102,000 KRW | 103,000(1,000) / 104,000(2,000) | Continuous Matching Active |
+| **Step 3** | Boundary level fill | 1,000 @ 103,000 KRW | 104,000(2,000) (Residual: 1,500 shares) | Threshold Boundary Reached |
+| **Step 4** | **Dynamic VI Automatic Activation**| **Execution Halted (104,000 KRW rejected)** | Remaining 1,500 shares convert into call auction order | **Dynamic VI Triggered (2-min Call Auction)** |
+| **Step 5** | Auction Uncrossing | Clears at 103,500 KRW | New equilibrium price formed; continuous book resumes | **Normal Trading Resumed** |
+
+---
+
+#### 2) KRX Exture 3.0 Binary Gateway Message Header Specification
+
+| Field Name | Length (Bytes) | Type | Description |
+|---|---|---|---|
+| `TR_CODE` | 5 | ASCII | `B6011` (Order Enter), `B6012` (Modify), `B6013` (Cancel), `B6021` (Fill Report) |
+| `MEMB_NO` | 5 | ASCII | 5-digit member broker/dealer participant code |
+| `SESSION_ID` | 3 | ASCII | Dedicated exchange line partition identifier |
+| `TR_SEQ` | 9 | Integer | Daily monotonically increasing sequence number |
+| `SEND_TIME` | 9 | ASCII | `HHMMSSuuu` microsecond timestamp |
+| `BODY_LEN` | 4 | Integer | Variable body packet byte length |
 
 ---
 

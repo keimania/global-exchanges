@@ -1,6 +1,6 @@
 # NASDAQ Stock Market (NASDAQ)
 
-> **Last Updated:** 2026-10-15
+> **Last Updated:** 2026-10-22
 > **Research Tier:** Tier 1
 > **Domain:** Equities
 
@@ -369,6 +369,100 @@ Chapter VI, Section 18은 알고리즘 오작동, 통신 버그, 팻핑거(Fat-f
     2. **Volume-Based Threshold**: 15초 내에 특정 기초자산 전체 옵션 시리즈에서 체결된 총 계약 수가 사전 설정 한도에 도달할 때.
     3. **Multi-Trigger Threshold**: 복수의 기초자산에 걸쳐 Percentage 및 Volume 임계치 트리거가 발생한 횟수가 설정값을 초과할 때.
   - 이 세 조건 중 하나라도 충족되는 마이크로초 찰나에, 시스템은 해당 마켓 메이커가 나스닥 옵션 시장 전체에 깔아둔 **수만 개의 호가와 주문을 일거에 전량 강제 회수 및 말소(Automated Mass Purge)**하여 금융 시스템 마비와 마켓메이커 파산을 물리적으로 방어합니다.
+
+---
+
+### 4.5 Live Order Book Matching Simulation & Binary Packet Specifications
+
+#### 1) Live Simulation: Post-Only Locking/Crossing Repricing Scenario
+
+Assume an underlying option series (MPV = $0.05) with the following current resting NOM order book:
+- **Inside Bid**: $2.00 (100 contracts)
+- **Inside Offer**: $2.05 (50 contracts)
+- **Spread**: $0.05
+
+```mermaid
+flowchart TD
+    PO["Incoming Order: Buy Post-Only 40 contracts @ $2.05"]
+    Check{"Locks Internal Inside Offer ($2.05)?"}
+    Reprice["Prevent Execution & Reprice $0.01 Inside:<br>Internal Limit Price = $2.04 ($2.05 - $0.01)"]
+    Display["External Dissemination (OPRA/ITCH) Rounding:<br>Floor rounded to MPV ($0.05) -> Displayed as $2.00"]
+    Execution["Subsequent Market Sell 30 contracts arrives:<br>Matches against $2.04 Post-Only (Taker gets $0.01 price improvement)"]
+
+    PO --> Check
+    Check -->|Yes| Reprice
+    Reprice --> Display
+    Display --> Execution
+```
+
+| Step | Market Event | Order Details | Internal Order Book | Displayed BBO | Analysis & Outcome |
+|---|---|---|---|---|---|
+| **Step 0** | Baseline State | - | Bid: $2.00 (100)<br>Offer: $2.05 (50) | **$2.00 × $2.05** | Spread = $0.05 |
+| **Step 1** | Aggressive Post-Only Enters | Buy 40 contracts @ **$2.05** (Post-Only) | Repriced to **$2.04** resting in queue | **$2.00 × $2.05** (Unchanged) | Avoids locking inside offer; rests at $2.04 internally |
+| **Step 2** | Market Sell Arrives | Sell 30 contracts (Market) | Matched at **$2.04** for 30 contracts | **$2.00 × $2.05** | Taker receives **$2.04 fill price ($0.01 price improvement)**; Maker earns liquidity rebate |
+
+---
+
+#### 2) Nasdaq OUCH 5.0 Enter Order Binary Packet Specification
+
+The OUCH binary protocol provides native ultra-low-latency entry. The byte offset layout for the `Enter Order (Type 'O')` message is defined below:
+
+| Offset | Length (Bytes) | Field Name | Data Type | Description & Valid Values |
+|---|---|---|---|---|
+| **0** | 1 | `Type` | Alpha | Message Type identifier: `'O'` (Enter Order) |
+| **1** | 14 | `Order Token` | Binary / Text | Client-generated unique daily token identifier |
+| **15** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy, `'S'` = Sell |
+| **16** | 4 | `Shares` | Integer (Big-Endian) | Contract size or number of shares |
+| **20** | 8 | `Stock / Symbol` | Alpha (Left-padded) | Option series symbol or equity ticker (e.g. `AAPL    `) |
+| **28** | 4 | `Price` | Integer (4 Decimals) | Integer price scaled by 10,000 ($100.25 -> `1002500`) |
+| **32** | 4 | `Time-in-Force` | Integer | `0` = DAY, `99998` = IOC, `99999` = OPG |
+| **36** | 4 | `Firm / MPID` | Alpha | Market Participant Identifier |
+| **40** | 1 | `Display` | Alpha | `'Y'` = Visible, `'N'` = Hidden |
+| **41** | 1 | `Capacity` | Alpha | `'A'` = Agency, `'P'` = Principal |
+| **42** | 1 | `Intermarket Sweep` | Alpha | `'Y'` = ISO designation, `'N'` = Regular order |
+| **43** | 4 | `Minimum Quantity` | Integer | Minimum execution threshold (MQO) |
+| **47** | 1 | `Cross Type` | Alpha | `'N'` = Continuous, `'O'` = Opening, `'C'` = Closing |
+
+---
+
+#### 3) Nasdaq TotalView-ITCH 5.0 Add Order Binary Feed Specification
+
+| Offset | Length (Bytes) | Field Name | Data Type | Description |
+|---|---|---|---|---|
+| **0** | 1 | `Message Type` | Alpha | `'A'` (Add Order Message - No MPID Attribution) |
+| **1** | 2 | `Stock Locate` | Integer | Internal stock identification integer |
+| **3** | 2 | `Tracking Number` | Integer | Internal sequence tracking number |
+| **5** | 6 | `Timestamp` | Integer (Nanoseconds) | Nanoseconds since midnight UTC/EST |
+| **11** | 8 | `Order Reference Number`| Integer (64-bit) | Global unique order book reference identifier |
+| **19** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy, `'S'` = Sell |
+| **20** | 4 | `Shares` | Integer (32-bit) | Publicly displayed visible quantity |
+| **24** | 8 | `Stock` | Alpha (ASCII) | Ticker symbol string |
+| **32** | 4 | `Price` | Integer (4 Decimals) | Displayed quote price in fixed-point integer |
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ingress: OUCH Binary Ingress Packet
+    Ingress --> RiskValidation: Gateway parsing & risk gating
+    RiskValidation --> HoldingChamber: TIF="WAIT" detected (1.0s delay hold)
+    HoldingChamber --> OrderBook: Release after exactly 1,000,000 µs
+    RiskValidation --> OrderBook: Pre-trade risk checks passed
+    RiskValidation --> Rejected: OPP / Threshold breach
+    
+    state OrderBook {
+        [*] --> MarketableCheck
+        MarketableCheck --> Executed: Immediate taker fill
+        MarketableCheck --> Repriced: Post-Only conflict repricing
+        MarketableCheck --> Resting: Resting B-Tree queue placement
+    }
+
+    Resting --> Executed: Contra order arrival
+    Resting --> Cancelled: Cancel-Replace or Cancel request
+    Executed --> [*]
+    Cancelled --> [*]
+    Rejected --> [*]
+```
+
+---
 
 ## 5. Trading System (Technology)
 

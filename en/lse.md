@@ -1,6 +1,6 @@
 # London Stock Exchange (LSE)
 
-> **Last Updated:** 2026-04-03
+> **Last Updated:** 2026-10-22
 > **Research Tier:** Tier 1
 > **Domain:** Equities
 

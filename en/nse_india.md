@@ -1,6 +1,6 @@
 # National Stock Exchange of India (NSE)
 
-> **Last Updated:** 2026-04-06
+> **Last Updated:** 2026-10-22
 > **Research Tier:** Tier 3
 > **Domain:** Equities
 

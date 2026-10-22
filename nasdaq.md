@@ -1,136 +1,126 @@
 # NASDAQ Stock Market (NASDAQ)
 
-> **Last Updated:** 2026-10-15
-> **Research Tier:** Tier 1
-> **Domain:** Equities
+> **최종 업데이트:** 2026-10-22
+> **조사 등급:** Tier 1
+> **영역:** 주식시장
 
 ---
 
-## 1. Overview & Profile
+## 1. 개요 및 프로필 (Overview & Profile)
 
-| Item | Details |
+| 항목 | 상세내용 |
 |------|---------|
-| Official Name | The Nasdaq Stock Market LLC |
-| Abbreviation | NASDAQ (National Association of Securities Dealers Automated Quotations) |
-| Website | https://www.nasdaq.com |
-| Year Established | 1971 (first trades on February 8, 1971) |
-| Country / City | United States / New York, NY (headquarters); Carteret, NJ (primary data center) |
-| Ownership Structure | Publicly traded (NDAQ on Nasdaq) |
-| Parent Company / Group | Nasdaq, Inc. (market cap ~$48.5 billion as of early 2026) |
-| Regulatory Authority | U.S. Securities and Exchange Commission (SEC); self-regulatory organization (SRO) with FINRA oversight |
-| Market Capitalization (listed companies) | ~$42.2 trillion (November 2025) [estimated] |
-| Total Listed Instruments | 4,075 companies (as of December 31, 2024): 1,383 on Global Select Market, 1,366 on Global Market, 1,326 on Capital Market |
-| Average Daily Trading Volume | ~9 billion shares [estimated, 2025] |
-| Average Daily Trading Value | ~$300-400 billion [estimated] |
+| 공식 명칭 | The Nasdaq Stock Market LLC |
+| 약칭 | NASDAQ (나스닥, National Association of Securities Dealers Automated Quotations) |
+| 웹사이트 | https://www.nasdaq.com |
+| 설립연도 | 1971년 (1971년 2월 8일 최초 거래) |
+| 소재지 | 미국 / 뉴욕시, NY (본사); Carteret, NJ (주 전산센터) |
+| 소유구조 | 상장기업 (NDAQ, Nasdaq 상장) |
+| 모회사/그룹 | Nasdaq, Inc. (2026년 초 기준 시가총액 ~485억 달러) |
+| 감독기관 | 미국 증권거래위원회(SEC); 자율규제기관(SRO)으로서 FINRA 감독 |
+| 시가총액 (상장기업) | ~42.2조 달러 (2025년 11월) [추정치] |
+| 총 상장종목 수 | 4,075개 기업 (2024년 12월 31일 기준): Global Select Market 1,383개, Global Market 1,366개, Capital Market 1,326개 |
+| 일평균 거래량 | ~90억 주 [추정치, 2025년] |
+| 일평균 거래대금 | ~3,000-4,000억 달러 [추정치] |
 
-### Key Historical Milestones
-- **1971:** NASDAQ launched on February 8 as the world's first electronic stock market, providing automated quotations for over 2,500 OTC securities. Trades still executed by telephone.
-- **1980:** Apple Computer IPO listed on NASDAQ.
-- **1984:** Electronic execution introduced, replacing telephone-based trading.
-- **1985:** NASDAQ-100 Index launched, tracking the 100 largest non-financial companies.
-- **1986:** Microsoft IPO listed on NASDAQ.
-- **1991:** NASDAQ accounted for approximately 46% of U.S. securities trading volume.
-- **1992:** NASDAQ and London Stock Exchange formed the first intercontinental linkage.
-- **1998:** NASDAQ merged with the American Stock Exchange (AMEX).
-- **2000:** NASDAQ Composite reached peak of 5,048 during the dot-com bubble (March 10, 2000).
-- **2002-2003:** SuperMontage launched, integrating a public limit order book with market maker quotations.
-- **2005:** NASDAQ converted from an industry-owned organization to a publicly traded company; acquired Instinet for $1.9 billion, retaining the Inet ECN.
-- **2006:** Began operating as a national securities exchange (registered with SEC).
-- **2007:** Acquired OMX Group, forming NASDAQ OMX Group.
-- **2013:** Acquired Thomson Reuters' IR, PR, and multimedia businesses.
-- **2016:** Company rebranded as Nasdaq, Inc.
-- **2023:** Acquired Adenza (risk management and regulatory technology) for $10.5 billion.
-- **2024:** Launched Nasdaq Eqlipse, the fourth generation of its marketplace technology platform.
-- **2025:** Announced plans for 24-hour, 5-day-a-week trading (pending SEC approval, target launch H2 2026).
-- **2026 (March):** SEC approved Nasdaq proposal to allow certain stocks to be traded and settled in tokenized form.
-
----
-
-## 2. Market Structure
-
-### 2.1 Market Segments
-| Segment | Description | Listing Requirements (Summary) |
-|---------|-------------|-------------------------------|
-| Nasdaq Global Select Market | Premier tier; largest-cap companies with the highest listing standards | Market cap: avg >$850M (prior 12 months); Revenue: >$90M (prior fiscal year); OR meet earnings/capitalization with cash flow/assets with equity standards. Entry fee: $150,000-$295,000 + $25,000 application fee |
-| Nasdaq Global Market | Mid-tier market for established companies | Entry fee: $325,000; must meet financial, liquidity, and corporate governance standards between Global Select and Capital Market levels |
-| Nasdaq Capital Market | Entry-level tier for small-cap issuers | Market value of listed securities: min $15M; min 300 round lot shareholders; Entry fee: $50,000-$75,000 (based on shares outstanding) + $5,000 application fee |
-| The Nasdaq Options Market (NOM) | Fully electronic, high-performance equity, ETF, and index options trading venue | Governed by Nasdaq Options Rules (Chapters I-XIV); open to registered Options Market Makers and Options Order Entry Firms |
-
-### 2.2 Trading Sessions
-| Session | Local Time (ET) | UTC (EST/EDT) | Description |
-|---------|----------------|---------------|-------------|
-| Pre-Market | 4:00 AM - 9:30 AM ET | 09:00 - 14:30 UTC (EST) | Extended hours session; limited order types; lower liquidity |
-| Opening Cross | 9:30 AM ET | 14:30 UTC (EST) | Opening auction; single-price cross; ~4% of daily volume |
-| Regular / Continuous Trading | 9:30 AM - 4:00 PM ET | 14:30 - 21:00 UTC (EST) | Core trading session; full order type availability |
-| Closing Cross | ~3:50 PM - 4:00 PM ET | ~20:50 - 21:00 UTC (EST) | Closing auction; single-price cross; ~16% of daily volume |
-| After-Hours | 4:00 PM - 8:00 PM ET | 21:00 - 01:00 UTC (EST) | Extended hours session; limited order types; lower liquidity |
-
-**Current Operational Status (As of October 2026):** Active 23-hour continuous trading per weekday. Day session 4:00 AM - 8:00 PM ET, 1-hour maintenance pause (8:00-9:00 PM ET), Night session 9:00 PM - 4:00 AM ET providing seamless global liquidity.
-
-### 2.3 Tick Sizes
-
-#### Equity Tick Sizes
-| Price Range | Tick Size |
-|-------------|-----------|
-| Securities priced >= $1.00 | $0.01 (1 cent) |
-| Securities priced < $1.00 | $0.0001 (0.01 cent) |
-
-**Note:** The SEC finalized amendments to Regulation NMS to reduce minimum pricing increments for certain liquid stocks to half-penny ($0.005) increments and lower access fee caps. Sub-penny midpoint executions are permitted for orders providing price improvement.
-
-#### Options Minimum Price Variations (MPV - NOM Chapter VI, Sec. 5)
-| Asset Class / Program | Price Range | Minimum Increment |
-|-----------------------|-------------|-------------------|
-| Standard Options Series | Priced < $3.00 | $0.05 |
-| Standard Options Series | Priced >= $3.00 | $0.10 |
-| Penny Interval Program | Priced < $3.00 | $0.01 |
-| Penny Interval Program | Priced >= $3.00 | $0.05 |
-| High-Volume ETFs (SPY, QQQ, IWM) | All Prices | $0.01 across all series |
-
-### 2.4 Lot Sizes
-- **Round lot:** 100 shares (standard)
-- **Odd lot:** Less than 100 shares (odd-lot orders are now included in the NBBO under SEC Rule 612 amendments)
-- **Mixed lot:** Round lot + odd lot combination
-
-### 2.5 Market Maker / Liquidity Provider Programs
-- **Registered Market Makers:** Multiple competing market makers per security (unlike NYSE's single DMM model). Required to maintain continuous two-sided quotes (bid and offer) during exchange hours.
-- **Qualified Market Maker (QMM) Program:** Market makers maintaining NBBO quotes in 1,000+ securities receive additional rebates ($0.0001-$0.0002/share) and discounted remove fees ($0.00290-$0.00295/share).
-- **Enhanced Market Quality Program (EMQP):** Members actively quoting at the NBBO in a broad set of securities who meet monthly quoting requirements qualify for lump sum payments.
-- **Supplemental Liquidity Providers:** Electronic high-volume members incentivized to add liquidity.
+### 주요 연혁 (Key Historical Milestones)
+- **1971년:** 2월 8일 세계 최초의 전자 주식시장으로 NASDAQ 출범, 2,500개 이상 OTC 증권에 대한 자동 호가 제공. 거래는 여전히 전화로 체결.
+- **1980년:** Apple Computer IPO가 NASDAQ에 상장.
+- **1984년:** 전화 기반 거래를 대체하는 전자 체결 도입.
+- **1985년:** NASDAQ-100 지수 출시, 최대 100개 비금융 기업 추적.
+- **1986년:** Microsoft IPO가 NASDAQ에 상장.
+- **1991년:** NASDAQ이 미국 증권거래량의 약 46% 차지.
+- **1992년:** NASDAQ과 London Stock Exchange가 최초의 대륙간 연계 체결.
+- **1998년:** NASDAQ이 American Stock Exchange(AMEX)와 합병.
+- **2000년:** 닷컴 버블 중 NASDAQ Composite가 3월 10일 5,048 고점 도달.
+- **2002-2003년:** SuperMontage 출시, 공개 지정가주문 호가창과 시장조성자 (마켓메이커) 호가 통합.
+- **2005년:** NASDAQ이 업계 소유 조직에서 상장기업으로 전환; Instinet을 19억 달러에 인수하여 Inet ECN 보유.
+- **2006년:** 전국 증권거래소로 운영 시작(SEC 등록).
+- **2007년:** OMX Group 인수, NASDAQ OMX Group 형성.
+- **2013년:** Thomson Reuters의 IR, PR, 멀티미디어 사업 인수.
+- **2016년:** Nasdaq, Inc.로 사명 변경.
+- **2023년:** Adenza(리스크관리 및 규제기술) 105억 달러에 인수.
+- **2024년:** 4세대 마켓플레이스 기술 플랫폼 Nasdaq Eqlipse 출시.
+- **2025년:** 주 5일 24시간 거래 계획 발표 (SEC 승인 대기, 2026년 하반기 출시 목표).
+- **2026년 (3월):** SEC가 특정 주식의 토큰화 형태 거래 및 결제를 허용하는 Nasdaq 제안 승인.
 
 ---
 
-## 3. Trading Mechanism
+## 2. 시장구조 (Market Structure)
 
-### 3.1 Auction Mechanisms
-- **Opening Cross (9:30 AM ET):** Aggregates all pre-market orders and continuous book orders to determine a single opening price per security. The Net Order Imbalance Indicator (NOII) is disseminated prior to the cross, providing supply/demand transparency via Nasdaq TotalView. Fully electronic with no human intervention. Processes millions of orders in microseconds.
-- **Closing Cross (~4:00 PM ET):** Determines the official closing price for Nasdaq-listed securities. NOII disseminated beginning at 3:50 PM ET. Handles approximately 16% of daily Nasdaq volume. This price is used for mutual fund NAV calculations, index calculations, and settlement.
-- **IPO/Halt Cross:** Used for IPO price discovery and resumption of trading after halts. Separate NOII disseminated for imbalance information.
+### 2.1 시장 세그먼트 (Market Segments)
+| 세그먼트 | 설명 | 상장요건 (요약) |
+|---------|------|----------------|
+| Nasdaq Global Select Market | 최상위 시장; 최고 상장기준의 대형주 기업 | 시가총액: 직전 12개월 평균 >8.5억 달러; 매출: 직전 회계연도 >9,000만 달러; 또는 수익/자본화 기준 충족. 입회비: $150,000-$295,000 + 심사비 $25,000 |
+| Nasdaq Global Market | 중견기업을 위한 중간 시장 | 입회비: $325,000; Global Select와 Capital Market 사이의 재무, 유동성, 기업지배구조 기준 충족 필수 |
+| Nasdaq Capital Market | 소형주 발행사를 위한 입문 시장 | 상장증권 시장가치: 최소 1,500만 달러; 최소 300명 라운드 랏 주주; 입회비: $50,000-$75,000 (발행주식 수 기준) + 심사비 $5,000 |
 
-### 3.2 Continuous Trading
-- **Order-driven market** with competing market makers providing liquidity.
-- **Price-time priority:** Orders are matched first by price, then by time of entry at the same price level.
-- Supports both displayed and non-displayed (hidden) orders.
-- Midpoint pegging orders available for execution at the midpoint of the NBBO.
+### 2.2 매매시간 (Trading Sessions)
+| 세션 | 현지시간 (ET) | UTC (EST/EDT) | 설명 |
+|------|--------------|---------------|------|
+| 시간외 조기거래 | 4:00 AM - 9:30 AM ET | 09:00 - 14:30 UTC (EST) | 연장시간 세션; 제한된 주문유형; 낮은 유동성 |
+| Opening Cross | 9:30 AM ET | 14:30 UTC (EST) | 시가단일가매매 (개장 경매); 단일가 크로스; 일일 거래량의 ~4% |
+| 정규/접속매매 (연속매매) | 9:30 AM - 4:00 PM ET | 14:30 - 21:00 UTC (EST) | 핵심 매매시간; 모든 주문유형 이용 가능 |
+| Closing Cross | ~3:50 PM - 4:00 PM ET | ~20:50 - 21:00 UTC (EST) | 종가단일가매매 (장마감 경매); 단일가 크로스; 일일 거래량의 ~16% |
+| 시간외 거래 | 4:00 PM - 8:00 PM ET | 21:00 - 01:00 UTC (EST) | 연장시간 세션; 제한된 주문유형; 낮은 유동성 |
 
-### 3.3 Price Discovery
-- Opening and closing crosses are the primary price discovery mechanisms, representing approximately 20% of total daily exchange volume.
-- NOII provides real-time reference prices, paired shares, and imbalance data for informed participation.
-- Continuous trading provides ongoing price discovery throughout the regular session.
+**현행 거래시간 (2026년 10월 현재):** 평일 23시간 연속 거래 세션 정식 가동 중. 주간 세션 4:00 AM - 8:00 PM ET, 1시간 일일 전산 점검 및 유지보수(8:00-9:00 PM), 야간 글로벌 세션 9:00 PM - 4:00 AM ET로 전세계 투자자 대상 무중단 유동성 공급.
+
+### 2.3 호가단위 (최소가격변동폭) (Tick Sizes)
+| 가격 범위 | 호가단위 (최소가격변동폭) |
+|-----------|------------------------|
+| 주가 >= $1.00 | $0.01 (1센트) |
+| 주가 < $1.00 | $0.0001 (0.01센트) |
+
+**참고:** SEC는 Regulation NMS 개정을 확정하여 특정 유동성 높은 주식에 대해 0.5센트($0.005) 단위로 최소 호가단위 (최소가격변동폭)를 축소하고 접근수수료 상한을 인하하였다. 가격개선을 제공하는 주문에 대해 서브페니 중간가격 체결이 허용된다.
+
+### 2.4 매매단위 (거래단위) (Lot Sizes)
+- **라운드 랏:** 100주 (표준)
+- **단주:** 100주 미만 (SEC Rule 612 개정에 따라 단주 주문도 NBBO에 포함)
+- **혼합 랏:** 라운드 랏 + 단주 조합
+
+### 2.5 시장조성자 (마켓메이커) / 유동성공급자 프로그램 (Market Maker / Liquidity Provider Programs)
+- **등록 시장조성자 (마켓메이커):** 종목당 복수의 경쟁 시장조성자 (마켓메이커) (NYSE의 단일 DMM 모델과 다름). 거래시간 중 계속적으로 양방향 호가(매수 및 매도) 유지 의무.
+- **Qualified Market Maker(QMM) Program:** 1,000개 이상 종목에서 NBBO 호가를 유지하는 시장조성자 (마켓메이커)에게 추가 리베이트($0.0001-$0.0002/주) 및 할인 소비수수료($0.00290-$0.00295/주) 제공.
+- **Enhanced Market Quality Program(EMQP):** 광범위한 종목에서 NBBO에 적극 호가를 제시하고 월간 호가 요건을 충족하는 회원에게 일시불 지급.
+- **보충유동성공급자:** 유동성 추가가 장려되는 대량 전자 회원.
+
+**KRX 비교:** KRX는 KOSPI 시장에 유동성공급자(LP) 제도를 운용하며, 시장조성자 (마켓메이커)가 지정 종목에 양방향 호가를 제시한다. NASDAQ의 복수 경쟁 시장조성자 (마켓메이커) 모델은 KRX보다 경쟁이 더 활발하다.
 
 ---
 
-## 4. Order Types
+## 3. 매매메커니즘 (Trading Mechanism)
 
-### 4.1 Equity Order Types (English Baseline)
-| Order Type | Description |
-|-----------|-------------|
-| Market Order | Executes at the best contra-side price available on INET via automated routing. |
-| Limit Order | Posts at a definitive price. Forms the backbone of the purely electronic NASDAQ book. |
-| Pegged Order | Dynamically updates its price relative to the fundamental NBBO (Primary, Market, or Midpoint). |
-| MOO / LOO | Market/Limit On Open. Valid strictly for the Nasdaq Opening Cross mechanism (09:30 AM). |
-| MOC / LOC | Market/Limit On Close. Locked into the intricate Nasdaq Closing Cross algorithm (4:00 PM). |
-| MELO | Midpoint Extended Life Order. Incorporates a fractional time delay to thwart latency arbitrage. |
-| Post-Only | Ensures the order is posted to the book to capture the maker rebate. Cancels if it would remove liquidity. |
+### 3.1 경매 메커니즘 (Auction Mechanisms)
+- **Opening Cross (9:30 AM ET):** 모든 시간외 주문과 연속 호가창 주문을 집계하여 종목별 단일 시가를 결정한다. 크로스 전에 순주문불균형지표(NOII)가 공시되어 Nasdaq TotalView를 통해 수급 투명성을 제공한다. 인간 개입 없이 완전 전자적으로 수행되며 마이크로초 단위로 수백만 건의 주문을 처리한다.
+- **Closing Cross (~4:00 PM ET):** NASDAQ 상장 종목의 공식 종가를 결정한다. NOII가 오후 3:50 ET부터 공시된다. NASDAQ 일일 거래량의 약 16%를 처리한다. 이 가격은 뮤추얼펀드 NAV 산출, 지수산출, 결제에 사용된다.
+- **IPO/Halt Cross:** IPO 가격발견 및 매매정지 후 거래재개에 사용된다. 불균형 정보를 위한 별도 NOII가 공시된다.
+
+### 3.2 접속매매 (연속매매) (Continuous Trading)
+- 경쟁 시장조성자 (마켓메이커)가 유동성을 공급하는 **주문 주도 시장**이다.
+- **가격-시간 우선원칙:** 주문은 먼저 가격 우선, 이후 동일 가격에서 입력 시간 우선으로 체결된다.
+- 표시 주문과 비표시(숨겨진) 주문 모두 지원한다.
+- NBBO 중간가격에서 체결되는 중간가격 연동 주문이 이용 가능하다.
+
+### 3.3 가격발견 (Price Discovery)
+- Opening Cross와 Closing Cross가 주요 가격발견 메커니즘으로, 전체 일일 거래소 거래량의 약 20%를 차지한다.
+- NOII는 정보에 입각한 참여를 위해 실시간 참조가격, 대응주식 수, 불균형 데이터를 제공한다.
+- 접속매매 (연속매매)는 정규 세션 전반에 걸쳐 지속적인 가격발견을 제공한다.
+
+---
+
+## 4. 주문유형 (Order Types)
+
+### 4.1 주식 기본 주문유형 (Equity Standard Order Types)
+| 주문유형 (Order Type) | 설명 (Description) |
+|---|---|
+| 시장가주문 (Market Order) | 자동 라우팅을 통해 INET 오더북의 반대편 최우선 가용 가격(Contra-side BBO)으로 즉시 체결되는 공격적 유동성 수취 주문. |
+| 지정가주문 (Limit Order) | 지정된 가격 또는 그보다 유리한 가격으로만 체결. 순수 전자식 나스닥 오더북(INET Book)의 기반을 형성. |
+| 페그 주문 (Pegged Order) | 국가 최우선 매수/매도호가(NBBO)의 변동을 실시간 추적하여 가격을 동적으로 자동 재평가 (Primary, Market, Midpoint Peg 지원). |
+| MOO / LOO | 장시작 시장가/지정가 주문 (Market/Limit On Open). 09:30 AM 나스닥 오프닝 크로스(Opening Cross) 단일가 매매에만 엄격히 유효. |
+| MOC / LOC | 장마감 시장가/지정가 주문 (Market/Limit On Close). 16:00 나스닥 클로징 크로스(Closing Cross) 집계 알고리즘에 고정되어 체결. |
+| MELO | 중간가 수명연장 주문 (Midpoint Extended Life Order). 초단타 차익거래(Latency Arbitrage)를 방어하기 위해 10밀리초 대기 챔버 타이머를 부여받는 비표시 중간가 호가. |
+| 포스트 온리 (Post-Only) | 기존 유동성을 수취(Taker)하지 않고 오더북에 메이커(Maker)로 등재되어 리베이트를 확보하도록 보장. 유동성을 제거하게 될 경우 자동 취소 또는 재가격. |
 
 ### 4.2 Equity Matching Engine & Algorithmic Deep-Dive [Korean Deep-Dive]
 
@@ -156,32 +146,32 @@ NASDAQ의 **INET Matching Engine**은 인적 개입이 없는 100% 완전 전자
 
 ---
 
-### 4.3 Options Order Types (NOM Rules Baseline - Chapter VI, Sec. 1)
+### 4.3 옵션 주문유형 (NOM Rules Baseline - Chapter VI, Sec. 1)
 
 *The Nasdaq Options Market (NOM) 규정집(Chapter VI Trading Systems, Section 1)*에 공식 정의된 10대 주문 유형 및 5대 Time-in-Force(TIF) 사양입니다.
 
-#### Official NOM Order Types
-| Order Type | Rule Citation | Technical Specification & Core Behavior |
-|------------|---------------|------------------------------------------|
-| **Cancel-Replacement Order** | Chapter VI, Sec. 1(e)(1) | Single atomic message that cancels an existing order and enters a replacement. If partially filled, replacement is reduced. **Retains queue priority only if size is reduced** while all other terms remain identical. |
-| **Limit Order** | Chapter VI, Sec. 1(e)(2) | Order to buy or sell at a specified price or better. Marketable if buy limit >= inside offer, or sell limit <= inside bid. |
-| **Minimum Quantity Order (MQO)** | Chapter VI, Sec. 1(e)(3) | Requires execution of a specified minimum quantity of contracts; cancels immediately if threshold is not satisfied. **Enforced as Time-in-Force IOC**. Rejected if entered prior to opening cross or after market close. |
-| **Market Order** | Chapter VI, Sec. 1(e)(5) | Executes at the best available price at execution time. Supports pre-established user timeout parameter for automated cancel-back. |
-| **Price Improving Order (PIO)** | Chapter VI, Sec. 1(e)(6) | Sub-penny order accepted in increments as small as **$0.01**, even in securities with $0.05/$0.10 MPV. Displayed rounded to MPV (rounded down for bids, rounded up for offers) while executing at true penny value. |
-| **On the Open Order (OPG)** | Chapter VI, Sec. 1(e)(7) | Explicitly designated with TIF "OPG". Executable exclusively within the Nasdaq Opening Cross. Unexecuted remainder is automatically cancelled back. |
-| **Intermarket Sweep Order (ISO)** | Chapter VI, Sec. 1(e)(8) | Limit order executed across multiple price levels on NOM without regard to Protected Quotes of other exchanges. Ineligible for routing; requires simultaneous routing of additional ISOs to all superior protected bids/offers. |
-| **One-Cancels-the-Other (OCO)** | Chapter VI, Sec. 1(e)(9) | Market Maker proprietary paired order (buy and sell unit). Full execution of one side triggers atomic, instantaneous cancellation of the contra-side order. |
-| **All-or-None Order (AON)** | Chapter VI, Sec. 1(e)(10) | Executed in its entirety or not at all. **Treated strictly as Time-in-Force IOC**. Rejected prior to opening cross or after market close. |
-| **Post-Only Order** | Chapter VI, Sec. 1(e)(11) | Liquidity-adding (Maker-only) order. Never routes away. Repriced to $0.01 inside the contra-BBO if locking/crossing internal book, or handled via Sec. 7(b)(3)(C) if locking/crossing NBBO. Rejects GTC or IOC designations. |
+#### 공식 NOM 옵션 주문유형 (Official NOM Order Types)
+| 주문유형 (Order Type) | 규정 조항 | 기술 사양 및 핵심 체결 메커니즘 |
+|---|---|---|
+| **취소-대체 주문 (Cancel-Replacement Order)** | Chapter VI, Sec. 1(e)(1) | 기존 주문을 취소함과 동시에 새로운 주문을 입력하는 단일 원자적(Atomic) 메시지. 기존 주문이 이미 부분 체결된 경우 대체 주문의 수량은 기체결분만큼 자동 차감. **오직 수량을 감소(Size Reduction)시키고 기타 모든 조건이 동일한 경우에만 기존 큐의 우선순위를 유지**하며, 가격이나 조건을 변경하면 대기열 최후미로 강등. |
+| **지정가 주문 (Limit Order)** | Chapter VI, Sec. 1(e)(2) | 지정된 가격 또는 그보다 유리한 가격으로 체결되는 주문. 매수 주문은 시스템 진입 시 최우선 매도호가(Inside Offer) 이상일 때, 매도 주문은 최우선 매수호가(Inside Bid) 이하일 때 즉시 체결 가능한 마켓터블(Marketable) 상태로 판정. |
+| **최소 체결 수량 주문 (Minimum Quantity Order - MQO)** | Chapter VI, Sec. 1(e)(3) | 지정된 최소 계약 수 이상의 체결을 요구하며, 조건을 충족하지 못하면 즉시 전량 취소. **시스템 레벨에서 Time-in-Force IOC(Immediate or Cancel)로 강제 취급**. 오프닝 크로스 이전 또는 정규장 마감 후 진입 시 시스템에서 자동 거부(Reject). |
+| **시장가 주문 (Market Order)** | Chapter VI, Sec. 1(e)(5) | 체결 시점에 가용한 최우선 호가로 즉시 체결되는 주문. 참가자는 사전 설정된 허용 시간(Timeout threshold) 초과 시 미체결 잔량이 자동으로 취소 반환(Cancel-back)되도록 프로그래밍 가능. |
+| **가격 개선 주문 (Price Improving Order - PIO)** | Chapter VI, Sec. 1(e)(6) | 종목의 규정 최소호가단위(MPV: $0.05/$0.10)보다 작은 **1센트($0.01) 단위**로 입력 가능한 서브틱 지정가 주문. 외부 호가판 디스플레이 시에는 정규 MPV로 라운딩되어 마스킹(매수 주문은 내림, 매도 주문은 올림) 표시되나, 실제 내부 체결 시에는 $0.01 단위 가격으로 체결되어 테이커에게 가격 개선 이익 제공. |
+| **개장 단일가 주문 (On the Open Order - OPG)** | Chapter VI, Sec. 1(e)(7) | 유효기간(TIF)이 "OPG"로 명시된 주문. 나스닥 오프닝 크로스(Opening Cross) 단일가 경매 세션에서만 실행 가능. 경매 완료 후 미체결된 잔여 수량은 즉시 주문자에게 자동 취소 반환. |
+| **시장간 스윕 주문 (Intermarket Sweep Order - ISO)** | Chapter VI, Sec. 1(e)(8) | 타 적격 옵션 거래소의 보호 호가(Protected Quotes)를 무시하고 나스닥 옵션 시스템(NOM) 내에서 복수 가격대에 걸쳐 즉시 실행되는 지정가 주문. 타 시장 라우팅 불가. 발송 브로커는 NOM으로 전송함과 동시에 타 거래소의 우수한 보호 호가 전량에 대해 추가 ISO 주문을 동시 분기 전송해야 할 법적 의무 부과. |
+| **양자택일 주문 (One-Cancels-the-Other - OCO)** | Chapter VI, Sec. 1(e)(9) | 마켓 메이커(MM) 전용 양방향 페어 주문 (매수와 매도 1세트). 한쪽 주문이 전량 체결되는 즉시, 매칭 엔진 내부 스레드가 반대편 주문을 마이크로초 단위로 즉각 원자적 자동 취소(Atomic Auto-Cancel) 처리. |
+| **전량 체결 조건 주문 (All-or-None Order - AON)** | Chapter VI, Sec. 1(e)(10) | 주문 전체 수량이 완전히 체결되거나, 그렇지 않으면 전혀 체결되지 않는 주문. **엄격히 Time-in-Force IOC로 취급**. 오프닝 크로스 이전 또는 정규장 마감 후 진입 시 시스템에서 즉시 거부(Reject). |
+| **포스트 온리 주문 (Post-Only Order)** | Chapter VI, Sec. 1(e)(11) | 오직 유동성을 공급(Maker-only)하여 리베이트를 확보하는 주문. 타 거래소 라우팅 불가. 내부 호가와 락/크로스 충돌 시 최우선 반대호가 대비 $0.01 안쪽으로 리프라이싱(Reprice)되어 등재되며, 외부 NBBO와 충돌 시 Sec. 7(b)(3)(C)에 따라 비경쟁 가격으로 조정되거나 즉각 반환. GTC 또는 IOC 지정 불가. |
 
-#### Official NOM Time-in-Force (TIF) Designations
-| TIF Flag | Rule Citation | Behavioral Specification |
-|----------|---------------|--------------------------|
-| **OPG** | Chapter VI, Sec. 1(g)(1) | Valid strictly for the Nasdaq Opening Cross; any residual balance is wiped upon cross completion. |
-| **IOC** | Chapter VI, Sec. 1(g)(2) | Any portion not immediately marketable is canceled and returned. May be entered pre-open and held until 9:30 AM evaluation. |
-| **DAY** | Chapter VI, Sec. 1(g)(3) | Persistent resting order valid until market close (4:00 PM / 4:15 PM ET) unless cancelled. |
-| **GTC** | Chapter VI, Sec. 1(g)(4) | Remains active across trading days until explicitly cancelled or until the underlying option series reaches contract expiration. |
-| **WAIT** | Chapter VI, Sec. 1(g)(5) | **Unique NOM delay mechanism**. Upon receipt, the order is **held for exactly 1.0 second without display or execution processing**, then released into the matching engine. |
+#### 공식 NOM 유효기간 (Time-in-Force) 플래그
+| TIF 플래그 | 규정 조항 | 동작 사양 및 시스템 처리 메커니즘 |
+|---|---|---|
+| **OPG** | Chapter VI, Sec. 1(g)(1) | 나스닥 오프닝 크로스(Opening Cross) 전용 유효기간; 경매 종료 즉시 미체결 잔량 소멸. |
+| **IOC** | Chapter VI, Sec. 1(g)(2) | 즉시 체결 가능한 부분만 체결하고 미체결 잔량은 즉시 취소 반환 (Immediate Or Cancel). 개장 전 사전 접수 가능하며 9:30 AM 개장 시 마켓터블 여부 일괄 평가. |
+| **DAY** | Chapter VI, Sec. 1(g)(3) | 당일 정규 거래시간(4:00 PM / 4:15 PM ET) 종료 시까지 오더북에 잔존하는 당일 유효 주문. |
+| **GTC** | Chapter VI, Sec. 1(g)(4) | 주문자가 명시적으로 취소하거나 해당 옵션 시리즈가 만기(Expiration)에 도달할 때까지 복수 거래일에 걸쳐 오더북에 지속 유지 (Good Til Cancelled). |
+| **WAIT** | Chapter VI, Sec. 1(g)(5) | **나스닥 옵션만의 독보적 지연 대기 메커니즘**. 주문이 시스템 게이트웨이에 진입하는 즉시 **정확히 1.0초(1,000,000 µs) 동안 디스플레이 및 체결을 일체 차단한 채 메모리 대기 챔버(Holding Chamber)에 보류**된 후 정규 오더북으로 방출. 초단타 레이턴시 아비트라지 방어용 타임락. |
 
 ---
 
@@ -370,264 +360,337 @@ Chapter VI, Section 18은 알고리즘 오작동, 통신 버그, 팻핑거(Fat-f
     3. **Multi-Trigger Threshold**: 복수의 기초자산에 걸쳐 Percentage 및 Volume 임계치 트리거가 발생한 횟수가 설정값을 초과할 때.
   - 이 세 조건 중 하나라도 충족되는 마이크로초 찰나에, 시스템은 해당 마켓 메이커가 나스닥 옵션 시장 전체에 깔아둔 **수만 개의 호가와 주문을 일거에 전량 강제 회수 및 말소(Automated Mass Purge)**하여 금융 시스템 마비와 마켓메이커 파산을 물리적으로 방어합니다.
 
-## 5. Trading System (Technology)
+---
 
-| Item | Details |
+### 4.5 실전 호가창(Order Book) 체결 시뮬레이션 및 바이너리 패킷 명세
+
+#### 1) 실전 시나리오: Post-Only 주문의 락/크로스 방지 리프라이싱(Repricing) 시뮬레이션
+
+기초 옵션 종목(MPV = $0.05)의 현재 NOM 오더북 상태가 다음과 같다고 가정합니다:
+- **Inside Bid (최우선 매수)**: $2.00 (100계약)
+- **Inside Offer (최우선 매도)**: $2.05 (50계약)
+- **Spread**: $0.05
+
+```mermaid
+flowchart TD
+    PO["신규 진입: 매수 Post-Only 40계약 @ $2.05"]
+    Check{"내부 Inside Offer ($2.05)와 충돌(Locking)?"}
+    Reprice["체결 방지 및 $0.01 안쪽 리프라이싱:<br>실제 지정가 = $2.04 ($2.05 - $0.01)"]
+    Display["외부 시세판(OPRA/ITCH) 디스플레이 라운딩:<br>MPV 경계선($0.05) 내림(Floor) -> $2.00 표시"]
+    Execution["사후 시장가 매도 30계약 유입 시:<br>$2.04 단가로 우선 체결 (Taker에게 $0.01 개선 이익)"]
+
+    PO --> Check
+    Check -->|Yes| Reprice
+    Reprice --> Display
+    Display --> Execution
+```
+
+| 단계 (Step) | 이벤트 (Event) | 주문 상세 | 내부 오더북 (Internal Book) | 외부 공표 시세 (Displayed BBO) | 비고 |
+|---|---|---|---|---|---|
+| **Step 0** | 초기 상태 | - | 매수: $2.00 (100)<br>매도: $2.05 (50) | **$2.00 × $2.05** | 스프레드 $0.05 |
+| **Step 1** | 공격적 Post-Only 유입 | 매수 40계약 @ **$2.05** (Post-Only) | 체결 차단 후 **$2.04**로 리프라이싱 대기 | **$2.00 × $2.05** (디스플레이 불변) | Inside Offer와 Lock 충돌 방지, $0.01 안쪽 등재 |
+| **Step 2** | 일반 시장가 매도 진입 | 매도 30계약 (Market) | **$2.04**에 30계약 체결 완료 (잔여 10계약) | **$2.00 × $2.05** | 테이커는 $2.00이 아닌 **$2.04에 매도 체결(가격 개선)**, 메이커는 리베이트 수취 |
+
+---
+
+#### 2) 나스닥 OUCH 5.0 주문 진입(Enter Order) 바이너리 패킷 명세
+
+OUCH 프로토콜은 나스닥의 네이티브 초저지연 바이너리 프로토콜입니다. 주문 입력 시 전송되는 `Enter Order (Type 'O')` 메시지의 바이트 오프셋 구조는 다음과 같습니다:
+
+| 바이트 오프셋 (Offset) | 길이 (Bytes) | 필드명 (Field Name) | 데이터 타입 | 설명 및 유효값 |
+|---|---|---|---|---|
+| **0** | 1 | `Type` | Alpha | 메시지 유형 식별자: `'O'` (Enter Order) |
+| **1** | 14 | `Order Token` | Binary / Text | 참가자 고유 주문 추적 토큰 (Day 기준 유일값) |
+| **15** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy (매수), `'S'` = Sell (매도) |
+| **16** | 4 | `Shares` | Integer (Big-Endian) | 주문 수량 (계약 수 또는 주식 수) |
+| **20** | 8 | `Stock / Symbol` | Alpha (Left-padded) | 심볼 식별자 (예: `AAPL    `, ASCII) |
+| **28** | 4 | `Price` | Integer (4 Decimals) | 지정가 ($100.25 -> `1002500` 정수 표현) |
+| **32** | 4 | `Time-in-Force` | Integer | `0` = DAY, `99998` = IOC, `99999` = OPG |
+| **36** | 4 | `Firm / MPID` | Alpha | 참가자 식별 브로커 코드 (예: `NSDQ`) |
+| **40** | 1 | `Display` | Alpha | `'Y'` = Visible (표시), `'N'` = Hidden (비표시) |
+| **41** | 1 | `Capacity` | Alpha | `'A'` = Agency (위탁), `'P'` = Principal (자기) |
+| **42** | 1 | `Intermarket Sweep` | Alpha | `'Y'` = ISO 주문, `'N'` = 일반 주문 |
+| **43** | 4 | `Minimum Quantity` | Integer | 최소 체결 요구 수량 (MQO 조건) |
+| **47** | 1 | `Cross Type` | Alpha | `'N'` = 연속매매, `'O'` = Opening, `'C'` = Closing |
+
+---
+
+#### 3) 나스닥 TotalView-ITCH 5.0 호가 추가(Add Order) 바이너리 시세 패킷 명세
+
+TotalView-ITCH 피드는 오더북의 모든 개별 주문을 주문 레벨(Order-by-Order)로 전달하는 멀티캐스트 시세 프로토콜입니다.
+
+| 바이트 오프셋 (Offset) | 길이 (Bytes) | 필드명 (Field Name) | 데이터 타입 | 설명 |
+|---|---|---|---|---|
+| **0** | 1 | `Message Type` | Alpha | `'A'` (Add Order with No MPID Attribution) |
+| **1** | 2 | `Stock Locate` | Integer | 나스닥 내부 종목 식별 정수 코드 |
+| **3** | 2 | `Tracking Number` | Integer | 내부 시퀀싱 트래킹 번호 |
+| **5** | 6 | `Timestamp` | Integer (Nanoseconds) | 자정 이후 경과한 **나노초(ns)** 타임스탬프 |
+| **11** | 8 | `Order Reference Number`| Integer (64-bit) | 해당 주문의 글로벌 유일 오더북 참조 ID |
+| **19** | 1 | `Buy/Sell Indicator` | Alpha | `'B'` = Buy, `'S'` = Sell |
+| **20** | 4 | `Shares` | Integer (32-bit) | 호가창에 신규 등재되는 공개 수량 |
+| **24** | 8 | `Stock` | Alpha (ASCII) | 종목 심볼명 |
+| **32** | 4 | `Price` | Integer (4 Decimals) | 표시 호가 (고정소수점 4자리 정수) |
+
+```mermaid
+stateDiagram-v2
+    [*] --> Ingress: OUCH 바이너리 패킷 유입
+    Ingress --> RiskValidation: 게이트웨이 파싱 및 포맷 검증
+    RiskValidation --> HoldingChamber: TIF="WAIT" 플래그 감지 시 (1초 보류)
+    HoldingChamber --> OrderBook: 1.0초 경과 후 방출
+    RiskValidation --> OrderBook: 일반 주문 (Pre-trade Risk 통과)
+    RiskValidation --> Rejected: OPP / 스프레드 한도 초과 시
+    
+    state OrderBook {
+        [*] --> MarketableCheck
+        MarketableCheck --> Executed: 마켓터블 (즉시 체결)
+        MarketableCheck --> Repriced: Post-Only 충돌 시 리프라이싱
+        MarketableCheck --> Resting: 지정가 대기 (B-Tree 큐 안착)
+    }
+
+    Resting --> Executed: 반대편 주문 도달 시 체결
+    Resting --> Cancelled: Cancel-Replace 또는 취소 전문 수신
+    Executed --> [*]
+    Cancelled --> [*]
+    Rejected --> [*]
+```
+
+---
+
+## 5. 매매시스템 (Trading System)
+
+| 항목 | 상세내용 |
 |------|---------|
-| System Name | Nasdaq INET (matching engine); Nasdaq Eqlipse (4th-generation platform, launched 2024) |
-| Vendor / In-house | In-house developed by Nasdaq, Inc. |
-| Architecture | Microservice-based, cloud-ready platform supporting both cloud and on-premise deployment |
-| Matching Engine | Ultra-low latency INET matching engine; price-time priority; multi-asset capable |
-| Round-trip Latency | Market data latency: ~3 microseconds; Order acknowledgment: ~20 microseconds; Door-to-door: ~14 microseconds (fastest production); 99th percentile: ~78 microseconds; 99.9th percentile: ~150 microseconds [Source: OUCH measurements, SIX X-Stream INET benchmarks] |
-| Order Processing Capacity | Supports millions of orders per day; designed to handle peak volumes exceeding 10x average |
-| Messages Per Second | Not officially disclosed; industry estimates suggest capacity in the millions of messages per second [unverified] |
-| Launch Year | INET: 2006 (based on Instinet/Inet ECN acquired 2005); Eqlipse platform: 2024 |
+| 시스템 명칭 | Nasdaq INET (매매체결엔진 (매칭엔진)); Nasdaq Eqlipse (4세대 플랫폼, 2024년 출시) |
+| 개발 주체 | Nasdaq, Inc. 자체 개발 |
+| 아키텍처 | 마이크로서비스 기반, 클라우드 대응 플랫폼으로 클라우드 및 온프레미스 배포 모두 지원 |
+| 매매체결엔진 (매칭엔진) | 초저지연 INET 매매체결엔진 (매칭엔진); 가격-시간 우선원칙; 복수 자산군 지원 |
+| 왕복 지연시간 | 시장데이터 지연시간: ~3마이크로초; 주문 확인: ~20마이크로초; 도어투도어: ~14마이크로초 (최고 성능); 99백분위: ~78마이크로초; 99.9백분위: ~150마이크로초 [Source: OUCH measurements, SIX X-Stream INET benchmarks] |
+| 주문 처리 용량 | 일일 수백만 건 주문 지원; 평균의 10배 이상 피크 거래량 처리 설계 |
+| 초당 메시지 수 | 공식 미공개; 업계 추정 초당 수백만 메시지 처리 능력 [미확인] |
+| 출시연도 | INET: 2006년 (2005년 인수한 Instinet/Inet ECN 기반); Eqlipse 플랫폼: 2024년 |
 
-### System History
-| Period | System | Notes |
-|--------|--------|-------|
-| 1971-1982 | Original NASDAQ Automated Quotation System | Quote-only system; no execution capability; CRT terminals |
-| 1982-1990s | SOES (Small Order Execution System) | First electronic execution; mandatory for market makers |
-| 2002-2006 | SuperMontage | Integrated limit order book with market maker quotes; replaced legacy systems |
-| 2006-2024 | INET | Acquired from Instinet; sub-millisecond latency; became the core matching engine across all Nasdaq markets globally |
-| 2024-Present | Nasdaq Eqlipse (with INET engine) | Fourth-generation platform; microservice architecture; cloud-ready; "evergreen" quarterly upgrade model; AWS Outposts integration |
+### 시스템 변천사 (System History)
+| 기간 | 시스템 | 비고 |
+|------|--------|------|
+| 1971-1982 | 최초 NASDAQ 자동호가시스템 | 호가 전용 시스템; 체결 기능 없음; CRT 단말기 |
+| 1982-1990년대 | SOES (Small Order Execution System) | 최초 전자 체결; 시장조성자 (마켓메이커)에 의무적 |
+| 2002-2006 | SuperMontage | 지정가주문 호가창과 시장조성자 (마켓메이커) 호가를 통합; 레거시 시스템 대체 |
+| 2006-2024 | INET | Instinet에서 인수; 서브밀리초 지연시간; 전세계 모든 Nasdaq 시장의 핵심 매매체결엔진 (매칭엔진)으로 활용 |
+| 2024-현재 | Nasdaq Eqlipse (INET 엔진 탑재) | 4세대 플랫폼; 마이크로서비스 아키텍처; 클라우드 대응; "에버그린" 분기별 업그레이드 모델; AWS Outposts 통합 |
 
-### Technology Stack
-- **Matching Engine:** Custom-built INET engine optimized for ultra-low latency; FPGA-accelerated feed processing.
-- **Network:** 10 Gbps and 40 Gbps network connections; 40G Express Connect with <35 nanoseconds switching latency.
-- **Protocol Support (Equities):** OUCH (native low-level order entry), FIX (4.0/4.1/4.2), SoupBinTCP (transport layer), ITCH (market data).
-- **Protocol Support (Options - NOM):** 
-  - **OTTO (Ouch to Trade Options):** Native binary ultra-low latency order entry interface for NOM participants.
-  - **SQF (Specialized Quote Feed):** Dedicated binary interface for Options Market Makers supporting bulk quoting, IOC orders, automated purges, and opening imbalance messages.
-  - **QUO (Quote Using Orders):** Single-sided order interface for NOM Market Makers treated directly as quotes by the matching engine.
-  - **FIX:** Industry-standard protocol for order entry, execution reporting, and risk protection triggers across NOM.
-- **Cloud Integration:** AWS partnership; Nasdaq Eqlipse Trading cloud-based platform (launched May 2025 with AWS).
-- **AI Integration:** AI built into Verafin, eVestment, AxiomSL, Calypso, and Surveillance solutions.
+### 기술 스택 (Technology Stack)
+- **매매체결엔진 (매칭엔진):** 초저지연에 최적화된 맞춤형 INET 엔진; FPGA 가속 피드 처리.
+- **네트워크:** 10 Gbps 및 40 Gbps 네트워크 연결; 40G Express Connect 스위칭 지연시간 <35나노초.
+- **프로토콜 지원:** OUCH (네이티브 저수준 주문입력), FIX (4.0/4.1/4.2), SoupBinTCP (전송 계층), ITCH (시장데이터).
+- **클라우드 통합:** AWS 파트너십; Nasdaq Eqlipse Trading 클라우드 기반 플랫폼 (2025년 5월 AWS와 출시).
+- **AI 통합:** Verafin, eVestment, AxiomSL, Calypso, Surveillance 솔루션에 AI 내장.
 
-### Disaster Recovery / Business Continuity
-- **Primary Data Center:** Equinix NY11, Carteret, NJ (91,413 sq ft; expansion NY11-4 under construction to double capacity).
-- **Disaster Recovery Site:** Equinix CH4, 350 E. Cermak, Chicago, IL (migrated from Ashburn, VA in 2015 for greater regional diversity).
-- **Rationale:** Chicago DR site provides geographic separation from East Coast primary facility to mitigate regional disaster risk (hurricanes, coastal flooding).
-- **Redundancy:** POP (Point of Presence) nodes in multiple financial data centers; redundant high-speed fiber paths.
+### 재해복구 / 업무연속성 (Disaster Recovery / Business Continuity)
+- **주 전산센터:** Equinix NY11, Carteret, NJ (91,413 sq ft; 용량 2배 확장을 위한 NY11-4 건설 중).
+- **재해복구 사이트:** Equinix CH4, 350 E. Cermak, Chicago, IL (2015년 Ashburn, VA에서 이전하여 지역 다양성 강화).
+- **선정 근거:** 시카고 DR 사이트는 동부 해안 주 시설로부터 지리적 분리를 제공하여 지역 재해 리스크(허리케인, 해안 침수) 경감.
+- **이중화:** 복수 금융 데이터센터에 POP (Point of Presence) 노드; 이중화 고속 광섬유 경로.
 
 ---
 
-## 6. Market Data
+## 6. 시장데이터 (Market Data)
 
-### 6.1 Data Feed Protocols
+### 6.1 데이터 피드 프로토콜 (Data Feed Protocols)
+| 프로토콜 | 설명 | 활용 |
+|---------|------|------|
+| ITCH (TotalView-ITCH 5.0) | 네이티브 바이너리 프로토콜; 주문별 전체 호가 심도 데이터; 가변길이 메시지 | 전체 호가창 재구성; 알고리즘 거래; 시장 미시구조 분석 |
+| ITCH FPGA Feed | TotalView-ITCH의 하드웨어 가속 FPGA 버전; MoldUDP64로만 방송 | 초저지연 애플리케이션; HFT; 10G 또는 40G 연결 필요 |
+| SoupBinTCP | 프레이밍, 인증, 하트비트, 시퀀싱, 복구를 제공하는 전송계층 프로토콜 | ITCH 및 OUCH 프로토콜의 기본 전송 |
+| MoldUDP64 | 시장데이터 배포용 UDP 멀티캐스트 프로토콜 | ITCH 피드의 주 멀티캐스트 전달 메커니즘 |
 
-#### Equity Feeds
-| Protocol | Description | Use Case |
-|----------|-------------|----------|
-| ITCH (TotalView-ITCH 5.0) | Native binary protocol; full order-by-order depth of book data; variable-length messages | Full book reconstruction; algorithmic trading; market microstructure analysis |
-| ITCH FPGA Feed | Hardware-accelerated FPGA version of TotalView-ITCH; broadcast via MoldUDP64 only | Ultra-low latency applications; HFT; requires 10G or 40G connection |
-| SoupBinTCP | Transport layer protocol providing framing, authentication, heartbeats, sequencing, and recovery | Underlying transport for ITCH and OUCH protocols |
-| MoldUDP64 | UDP multicast protocol for market data dissemination | Primary multicast delivery mechanism for ITCH feeds |
+### 6.2 데이터 수준 (Data Levels)
+- **Level 1 (Nasdaq Basic):** 최우선 매수/매도호가(BBO), 최종 체결가, 거래량. 개인투자자에 적합.
+- **Level 2 (Nasdaq TotalView):** 전체 호가 심도; 모든 가격 수준의 모든 주문을 귀속정보와 함께 제공; Opening/Closing Cross를 위한 NOII 데이터 포함. 가장 포괄적인 Nasdaq 데이터 상품.
+- **Level 3:** 시장조성자 (마켓메이커) 전용 뷰로 호가 입력 및 갱신 기능 제공 (별도 상품이 아닌 시장조성자 (마켓메이커) 기능을 지칭).
 
-#### Options Feeds (The Nasdaq Options Market)
-| Feed | Protocol / Delivery | Core Information & Use Case |
-|------|---------------------|-----------------------------|
-| **ITCH to Trade Options** | Binary multicast (MoldUDP64) | Full depth-of-book feed for NOM; disseminates individual resting orders, quotes, executions, and administrative messages. |
-| **Best of NASDAQ Options (BONO)** | Binary multicast | Real-time top-of-book feed displaying NOM Best Bid and Offer (BBO) with aggregated volume and trade reports. |
-| **Nasdaq Options Dissemination Service (NODS)** | Proprietary market data | Consolidated feed transmitting theoretical opening prices, imbalance values, and regulatory trading halt notices. |
+### 6.3 배포 인프라 (Distribution Infrastructure)
+- **직접 피드:** Carteret, NJ 코로케이션 (전산센터 공동입주) 또는 Nasdaq POP 사이트를 통해 이용 가능.
+- **SIP (Securities Information Processor):** 테이프 A & B(NYSE 상장)용 CTA/CQS; 테이프 C(NASDAQ 상장)용 UTP SIP. 통합 전국 최우선호가 제공.
+- **제3자 배포자:** Bloomberg, Refinitiv, ICE 및 기타 주요 데이터 벤더.
+- **Nasdaq Data Link (구 Quandl):** 금융, 경제, 대안 데이터셋 접근 플랫폼.
 
-### 6.2 Data Levels
-- **Level 1 (Nasdaq Basic):** Best bid/offer (BBO), last sale price, volume. Suitable for retail investors.
-- **Level 2 (Nasdaq TotalView):** Full depth of book; every order at every price level with attribution; includes NOII data for opening/closing crosses. The most comprehensive Nasdaq data product.
-- **Level 3:** Market maker-only view with ability to enter and update quotes (not a separate product; refers to market maker functionality).
-
-### 6.3 Distribution Infrastructure
-- **Direct feeds:** Available via co-location in Carteret, NJ or through Nasdaq POP sites.
-- **SIP (Securities Information Processor):** CTA/CQS for Tape A & B (NYSE-listed); UTP SIP for Tape C (Nasdaq-listed). Provides consolidated national best bid/offer.
-- **Third-party distributors:** Bloomberg, Refinitiv, ICE, and other major data vendors.
-- **Nasdaq Data Link (formerly Quandl):** Platform for accessing financial, economic, and alternative datasets.
-
-### 6.4 Historical Data
-- **Nasdaq Daily Share Volume (NDSV):** Historical daily volume data by symbol.
-- **TotalView-ITCH historical replay:** Available through Nasdaq and third-party providers (e.g., Databento, LOBSTER).
-- **Nasdaq Global Data Services:** Offers historical tick data, end-of-day data, and reference data products.
+### 6.4 과거 데이터 (Historical Data)
+- **Nasdaq Daily Share Volume(NDSV):** 종목별 과거 일일 거래량 데이터.
+- **TotalView-ITCH 과거 재생:** Nasdaq 및 제3자 제공자(예: Databento, LOBSTER)를 통해 이용 가능.
+- **Nasdaq Global Data Services:** 과거 틱 데이터, 일말 데이터, 참조 데이터 상품 제공.
 
 ---
 
-## 7. Connectivity & Access
+## 7. 접속 및 참가 (Connectivity & Access)
 
-### 7.1 Membership / Participation
-- Open to SEC-registered broker-dealers who have obtained SRO membership.
-- Members must have an established connection to a clearing firm (self-clearing or correspondent clearing arrangement).
-- Categories include: Market Makers, Order Entry Firms, ECN participants.
-- Membership applications reviewed by Nasdaq; subject to ongoing examination and compliance oversight (outsourced to FINRA).
+### 7.1 회원자격 / 참가 (Membership / Participation)
+- SEC 등록 브로커-딜러로서 SRO 회원자격을 취득해야 한다.
+- 회원은 청산 회사와의 접속이 확립되어야 한다 (자체 청산 또는 대리 청산 약정).
+- 유형: 시장조성자 (마켓메이커), 주문입력 회사, ECN 참가자.
+- 회원자격 신청은 Nasdaq이 심사하며, 지속적 검사 및 준수 감독 대상이다 (FINRA에 위탁).
 
-### 7.2 Connection Methods
-- **Direct Connect (10G):** <40 nanoseconds switching latency at Carteret data center.
-- **Express Connect (40G):** <35 nanoseconds switching latency; higher bandwidth for demanding applications.
-- **Extranet providers:** Approved third-party network providers offering managed connectivity.
-- **Service Bureau:** Indirect connection through approved FIX service bureaus.
-- **Nasdaq POP (Point of Presence):** Redundant high-speed fiber handoffs at Equinix NY11 (Carteret) and other strategic financial data centers. Available in 10G and 1G.
+### 7.2 접속 방법 (Connection Methods)
+- **Direct Connect (10G):** Carteret 데이터센터에서 <40나노초 스위칭 지연시간.
+- **Express Connect (40G):** <35나노초 스위칭 지연시간; 고대역폭 애플리케이션용.
+- **엑스트라넷 제공자:** 승인된 제3자 네트워크 제공자의 관리형 접속.
+- **서비스 뷰로:** 승인된 FIX 서비스 뷰로를 통한 간접 접속.
+- **Nasdaq POP (Point of Presence):** Equinix NY11(Carteret) 및 기타 주요 금융 데이터센터에서의 이중화 고속 광섬유 핸드오프. 10G 및 1G 이용 가능.
 
-### 7.3 Co-location / Proximity Services
-- **Location:** Equinix NY11, Carteret, NJ.
-- **Services:** High-density cabinet hosting within the same facility as Nasdaq matching engines.
-- **Benefits:** Minimized latency; single hand-off for all Nasdaq U.S. markets (Nasdaq, BX, PSX).
-- **Expansion:** NY11-4 facility under construction on the north side of the Carteret campus, doubling available co-location space.
-- **Cloud Integration:** AWS Outposts being incorporated directly into the Carteret core network for hybrid cloud/co-location deployments.
+### 7.3 코로케이션 (전산센터 공동입주) / 근접 서비스 (Co-location / Proximity Services)
+- **위치:** Equinix NY11, Carteret, NJ.
+- **서비스:** Nasdaq 매매체결엔진 (매칭엔진)과 동일 시설 내 고밀도 캐비닛 호스팅.
+- **장점:** 최소 지연시간; 모든 Nasdaq 미국 시장(Nasdaq, BX, PSX)에 대한 단일 핸드오프.
+- **확장:** NY11-4 시설이 Carteret 캠퍼스 북측에 건설 중으로 코로케이션 (전산센터 공동입주) 공간 2배 확장.
+- **클라우드 통합:** 하이브리드 클라우드/코로케이션 배포를 위해 AWS Outposts가 Carteret 코어 네트워크에 직접 통합 중.
 
-### 7.4 API Protocols
-| Protocol | Direction | Description |
-|----------|-----------|-------------|
-| OUCH | Order Entry | Native low-level binary protocol; highest performance; maximum throughput at cost of flexibility |
-| FIX (4.0/4.1/4.2) | Order Entry | Industry-standard text-based protocol; wider compatibility; slightly higher latency than OUCH |
-| ITCH (TotalView-ITCH 5.0) | Market Data (outbound) | Full depth-of-book data feed; order-by-order updates |
-| RASH | Order Entry | Alternative to OUCH with additional routing strategy support |
-| SoupBinTCP 4.0 | Transport | Provides sequencing, authentication, heartbeats, and recovery for OUCH/ITCH |
-| MoldUDP64 | Transport | UDP multicast delivery for market data feeds |
+### 7.4 API 프로토콜 (API Protocols)
+| 프로토콜 | 방향 | 설명 |
+|---------|------|------|
+| OUCH | 주문입력 | 네이티브 저수준 바이너리 프로토콜; 최고 성능; 유연성 대비 최대 처리량 |
+| FIX (4.0/4.1/4.2) | 주문입력 | 업계 표준 텍스트 기반 프로토콜; 넓은 호환성; OUCH 대비 약간 높은 지연시간 |
+| ITCH (TotalView-ITCH 5.0) | 시장데이터 (수신) | 전체 호가 심도 데이터 피드; 주문별 갱신 |
+| RASH | 주문입력 | 추가 라우팅 전략 지원이 있는 OUCH 대안 |
+| SoupBinTCP 4.0 | 전송 | OUCH/ITCH 프로토콜에 시퀀싱, 인증, 하트비트, 복구 제공 |
+| MoldUDP64 | 전송 | 시장데이터 피드의 UDP 멀티캐스트 전달 |
 
-### 7.5 Certification / Testing
-- **Certification Environment:** Nasdaq provides a dedicated test/certification environment for all connectivity protocols (OUCH, FIX, ITCH).
-- **Conformance Testing:** Required before production access; validates message formatting, order handling, and market data consumption.
-- **Industry Testing:** Participants must complete SEC Rule 15c3-5 (Market Access Rule) compliance testing for risk controls.
-- **Ongoing Testing:** Periodic industry-wide tests (e.g., disaster recovery failover tests, LULD testing).
-
----
-
-## 8. Risk Controls & Circuit Breakers
-
-### 8.1 Price Limits
-- **Limit Up-Limit Down (LULD):** Price bands set at a percentage above and below the average reference price over the preceding 5-minute period.
-- **Tier 1 NMS Stocks** (S&P 500, Russell 1000, select ETPs):
-  - Price > $3.00: 5% band
-  - Price $0.75 - $3.00: 20% band
-  - Price < $0.75: Lesser of $0.15 or 75%
-- **Tier 2 NMS Stocks** (all other NMS securities):
-  - Price > $3.00: 10% band
-  - Price $0.75 - $3.00: 20% band
-  - Price < $0.75: Lesser of $0.15 or 75%
-- If price reaches the band and does not return within **15 seconds**, a **5-minute trading pause** is triggered.
-
-### 8.2 Circuit Breakers
-| Level | Trigger (S&P 500 decline from prior close) | Halt Duration |
-|-------|---------------------------------------------|---------------|
-| Level 1 | 7% decline | 15-minute halt (once per day; no halt if triggered after 3:25 PM ET) |
-| Level 2 | 13% decline | 15-minute halt (once per day; no halt if triggered after 3:25 PM ET) |
-| Level 3 | 20% decline | Trading halted for remainder of the trading day |
-
-### 8.3 Pre-trade Risk Controls
-
-#### Equity Pre-trade Controls
-- **Maximum Order Value Checks:** Configurable per-order maximum value limits; orders exceeding the limit are rejected.
-- **Maximum Accumulated Value Checks:** Cumulative order value tracking throughout the trading day; new orders rejected when the accumulated limit is reached.
-- **Fat Finger Checks:** Price reasonability checks comparing order price against current last sale / reference price to catch entry errors.
-- **Credit Risk Controls:** Real-time monitoring of execution exposure against pre-set limits.
-- **FIX Drop-on-Disconnect:** Automatic cancellation of all open orders and prevention of new order entry upon connection loss.
-
-#### Options Pre-trade Risk Controls (NOM Rules Chapter VI, Sec. 18)
-- **Order Price Protection (OPP):** Automated algorithmic gating rejecting Day Limit, GTC, and IOC orders priced through contra-side Reference BBO by >50% (for BBO > .00) or >100% (for BBO <= .00).
-- **Market Order Spread Protection:** Prohibits market order execution and immediately cancels back orders when the prevailing Reference BBO spread widens beyond configured volatility bands.
-- **Acceptable Trade Range (ATR):** Dynamically bounds execution within Reference Price ± X; upon reaching Threshold Price, orders are temporarily posted while opposite-side quotes are broadcast with "non-firm" status.
-- **Anti-Internalization:** Cancels the oldest resting quote/order to eliminate self-matching between quotes or orders from the same Market Maker ID.
-- **Quotation Adjustments (Rapid-Fire Mass Purge):** Rolling 15-second multi-trigger mechanism that automatically purges all active quotes and orders across all option series for a Market Maker upon breaching percentage, volume, or cross-series threshold limits.
-
-### 8.4 Kill Switch
-- **Nasdaq Equity Kill Switch:** Allows participants to establish Risk Exposure levels and receive notifications as execution value and open order value approach those levels.
-- Computes total value of all executions and open orders throughout the trading day.
-- When activated: immediately cancels all current orders and rejects all subsequent orders.
-- Available for manual activation by participant administrators or automated trigger based on pre-configured thresholds.
+### 7.5 인증 / 테스트 (Certification / Testing)
+- **인증 환경:** Nasdaq은 모든 접속 프로토콜(OUCH, FIX, ITCH)에 대한 전용 테스트/인증 환경 제공.
+- **적합성 테스트:** 운영 접속 전 필수; 메시지 형식, 주문 처리, 시장데이터 소비 검증.
+- **산업 테스트:** 참가자는 SEC Rule 15c3-5(Market Access Rule) 리스크 관리 준수 테스트를 완료해야 한다.
+- **정기 테스트:** 주기적 산업 전체 테스트 (예: 재해복구 장애전환 테스트, LULD 테스트).
 
 ---
 
-## 9. Regulatory Framework
+## 8. 리스크 관리 및 서킷브레이커 (매매거래중단) (Risk Controls & Circuit Breakers)
 
-### 9.1 Supervising Authority
-- **Primary Regulator:** U.S. Securities and Exchange Commission (SEC).
-- **Self-Regulatory Organization:** Nasdaq operates as an SRO; market regulation functions outsourced to FINRA under a Regulatory Services Agreement (RSA).
-- **Oversight:** SEC oversight of exchange rules, listing standards, and market structure.
+### 8.1 가격제한 (Price Limits)
+- **Limit Up-Limit Down (LULD):** 직전 5분 평균 기준가 대비 일정 비율의 상하 가격밴드 설정.
+- **Tier 1 NMS 주식** (S&P 500, Russell 1000, 주요 ETP):
+  - 가격 > $3.00: 5% 밴드
+  - 가격 $0.75 - $3.00: 20% 밴드
+  - 가격 < $0.75: $0.15 또는 75% 중 작은 값
+- **Tier 2 NMS 주식** (기타 모든 NMS 증권):
+  - 가격 > $3.00: 10% 밴드
+  - 가격 $0.75 - $3.00: 20% 밴드
+  - 가격 < $0.75: $0.15 또는 75% 중 작은 값
+- 가격이 밴드에 도달 후 **15초** 이내에 복귀하지 않으면 **5분 매매정지** 발동.
 
-### 9.2 Key Regulations
-- **Securities Exchange Act of 1934:** Foundation statute governing national securities exchanges.
-- **Regulation NMS (2005):** Modernized equity market structure; 14 rules covering trade reporting (601-603), investor protection (604-607), SRO governance (608-609), trading rules including protected quotes, decimal ticks, access fee caps (610-612), and Consolidated Audit Trail (613).
-- **Regulation SHO:** Short selling rules including locate requirements and close-out obligations.
-- **SEC Rule 15c3-5 (Market Access Rule):** Requires broker-dealers with market access to implement risk controls and supervisory procedures.
-- **SEC Rule 606:** Order routing disclosure requirements.
-- **Regulation ATS:** Rules for alternative trading systems operating alongside exchanges.
+### 8.2 서킷브레이커 (매매거래중단) (Circuit Breakers)
+| 단계 | 발동조건 (전일종가 대비 S&P 500 하락) | 정지시간 |
+|------|--------------------------------------|---------|
+| Level 1 | 7% 하락 | 15분 정지 (하루 1회; 오후 3:25 ET 이후 발동 시 정지 없음) |
+| Level 2 | 13% 하락 | 15분 정지 (하루 1회; 오후 3:25 ET 이후 발동 시 정지 없음) |
+| Level 3 | 20% 하락 | 잔여 거래일 전체 매매정지 |
 
-### 9.3 Market Surveillance
-- **NASDAQ MarketWatch:** Dedicated surveillance unit monitoring trading across Nasdaq, BX, PSX (equities) and NOM, BX Options, PHLX (options).
-- **Real-time surveillance:** Automated detection systems generating alerts on unusual trading activity, potential manipulation, and rule violations.
-- **Post-trade surveillance:** Pattern analysis and investigation of trading anomalies.
-- **Consolidated Audit Trail (CAT):** Industry-wide order tracking system capturing lifecycle of every order across all U.S. exchanges and broker-dealers.
-- **Outsourced examination/investigation:** FINRA conducts member examinations and investigations under the RSA.
+### 8.3 사전 리스크 관리 (Pre-trade Risk Controls)
+- **최대 주문가치 점검:** 주문별 설정 가능한 최대 가치 한도; 한도 초과 주문 거부.
+- **최대 누적가치 점검:** 거래일 동안 누적 주문가치 추적; 누적 한도 도달 시 신규 주문 거부.
+- **오입력 방지 점검:** 현재 최종가/기준가 대비 주문 가격의 합리성을 비교하는 가격 점검.
+- **신용 리스크 통제:** 사전 설정 한도 대비 체결 익스포저의 실시간 모니터링.
+- **FIX Drop-on-Disconnect:** 접속 단절 시 모든 미체결 주문 자동 취소 및 신규 주문입력 차단.
 
-### 9.4 Reporting Requirements
-- **Transaction Reporting:** All trades reported to the consolidated tape via CTA (Tape A/B) or UTP (Tape C) within seconds of execution.
-- **OATS (Order Audit Trail System):** Being replaced by CAT; requires recording of all order events.
-- **Short Interest Reporting:** Bi-monthly reporting of short positions by member firms.
-- **Large Trader Reporting (SEC Rule 13h-1):** Firms exceeding thresholds (2 million shares or $20 million in a day, or 20 million shares or $200 million in a month) must register and report.
-- **Form 13F:** Institutional investment managers with >$100 million AUM must report quarterly holdings.
-
-### 9.5 Cross-border Arrangements
-- NASDAQ lists securities of over 500 foreign companies (largest sources: China, Israel, UK, Canada).
-- ADR (American Depositary Receipt) listings enable foreign company access.
-- Nasdaq, Inc. operates exchanges globally (Nordic/Baltic exchanges, Nasdaq First North, others) providing cross-listing opportunities.
-- Information-sharing agreements with foreign regulators through SEC's international cooperation framework (IOSCO MMoU).
-
----
-
-## 10. Fees & Revenue Model
-
-### 10.1 Trading Fees
-| Fee Type | Structure | Rate |
-|----------|-----------|------|
-| Displayed Liquidity - Add (Top Tier) | Per share rebate (securities >= $1.00) | ($0.00305) rebate for >1.50% consolidated volume |
-| Displayed Liquidity - Add (Mid Tier) | Per share rebate | ($0.0030) to ($0.0018) depending on tier (Tape A&B); ($0.0013) for smaller participants (Tape C) |
-| Displayed Liquidity - Remove | Per share fee | $0.0030 standard |
-| Non-Displayed / Midpoint - Add | Per share rebate | ($0.0028) for >= 0.30% volume; down to ($0.0010) |
-| Midpoint Extended Life (MELO) - Add | Supplemental credit | Additional ($0.00015) per share |
-| QMM Tier 1 - Add | Additional per share rebate | ($0.0001) additional |
-| QMM Tier 2 - Add | Additional per share rebate | ($0.0002) additional |
-| QMM - Remove | Discounted remove fee | $0.00295 (Tier 1) / $0.00290 (Tier 2) |
-| Pre-Market - Add | Percentage of dollar volume | 0.05% (5 bps) of total dollar volume |
-| Pre-Market - Remove | Percentage of dollar volume | 0.15% (15 bps) of total dollar volume |
-
-**Note:** Rates shown are for securities priced >= $1.00. Sub-dollar securities have separate fee schedules, typically as a percentage of total dollar value. The maker-taker model incentivizes liquidity provision with rebates for adding liquidity and charges for removing it.
-
-### 10.2 Other Fees
-- **Listing Fees:** Application fees ($5,000-$25,000); entry fees ($50,000-$325,000 depending on tier); annual fees based on shares outstanding.
-- **Market Data Fees:** TotalView subscriptions; Nasdaq Basic (Level 1); ITCH feed access fees; co-location data access charges.
-- **Co-location Fees:** Cabinet rental; cross-connects; power and cooling charges at Carteret facility.
-- **Connectivity Fees:** Port fees for OUCH/FIX connections; network access charges (10G/40G).
-- **Regulatory Fees:** Section 31 fees (passed through to members); CAT fees; Trading Activity Fees (TAF).
-- **Technology Solutions Revenue:** Nasdaq Eqlipse licensing to other exchanges; Verafin (anti-financial crime); AxiomSL/Calypso (risk and regulatory reporting).
-- **Index Revenue:** Licensing fees for Nasdaq-100, Nasdaq Composite, and other proprietary indices.
+### 8.4 킬 스위치 (Kill Switch)
+- **Nasdaq Equity Kill Switch:** 참가자가 리스크 익스포저 수준을 설정하고 체결가치 및 미체결 주문가치가 해당 수준에 접근하면 알림 수신.
+- 거래일 동안 모든 체결 및 미체결 주문의 총 가치를 산출한다.
+- 발동 시: 모든 현재 주문을 즉시 취소하고 이후 모든 주문을 거부한다.
+- 참가자 관리자에 의한 수동 발동 또는 사전 설정 임계값 기반 자동 발동이 가능하다.
 
 ---
 
-## 11. Recent Developments
+## 9. 규제 체계 (Regulatory Framework)
 
-### System Upgrades (Last 5 Years)
-- **2022:** Continued INET matching engine optimizations; enhanced FPGA-based market data distribution.
-- **2023:** Acquired Adenza for $10.5 billion, adding Calypso (trading/risk) and AxiomSL (regulatory reporting) to the technology portfolio.
-- **2024:** Launched Nasdaq Eqlipse, the fourth-generation marketplace technology platform with microservice architecture and cloud-ready deployment. Introduced "evergreen" quarterly upgrade model for client exchanges. Calypso XVA Accelerator announced for portfolio risk calculations.
-- **2025 (May):** Nasdaq and AWS launched Nasdaq Eqlipse Trading cloud-based platform; adopted by Johannesburg Stock Exchange, Grupo BMV (Mexico), and Philippine Stock Exchange. Continued AI integration across surveillance and risk platforms.
-- **2026:** NY11-4 co-location expansion under construction in Carteret, NJ. AWS Outposts being integrated into core network infrastructure.
+### 9.1 감독기관 (Supervising Authority)
+- **주 감독기관:** 미국 증권거래위원회(SEC).
+- **자율규제기관:** NASDAQ은 SRO로 운영되며, 시장규제 기능은 규제서비스 계약(RSA)에 따라 FINRA에 위탁.
+- **감독:** SEC가 거래소 규칙, 상장기준, 시장구조를 감독.
 
-### New Products / Segments
-- **24-Hour Trading Initiative (2025-2026):** Announced plans to extend U.S. equities trading to 23 hours/day, 5 days/week. Day session 4:00 AM - 8:00 PM ET, 1-hour maintenance pause, night session 9:00 PM - 4:00 AM ET. Target launch: H2 2026 pending SEC approval and critical infrastructure readiness (SIP, DTCC).
-- **Tokenized Stock Settlement (March 2026):** SEC approved Nasdaq proposal for certain stocks to be traded and settled in tokenized form.
-- **Nasdaq Data Link:** Expanded alternative data offerings through the platform (formerly Quandl).
+### 9.2 주요 규제 (Key Regulations)
+- **1934년 증권거래법:** 전국 증권거래소를 규율하는 기본 법률.
+- **Regulation NMS (2005년):** 현대화된 주식시장 구조; 거래보고(601-603), 투자자보호(604-607), SRO 지배구조(608-609), 보호호가 포함 거래규칙, 소수점 호가단위, 접근수수료 상한(610-612), Consolidated Audit Trail(613) 등 14개 규칙 포괄.
+- **Regulation SHO:** 차입의무 및 결제의무를 포함한 공매도 규칙.
+- **SEC Rule 15c3-5 (Market Access Rule):** 시장 접근 브로커-딜러의 리스크 관리 통제 및 감독 절차 요구.
+- **SEC Rule 606:** 주문 라우팅 공시 요건.
+- **Regulation ATS:** 대안거래시스템 규칙.
 
-### Regulatory Changes
-- **SEC Regulation NMS Amendments (2024):** Adopted rules to reduce minimum tick sizes to half-penny ($0.005) for liquid stocks, lower exchange access fee caps, and accelerate odd-lot transparency requirements.
-- **Consolidated Audit Trail (CAT):** Full implementation and ongoing enhancements for order lifecycle tracking across all U.S. exchanges and broker-dealers.
-- **SEC Market Structure Proposals:** Ongoing review of best execution rules, order competition, and payment for order flow regulations.
+### 9.3 시장감시 (Market Surveillance)
+- **NASDAQ MarketWatch:** Nasdaq, BX, PSX(주식) 및 NOM, BX Options, PHLX(옵션) 전반의 거래를 모니터링하는 전담 감시 부서.
+- **실시간 감시:** 비정상 거래활동, 잠재적 조작, 규칙 위반에 대한 경보를 생성하는 자동 탐지 시스템.
+- **사후 감시:** 매매 이상에 대한 패턴 분석 및 조사.
+- **Consolidated Audit Trail(CAT):** 전체 미국 거래소 및 브로커-딜러의 모든 주문 수명주기를 포착하는 산업 전체 주문 추적 시스템.
+- **위탁 검사/조사:** FINRA가 RSA에 따라 회원 검사 및 조사 수행.
 
-### Strategic Initiatives
-- **AI and Machine Learning:** AI integrated across Verafin (anti-financial crime), eVestment (analytics), AxiomSL (regulatory reporting), Calypso (risk management), and Surveillance platforms.
-- **Cross-sell from Adenza Acquisition:** 42 successful cross-sells completed since the Adenza acquisition through year-end 2025; targeting $100 million cross-sell run-rate revenue by year-end 2027.
-- **Nasdaq Eqlipse Global Adoption:** Positioning Eqlipse as a comprehensive technology platform for exchanges worldwide, supporting equities, ETFs, futures, options, bonds, repos, FX, commodities, energy, cryptocurrencies, NFTs, and carbon credits.
-- **Medium-term Revenue Outlook:** Nasdaq raised medium-term revenue outlook at 2026 Investor Day, emphasizing scalable growth driven by diversified business model (Financial Technology, Market Services, and Capital Access Platforms).
+### 9.4 보고 요건 (Reporting Requirements)
+- **거래 보고:** 모든 거래가 체결 후 수 초 이내에 CTA(테이프 A/B) 또는 UTP(테이프 C) 통합 테이프를 통해 보고.
+- **OATS (Order Audit Trail System):** CAT로 대체 중; 모든 주문 이벤트 기록 요구.
+- **공매도 잔고 보고:** 회원사의 월 2회 공매도 포지션 보고.
+- **대량거래자 보고 (SEC Rule 13h-1):** 기준 초과 기업(하루 200만 주 또는 2,000만 달러, 또는 월간 2,000만 주 또는 2억 달러) 등록 및 보고 의무.
+- **Form 13F:** AUM 1억 달러 이상 기관투자자는 분기별 보유현황 보고 의무.
+
+### 9.5 국제 협력 (Cross-border Arrangements)
+- NASDAQ에 500개 이상 해외기업 증권 상장 (주요 출처: 중국, 이스라엘, 영국, 캐나다).
+- ADR (American Depositary Receipt) 상장으로 해외기업 접근 가능.
+- Nasdaq, Inc.는 전세계 거래소 운영 (Nordic/Baltic 거래소, Nasdaq First North 등)으로 교차상장 기회 제공.
+- SEC 국제협력 체계(IOSCO MMoU)를 통한 해외 감독기관과의 정보공유 협정.
 
 ---
 
-## Sources
+## 10. 수수료 및 수익모델 (Fees & Revenue Model)
+
+### 10.1 매매수수료 (Trading Fees)
+| 수수료 유형 | 구조 | 요율 |
+|------------|------|------|
+| 표시 유동성 - 추가 (최상위) | 주당 리베이트 (주가 >= $1.00) | ($0.00305) 리베이트 (통합 거래량 >1.50%) |
+| 표시 유동성 - 추가 (중간) | 주당 리베이트 | ($0.0030) ~ ($0.0018) 등급별 (테이프 A&B); ($0.0013) 소규모 참가자 (테이프 C) |
+| 표시 유동성 - 소비 | 주당 수수료 | $0.0030 표준 |
+| 비표시/중간가격 - 추가 | 주당 리베이트 | ($0.0028) (거래량 >= 0.30%); 최저 ($0.0010) |
+| Midpoint Extended Life (MELO) - 추가 | 보충 크레딧 | 주당 추가 ($0.00015) |
+| QMM Tier 1 - 추가 | 추가 주당 리베이트 | ($0.0001) 추가 |
+| QMM Tier 2 - 추가 | 추가 주당 리베이트 | ($0.0002) 추가 |
+| QMM - 소비 | 할인 소비 수수료 | $0.00295 (Tier 1) / $0.00290 (Tier 2) |
+| 시간외 조기거래 - 추가 | 달러 거래대금 비율 | 0.05% (5 bps) |
+| 시간외 조기거래 - 소비 | 달러 거래대금 비율 | 0.15% (15 bps) |
+
+**참고:** 표시된 요율은 주가 >= $1.00인 증권에 대한 것이다. 1달러 미만 증권은 통상 총 달러 가치의 비율로 별도 수수료 체계가 적용된다. 메이커-테이커 (유동성 제공-소비 수수료 모델)는 유동성 추가에 리베이트를, 유동성 소비에 수수료를 부과하여 유동성 공급을 장려한다.
+
+### 10.2 기타 수수료 (Other Fees)
+- **상장 수수료:** 심사비($5,000-$25,000); 입회비($50,000-$325,000, 등급별); 발행주식 수 기준 연간 수수료.
+- **시장데이터 수수료:** TotalView 구독; Nasdaq Basic(Level 1); ITCH 피드 접속 수수료; 코로케이션 (전산센터 공동입주) 데이터 접속 요금.
+- **코로케이션 (전산센터 공동입주) 수수료:** 캐비닛 임대; 크로스 커넥트; Carteret 시설 전력 및 냉각 요금.
+- **접속 수수료:** OUCH/FIX 접속 포트 수수료; 네트워크 접속 요금(10G/40G).
+- **규제 수수료:** Section 31 수수료(회원에 전가); CAT 수수료; Trading Activity Fees(TAF).
+- **기술솔루션 수익:** Nasdaq Eqlipse 타 거래소 라이선싱; Verafin(금융범죄 방지); AxiomSL/Calypso(리스크 및 규제보고).
+- **지수 수익:** Nasdaq-100, Nasdaq Composite 및 기타 자체 지수 라이선스 수수료.
+
+---
+
+## 11. 최근 동향 (Recent Developments)
+
+### 시스템 업그레이드 (최근 5년) (System Upgrades)
+- **2022년:** INET 매매체결엔진 (매칭엔진) 지속 최적화; FPGA 기반 시장데이터 배포 강화.
+- **2023년:** Adenza를 105억 달러에 인수, Calypso(트레이딩/리스크) 및 AxiomSL(규제보고)을 기술 포트폴리오에 추가.
+- **2024년:** 마이크로서비스 아키텍처 및 클라우드 대응 배포의 4세대 마켓플레이스 기술 플랫폼 Nasdaq Eqlipse 출시. 고객 거래소를 위한 "에버그린" 분기별 업그레이드 모델 도입. 포트폴리오 리스크 산출용 Calypso XVA Accelerator 발표.
+- **2025년 (5월):** Nasdaq과 AWS가 Nasdaq Eqlipse Trading 클라우드 기반 플랫폼 출시; Johannesburg Stock Exchange, Grupo BMV(멕시코), Philippine Stock Exchange 채택. 감시 및 리스크 플랫폼 전반에 AI 통합 지속.
+- **2026년:** Carteret, NJ에서 NY11-4 코로케이션 (전산센터 공동입주) 확장 건설 중. 코어 네트워크 인프라에 AWS Outposts 통합 중.
+
+### 신규 상품/세그먼트 (New Products / Segments)
+- **24시간 거래 이니셔티브 (2025-2026년):** 미국 주식거래를 주 5일 23시간으로 확대하는 계획 발표. 주간세션 4:00 AM - 8:00 PM ET, 1시간 유지보수 중단, 야간세션 9:00 PM - 4:00 AM ET. 출시 목표: 2026년 하반기 (SEC 승인 및 주요 인프라 준비상황(SIP, DTCC) 대기).
+- **토큰화 주식 결제 (2026년 3월):** SEC가 특정 주식의 토큰화 형태 거래 및 결제를 허용하는 Nasdaq 제안 승인.
+- **Nasdaq Data Link:** 플랫폼(구 Quandl)을 통한 대안 데이터 서비스 확대.
+
+### 규제 변화 (Regulatory Changes)
+- **SEC Regulation NMS 개정 (2024년):** 유동성 높은 주식에 대해 최소 호가단위 (최소가격변동폭)를 0.5센트($0.005)로 축소, 거래소 접근수수료 상한 인하, 단주 투명성 요건 가속화 규칙 채택.
+- **Consolidated Audit Trail(CAT):** 전체 미국 거래소 및 브로커-딜러에 걸친 주문 수명주기 추적의 완전 구현 및 지속적 개선.
+- **SEC 시장구조 제안:** 최선집행 규칙, 주문 경쟁, PFOF(주문흐름에 대한 대가) 규제에 대한 지속적 검토.
+
+### 전략적 이니셔티브 (Strategic Initiatives)
+- **AI 및 머신러닝:** Verafin(금융범죄 방지), eVestment(분석), AxiomSL(규제보고), Calypso(리스크관리), Surveillance 플랫폼 전반에 AI 통합.
+- **Adenza 인수 교차판매:** 2025년 말까지 42건의 성공적 교차판매 완료; 2027년 말까지 교차판매 매출 런레이트 1억 달러 목표.
+- **Nasdaq Eqlipse 글로벌 채택:** 주식, ETF, 선물, 옵션, 채권, 레포, FX, 원자재, 에너지, 암호화폐, NFT, 탄소크레딧을 지원하는 전세계 거래소용 포괄적 기술 플랫폼으로 포지셔닝.
+- **중기 매출 전망:** Nasdaq은 2026년 Investor Day에서 다각화된 비즈니스 모델(Financial Technology, Market Services, Capital Access Platforms)에 의한 확장 가능한 성장을 강조하며 중기 매출 전망 상향.
+
+---
+
+## 출처 (Sources)
 
 - [Source: NASDAQ Official Website, "Nasdaq Stock Market", accessed 2026-04-03](https://www.nasdaq.com)
 - [Source: Nasdaq, Inc. Investor Relations, "Volume Statistics", accessed 2026-04-03](https://ir.nasdaq.com/financials/volume-statistics)

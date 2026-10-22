@@ -1,6 +1,6 @@
 # Japan Exchange Group / Tokyo Stock Exchange (JPX / TSE)
 
-> **최종 수정일:** 2026-10-15
+> **최종 업데이트:** 2026-10-22
 > **조사 등급:** Tier 1
 > **영역:** 주식시장
 
