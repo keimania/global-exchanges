@@ -511,82 +511,82 @@
   </div>
 
   <!-- Global Trading Clock Modal -->
-  <div id="clock-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+  <div id="clock-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-850">
         <div class="flex items-center space-x-2.5">
-          <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-500">
+          <div class="p-2 rounded-lg bg-emerald-500/20 text-emerald-500">
             <i data-lucide="clock" class="w-5 h-5"></i>
           </div>
           <div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white" id="clock-modal-title">글로벌 24시간 매매 세션 타임라인</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">전 세계 23개 거래소 실시간 개장/마감 현황 (KST / UTC)</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">전 세계 23개 거래소 실시간 개장/마감 현황 (KST / UTC)</p>
           </div>
         </div>
-        <button id="btn-close-clock" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+        <button id="btn-close-clock" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Real-time Live Clocks Bar -->
-      <div class="p-4 bg-sky-500/5 border-b border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-4 text-center">
-        <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm">
-          <div class="text-[10px] uppercase font-bold text-sky-600 dark:text-sky-400 tracking-wider">한국 표준시 (KST, UTC+9)</div>
-          <div id="live-clock-kst" class="font-mono text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">--:--:--</div>
+      <div class="p-4 bg-slate-100 dark:bg-slate-850 border-b border-slate-200 dark:border-slate-700 grid grid-cols-2 gap-4 text-center">
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md">
+          <div class="text-[11px] uppercase font-bold text-sky-600 dark:text-sky-400 tracking-wider">한국 표준시 (KST, UTC+9)</div>
+          <div id="live-clock-kst" class="font-mono text-2xl font-extrabold text-slate-900 dark:text-sky-300 mt-1">--:--:--</div>
         </div>
-        <div class="p-2.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm">
-          <div class="text-[10px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">협정 세계시 (UTC)</div>
-          <div id="live-clock-utc" class="font-mono text-xl font-extrabold text-slate-900 dark:text-white mt-0.5">--:--:--</div>
+        <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md">
+          <div class="text-[11px] uppercase font-bold text-emerald-600 dark:text-emerald-400 tracking-wider">협정 세계시 (UTC)</div>
+          <div id="live-clock-utc" class="font-mono text-2xl font-extrabold text-slate-900 dark:text-emerald-300 mt-1">--:--:--</div>
         </div>
       </div>
 
       <!-- Region Filter Tabs -->
-      <div class="px-4 pt-3 flex items-center space-x-1 border-b border-slate-200 dark:border-slate-800 text-xs overflow-x-auto">
+      <div class="px-4 pt-3 flex items-center space-x-1 border-b border-slate-200 dark:border-slate-700 text-xs overflow-x-auto bg-slate-50/50 dark:bg-slate-900">
         <button class="clock-filter-btn px-3 py-1.5 font-bold border-b-2 border-sky-500 text-sky-600 dark:text-sky-400" data-region="all">전체 (All)</button>
-        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Asia-Pacific">아시아·태평양</button>
-        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Europe">유럽</button>
-        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="North America">북미</button>
-        <button class="clock-filter-btn px-3 py-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200" data-region="Emerging & Middle East">중동·신흥국</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" data-region="Asia-Pacific">아시아·태평양</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" data-region="Europe">유럽</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" data-region="North America">북미</button>
+        <button class="clock-filter-btn px-3 py-1.5 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white" data-region="Emerging & Middle East">중동·신흥국</button>
       </div>
 
       <!-- Market Sessions List -->
-      <div id="clock-exchange-list" class="p-4 overflow-y-auto space-y-2.5 text-xs">
+      <div id="clock-exchange-list" class="p-4 overflow-y-auto space-y-2.5 text-xs bg-slate-50/30 dark:bg-slate-900">
         <!-- Rendered dynamically -->
       </div>
     </div>
   </div>
 
   <!-- Order Types Explorer Modal -->
-  <div id="order-types-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+  <div id="order-types-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-850">
         <div class="flex items-center space-x-2.5">
-          <div class="p-2 rounded-lg bg-amber-500/10 text-amber-500">
+          <div class="p-2 rounded-lg bg-amber-500/20 text-amber-500">
             <i data-lucide="tags" class="w-5 h-5"></i>
           </div>
           <div>
             <h3 class="font-bold text-sm text-slate-900 dark:text-white" id="order-types-modal-title">글로벌 주문 유형 크로스 필터 탐색기</h3>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">속성별/알고리즘별 주문 분류 및 채택 거래소 비교</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-300">속성별/알고리즘별 주문 분류 및 채택 거래소 비교</p>
           </div>
         </div>
-        <button id="btn-close-order-types" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+        <button id="btn-close-order-types" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Tag Filters -->
-      <div class="p-3 border-b border-slate-200 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-900/30 flex flex-wrap gap-1.5 text-xs">
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500 text-white" data-tag="all">전체 (All)</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="dark">#비표시/다크/미드포인트</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="maker">#메이커전용(Post-Only)</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="sweep">#시장간스윕(ISO)</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="auction">#경매/단일가(Cross)</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="speedbump">#초단타방어(Speedbump/WAIT)</button>
-        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300" data-tag="options">#옵션전용(Options)</button>
+      <div class="p-3 border-b border-slate-200 dark:border-slate-700 bg-slate-100/70 dark:bg-slate-850 flex flex-wrap gap-1.5 text-xs">
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-bold bg-sky-600 text-white shadow-sm border border-sky-500" data-tag="all">전체 (All)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="dark">#비표시/다크/미드포인트</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="maker">#메이커전용(Post-Only)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="sweep">#시장간스윕(ISO)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="auction">#경매/단일가(Cross)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="speedbump">#초단타방어(Speedbump/WAIT)</button>
+        <button class="order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600" data-tag="options">#옵션전용(Options)</button>
       </div>
 
       <!-- Order Types Grid List -->
-      <div id="order-types-catalog" class="p-4 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+      <div id="order-types-catalog" class="p-4 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-3 text-xs bg-slate-50/30 dark:bg-slate-900">
         <!-- Rendered dynamically -->
       </div>
     </div>
@@ -863,7 +863,20 @@
         }
       });
 
-      // 3. Transform Mermaid code blocks into <div class="mermaid">
+      // 3. Render KaTeX Math BEFORE converting mermaid (ignoring pre, code, and tables)
+      renderMathInElement(targetElement, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ],
+        ignoredClasses: ["katex-html", "table-container", "language-mermaid"],
+        ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code", "option", "svg"],
+        throwOnError: false
+      });
+
+      // 4. Transform Mermaid code blocks into <div class="mermaid">
       const mermaidCodeBlocks = targetElement.querySelectorAll('pre code.language-mermaid');
       mermaidCodeBlocks.forEach(code => {
         const pre = code.parentElement;
@@ -874,24 +887,13 @@
         pre.remove();
       });
 
-      // 4. Render KaTeX Math
-      renderMathInElement(targetElement, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false},
-          {left: '\\(', right: '\\)', display: false},
-          {left: '\\[', right: '\\]', display: true}
-        ],
-        throwOnError: false
-      });
-
-      // 5. Run Mermaid Diagrams
+      // 5. Run Mermaid Diagrams one-by-one safely
       const mermaidNodes = targetElement.querySelectorAll('.mermaid');
-      if (mermaidNodes.length > 0) {
+      for (const node of mermaidNodes) {
         try {
-          await mermaid.run({ nodes: mermaidNodes });
+          await mermaid.run({ nodes: [node] });
         } catch (e) {
-          console.warn('Mermaid rendering issue:', e);
+          console.warn('Mermaid rendering issue on node:', e);
         }
       }
     }
@@ -1188,11 +1190,11 @@
 
           let statusBadge = '';
           if (isOpen) {
-            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/30 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> 정규장 거래중 (OPEN)</span>';
+            statusBadge = '<span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-bold border border-emerald-500/40 shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> 정규장 거래중 (OPEN)</span>';
           } else if (isPreOrPost) {
-            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold border border-amber-500/30 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> 시간외 거래 (Pre/Post)</span>';
+            statusBadge = '<span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/40 shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> 시간외 거래 (Pre/Post)</span>';
           } else {
-            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-medium">휴장 (CLOSED)</span>';
+            statusBadge = '<span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium border border-slate-200 dark:border-slate-700">휴장 (CLOSED)</span>';
           }
 
           const kstOpenH = Math.floor((session.openUtc + 9) % 24);
@@ -1202,20 +1204,20 @@
           const kstRange = `${String(kstOpenH).padStart(2, '0')}:${String(kstOpenM).padStart(2, '0')} ~ ${String(kstCloseH).padStart(2, '0')}:${String(kstCloseM).padStart(2, '0')} KST`;
 
           html += `
-            <div class="p-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-850 flex items-center justify-between hover:border-sky-500/40 transition-colors">
+            <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm flex items-center justify-between hover:border-sky-500 dark:hover:border-sky-400 transition-all">
               <div class="flex items-center space-x-3">
-                <span class="text-xl">${ex.flag}</span>
+                <span class="text-xl sm:text-2xl">${ex.flag}</span>
                 <div>
-                  <div class="font-bold text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+                  <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5 text-xs sm:text-sm">
                     <span>${ex.krName}</span>
-                    <span class="text-[10px] text-slate-400 font-normal">(${ex.name})</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-300 font-normal">(${ex.name})</span>
                   </div>
-                  <div class="text-[10px] text-slate-400 font-mono">${kstRange} · ${session.tz}</div>
+                  <div class="text-[11px] text-slate-500 dark:text-slate-300 font-mono mt-0.5">${kstRange} · ${session.tz}</div>
                 </div>
               </div>
               <div class="flex items-center space-x-2">
                 ${statusBadge}
-                <button onclick="document.getElementById('clock-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-sky-500" title="해당 거래소로 이동">
+                <button onclick="document.getElementById('clock-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-sky-500 hover:text-white text-sky-600 dark:text-sky-300 transition-colors" title="해당 거래소로 이동">
                   <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
@@ -1244,10 +1246,10 @@
         btn.addEventListener('click', () => {
           document.querySelectorAll('.clock-filter-btn').forEach(b => {
             b.classList.remove('border-b-2', 'border-sky-500', 'text-sky-600', 'dark:text-sky-400', 'font-bold');
-            b.classList.add('text-slate-500');
+            b.classList.add('text-slate-600', 'dark:text-slate-300');
           });
           btn.classList.add('border-b-2', 'border-sky-500', 'text-sky-600', 'dark:text-sky-400', 'font-bold');
-          btn.classList.remove('text-slate-500');
+          btn.classList.remove('text-slate-600', 'dark:text-slate-300');
           renderSessionsList(btn.getAttribute('data-region'));
         });
       });
@@ -1268,22 +1270,22 @@
           : ORDER_TYPES_CATALOG.filter(item => item.tag === filterTag);
 
         catalogEl.innerHTML = filtered.map(item => `
-          <div class="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-850 hover:border-amber-500/40 transition-colors flex flex-col justify-between space-y-2.5">
+          <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm hover:border-amber-500 dark:hover:border-amber-400 hover:shadow-md transition-all flex flex-col justify-between space-y-3">
             <div>
-              <div class="flex items-center justify-between mb-1">
-                <span class="font-bold text-slate-900 dark:text-white text-xs">${item.krName}</span>
-                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold uppercase">#${item.tag}</span>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="font-bold text-slate-900 dark:text-white text-sm">${item.krName}</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/40 uppercase">#${item.tag}</span>
               </div>
-              <div class="text-[11px] font-mono text-slate-400 mb-2">${item.name}</div>
-              <p class="text-[11.5px] text-slate-600 dark:text-slate-300 leading-relaxed">${item.desc}</p>
+              <div class="text-[11px] font-mono text-sky-600 dark:text-sky-300 font-semibold mb-2">${item.name}</div>
+              <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed font-normal">${item.desc}</p>
             </div>
-            <div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 flex-wrap">
-              <span class="text-[10px] text-slate-400 font-semibold mr-1">채택 거래소:</span>
+            <div class="pt-2.5 border-t border-slate-100 dark:border-slate-700 flex items-center gap-1.5 flex-wrap">
+              <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold mr-1">채택 거래소:</span>
               ${item.ex.map(id => {
                 const ex = EXCHANGES.find(e => e.id === id);
                 if (!ex) return '';
                 return `
-                  <button onclick="document.getElementById('order-types-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white text-[10px] font-mono text-slate-600 dark:text-slate-300 transition-colors flex items-center gap-0.5">
+                  <button onclick="document.getElementById('order-types-modal').classList.add('hidden'); loadExchange('${ex.id}');" class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 hover:bg-sky-500 hover:text-white text-[11px] font-mono text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-600 transition-colors flex items-center gap-1 font-medium">
                     <span>${ex.flag}</span>
                     <span>${ex.name.split(' ')[0]}</span>
                   </button>
@@ -1312,9 +1314,9 @@
       document.querySelectorAll('.order-type-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           document.querySelectorAll('.order-type-chip').forEach(c => {
-            c.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300';
+            c.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600';
           });
-          chip.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-semibold bg-sky-500 text-white';
+          chip.className = 'order-type-chip px-2.5 py-1 rounded-full text-xs font-bold bg-sky-600 text-white shadow-sm border border-sky-500';
           renderCatalog(chip.getAttribute('data-tag'));
         });
       });

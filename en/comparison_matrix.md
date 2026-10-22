@@ -8,30 +8,22 @@
 
 ## 1. Executive Summary & Architecture Scope
 
-Modern electronic equity and derivatives markets compete in microsecond ($\mu\text{s}$) and nanosecond ($\text{ns}$) regimes powered by ultra-low-latency fiber networks, data center co-location, FPGA hardware parsing, and deterministic in-memory matching engines.
-This report delivers an exhaustive cross-comparison of 23 global exchanges across **matching engine architectures, core round-trip latency, continuous and auction session dynamics, tick size regimes, volatility safeguards (VI / LULD), settlement cycles ($\text{T+1}$ vs $\text{T+2}$), maker-taker fee structures, and binary trading protocols**.
+Modern electronic equity and derivatives markets compete in microsecond (µs) and nanosecond (ns) regimes powered by ultra-low-latency fiber networks, data center co-location, FPGA hardware parsing, and deterministic in-memory matching engines.
+This report delivers an exhaustive cross-comparison of 23 global exchanges across **matching engine architectures, core round-trip latency, continuous and auction session dynamics, tick size regimes, volatility safeguards (VI / LULD), settlement cycles (T+1 vs T+2), maker-taker fee structures, and binary trading protocols**.
 
 ```mermaid
 flowchart TD
-    subgraph Global_Regions["Four Key Capital Market Regions"]
-        NA["North America<br>NASDAQ · NYSE · TMX"]
-        APAC["Asia-Pacific<br>KRX · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
-        EU["Europe<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nasdaq Nordic"]
-        EM["Emerging & Middle East<br>NSE India · BSE · Saudi Tadawul · JSE"]
-    end
-    
-    subgraph Core_Axes["8 Cross-Market Analytical Axes"]
-        A1["1. Matching Engines & Latency Benchmarks"]
-        A2["2. Continuous Trading & Auction Mechanics"]
-        A3["3. Tick Sizes & Sub-Penny Regulations"]
-        A4["4. Volatility Safeguards (LULD / VI / MWCB)"]
-        A5["5. Clearing & Settlement (T+1 vs T+2)"]
-        A6["6. Fee Models (Maker-Taker Rebate Dynamics)"]
-        A7["7. Gateway Protocols (Binary vs FIX)"]
-        A8["8. Short Selling & Microstructure Controls"]
-    end
+    NA["North America<br>NASDAQ · NYSE · TMX"]
+    APAC["Asia-Pacific<br>KRX · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
+    EU["Europe<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nordic"]
+    EM["Emerging & Middle East<br>NSE India · BSE · Saudi Tadawul · JSE"]
 
-    Global_Regions --> Core_Axes
+    Matrix["23 Exchanges Master Comparison Axes<br>(Engine & Latency / Auctions / Tick Size / Volatility / Settlement / Fees / Protocols / Short Selling)"]
+
+    NA --> Matrix
+    APAC --> Matrix
+    EU --> Matrix
+    EM --> Matrix
 ```
 
 ---
@@ -102,11 +94,11 @@ flowchart LR
 
 | Exchange / Market | Regulatory Standard | Tick Size Structure (MPV) | Sub-Penny / Sub-Tick Status |
 |---|---|---|---|
-| **US (NASDAQ / NYSE)** | SEC Regulation NMS (Amended Rule 612) | Price $\ge \$1.00$: **\$0.01** (High-liquidity tier: **\$0.005**)<br>Price $< \$1.00$: **\$0.0001** | Sub-tick midpoint executions and Price Improving Orders (PIO) allowed |
-| **South Korea (KRX)** | KRX Regulations Article 32 | Price-tiered 7-step scale:<br>- < 2,000 KRW: **1 KRW**<br>- < 5,000 KRW: **5 KRW**<br>- < 20,000 KRW: **10 KRW**<br>- < 50,000 KRW: **50 KRW**<br>- < 200,000 KRW: **100 KRW**<br>- < 500,000 KRW: **500 KRW**<br>- $\ge$ 500,000 KRW: **1,000 KRW** | Sub-tick entry strictly prohibited; midpoint matching allowed |
-| **Japan (JPX)** | TSE Trading Rules | TOPIX 100 constituents: **Decimal Ticks**<br>- $\le$ 1,000 JPY: **0.1 JPY**<br>- $\le$ 3,000 JPY: **0.5 JPY**<br>- $\le$ 10,000 JPY: **1 JPY** | Stepped ticks for non-TOPIX 100 securities |
+| **US (NASDAQ / NYSE)** | SEC Regulation NMS (Amended Rule 612) | Price >= 1.00 USD: **0.01 USD** (High-liquidity tier: **0.005 USD** half-penny)<br>Price < 1.00 USD: **0.0001 USD** | Sub-tick midpoint executions and Price Improving Orders (PIO) allowed |
+| **South Korea (KRX)** | KRX Regulations Article 32 | Price-tiered 7-step scale:<br>- < 2,000 KRW: **1 KRW**<br>- < 5,000 KRW: **5 KRW**<br>- < 20,000 KRW: **10 KRW**<br>- < 50,000 KRW: **50 KRW**<br>- < 200,000 KRW: **100 KRW**<br>- < 500,000 KRW: **500 KRW**<br>- >= 500,000 KRW: **1,000 KRW** | Sub-tick entry strictly prohibited; midpoint matching allowed |
+| **Japan (JPX)** | TSE Trading Rules | TOPIX 100 constituents: **Decimal Ticks**<br>- <= 1,000 JPY: **0.1 JPY**<br>- <= 3,000 JPY: **0.5 JPY**<br>- <= 10,000 JPY: **1 JPY** | Stepped ticks for non-TOPIX 100 securities |
 | **Hong Kong (HKEX)** | Second Schedule Spread Table | 13 price-tiered steps:<br>- 0.01 to 0.25 HKD: **0.001 HKD**<br>- 0.25 to 0.50 HKD: **0.005 HKD**<br>- 0.50 to 10.00 HKD: **0.01 HKD**<br>- 10.00 to 20.00 HKD: **0.02 HKD**<br>- 100 to 200 HKD: **0.10 HKD** | Strict adherence required; no sub-spread display |
-| **Europe (LSE / Euronext / DB)**| MiFID II RTS 28 (Liquidity Bands) | 6 ADNT liquidity bands $\times$ 19 price tiers = **114-cell dynamic matrix** | Strict enforcement across all European trading venues |
+| **Europe (LSE / Euronext / DB)**| MiFID II RTS 28 (Liquidity Bands) | 6 ADNT liquidity bands x 19 price tiers = **114-cell dynamic matrix** | Strict enforcement across all European trading venues |
 
 ---
 
@@ -115,42 +107,41 @@ flowchart LR
 ```mermaid
 flowchart TD
     Normal["Continuous Execution"]
-    
-    subgraph Single_Stock_Controls["Single-Stock Volatility Mechanisms"]
-        VI_Check{"Severe Price Deviation?"}
-        VI_Static["Static Volatility Interruption<br>(Reference: Previous Auction / Close)"]
-        VI_Dynamic["Dynamic Volatility Interruption<br>(Reference: Last Execution Price)"]
-        LULD_Band["LULD Price Band Straddle<br>(US 5-minute band: 5% ~ 20%)"]
-        CallAuction["2~5 Minute Volatility Auction<br>(Random Ending Feature)"]
-    end
-
-    subgraph Market_Wide_Controls["Market-Wide Circuit Breakers (MWCB)"]
-        Level1["Level 1: 7~8% Decline (15-20 min halt)"]
-        Level2["Level 2: 13~15% Decline (15-20 min halt)"]
-        Level3["Level 3: 20% Decline (Session Termination)"]
-    end
+    VI_Check{"Severe Price Deviation?"}
+    VI_Static["Static Volatility Interruption (Reference: Previous Close/Auction)"]
+    VI_Dynamic["Dynamic Volatility Interruption (Reference: Last Execution Price)"]
+    LULD_Band["LULD Price Band Straddle (US 5%~20%)"]
+    CallAuction["Transition to Call Auction (2~5 min Cooling)"]
 
     Normal --> VI_Check
-    VI_Check -->|Static Deviation| VI_Static --> CallAuction
-    VI_Check -->|Dynamic Spike| VI_Dynamic --> CallAuction
-    VI_Check -->|Band Breach| LULD_Band --> CallAuction
+    VI_Check -->|Static Deviation| VI_Static
+    VI_Check -->|Dynamic Spike| VI_Dynamic
+    VI_Check -->|Band Breach| LULD_Band
+    VI_Static --> CallAuction
+    VI_Dynamic --> CallAuction
+    LULD_Band --> CallAuction
     CallAuction --> Normal
 
-    Normal -->|Index Collapse| Level1
-    Level1 --> Level2 --> Level3
+    Level1["Level 1 Circuit Breaker (-7% ~ -8% Drop)"]
+    Level2["Level 2 Circuit Breaker (-13% ~ -15% Drop)"]
+    Level3["Level 3 Circuit Breaker (-20% Market Termination)"]
+
+    Normal -->|Index Shock| Level1
+    Level1 --> Level2
+    Level2 --> Level3
 ```
 
 ### Volatility Controls Comparison Matrix
 
 | Exchange | Daily Price Limits | Single-Stock Volatility Interruption | Market-Wide Circuit Breakers (MWCB) |
 |---|---|---|---|
-| **NASDAQ / NYSE** | **None** | **Limit Up-Limit Down (LULD):** 5-minute rolling reference band ($\pm 5\% \sim 20\%$). 15-second straddle triggers 5-minute trading pause | **S&P 500 Index Triggers:**<br>- L1: -7% (15-min halt)<br>- L2: -13% (15-min halt)<br>- L3: -20% (Full day termination) |
-| **KRX** | **$\pm 30\%$** (Upper/Lower limits) | **Static & Dynamic VI:**<br>- Dynamic VI: 2~6% price shock triggers 2-min call auction<br>- Static VI: 10% deviation triggers 2-min call auction | **KOSPI / KOSDAQ Index Triggers:**<br>- Level 1: -8% (20m halt + 10m auction)<br>- Level 2: -15% (20m halt + 10m auction)<br>- Level 3: -20% (Full day termination) |
+| **NASDAQ / NYSE** | **None** | **Limit Up-Limit Down (LULD):** 5-minute rolling reference band (±5% ~ 20%). 15-second straddle triggers 5-minute trading pause | **S&P 500 Index Triggers:**<br>- L1: -7% (15-min halt)<br>- L2: -13% (15-min halt)<br>- L3: -20% (Full day termination) |
+| **KRX** | **±30%** (Upper/Lower limits) | **Static & Dynamic VI:**<br>- Dynamic VI: 2~6% price shock triggers 2-min call auction<br>- Static VI: 10% deviation triggers 2-min call auction | **KOSPI / KOSDAQ Index Triggers:**<br>- Level 1: -8% (20m halt + 10m auction)<br>- Level 2: -15% (20m halt + 10m auction)<br>- Level 3: -20% (Full day termination) |
 | **JPX** | Fixed nominal bands by price bracket | **Special Quote (Tokubetsu Kehai):** Price deviation beyond renewal limits pauses continuous trading and enters 3-minute iterative auction | TOPIX and futures linked trading halts (10~15 minutes) |
-| **HKEX** | **None** | **Volatility Control Mechanism (VCM):** $\pm 10\%$ deviation from 5-min reference price triggers 5-min cooling-off period | No market-wide CB (handled via individual VCMs) |
-| **SSE / SZSE** | **$\pm 10\%$** (Standard), **$\pm 20\%$** (ChiNext/STAR) | Orders restricted once price reaches statutory limit | Limit-up/limit-down structure enforces order bounds |
+| **HKEX** | **None** | **Volatility Control Mechanism (VCM):** ±10% deviation from 5-min reference price triggers 5-min cooling-off period | No market-wide CB (handled via individual VCMs) |
+| **SSE / SZSE** | **±10%** (Standard), **±20%** (ChiNext/STAR) | Orders restricted once price reaches statutory limit | Limit-up/limit-down structure enforces order bounds |
 | **LSE** | **None** | **Circuit Breaker Auction:** Breaching static/dynamic corridor initiates 5-minute call auction | Automatic auction call sessions on index-level shocks |
-| **Euronext** | **None** | **Collar / Reserving Mechanism:** Static $\pm 10\%$, dynamic $\pm 2\sim 5\%$ triggers reservation phase and auction | Coordinated pan-European index circuit breaker |
+| **Euronext** | **None** | **Collar / Reserving Mechanism:** Static ±10%, dynamic ±2~5% triggers reservation phase and auction | Coordinated pan-European index circuit breaker |
 | **Deutsche Börse**| **None** | **Volatility Interruption (Volaint):** Breach of dynamic or static corridor pauses trading for 2-minute auction | Xetra emergency halt protocols |
 | **NSE / BSE** | Single-stock bands: 2%, 5%, 10%, 20% | Orders outside band rejected by gateway | **Nifty 50 Index Triggers:** 10%, 15%, 20% staged market halts |
 
@@ -175,8 +166,8 @@ flowchart TD
 
 | Exchange | Fee Paradigm | Liquidity Adding (Maker) Rebate | Liquidity Removing (Taker) Fee | Distinctive Fee Incentives |
 |---|---|---|---|---|
-| **NASDAQ** | **Maker-Taker (Invertible)** | **Up to (\$0.00305) credit** | **\$0.0030 standard** | Supplementary credits for M-ELO; QMM tiered rewards |
-| **NYSE** | **Maker-Taker (Classic)** | **Up to (\$0.0032) credit** | **\$0.0030 standard** | Designated Market Maker (DMM) preferential brackets |
+| **NASDAQ** | **Maker-Taker (Invertible)** | **Up to (0.00305 USD) credit** | **0.0030 USD standard** | Supplementary credits for M-ELO; QMM tiered rewards |
+| **NYSE** | **Maker-Taker (Classic)** | **Up to (0.0032 USD) credit** | **0.0030 USD standard** | Designated Market Maker (DMM) preferential brackets |
 | **KRX** | **Hybrid (Maker-Taker launched 2025)** | **Spread-improving rebates** | Value-based fee schedule | Spread-tightening rebates responding to Nextrade ATS competition |
 | **HKEX** | **Value-based flat rate** | None (MM incentives only) | **0.00565%** of value | Ad valorem stamp duty (0.1%) separately collected |
 | **JPX** | **Value-based + MM scheme** | Quarterly performance grants | Value-based schedule | TOPIX 100 liquidity provider tax credits |
@@ -220,18 +211,18 @@ flowchart TD
 
 | Exchange | Country | Benchmark Index | Matching Engine | RTT | Tick Size Regime | Daily Limit | Settlement | Fee Paradigm |
 |---|---|---|---|---|---|---|---|---|
-| **NASDAQ** | 🇺🇸 United States | Nasdaq 100 | INET/Eqlipse | <15µs | Reg NMS ($0.01/$0.005) | Unlimited (LULD) | T+1 | Maker-Taker |
-| **NYSE** | 🇺🇸 United States | S&P 500, DJIA | Pillar | <20µs | Reg NMS ($0.01/$0.005) | Unlimited (LULD) | T+1 | Maker-Taker |
+| **NASDAQ** | 🇺🇸 United States | Nasdaq 100 | INET/Eqlipse | <15µs | Reg NMS (0.01 / 0.005 USD) | Unlimited (LULD) | T+1 | Maker-Taker |
+| **NYSE** | 🇺🇸 United States | S&P 500, DJIA | Pillar | <20µs | Reg NMS (0.01 / 0.005 USD) | Unlimited (LULD) | T+1 | Maker-Taker |
 | **TMX** | 🇨🇦 Canada | S&P/TSX 60 | Quantum | ~35µs | 0.005 / 0.01 CAD | Unlimited | T+1 | Maker-Taker |
-| **KRX** | 🇰🇷 South Korea | KOSPI 200 | Exture 3.0 | <50µs | 7-step scale (1~1000 KRW) | $\pm 30\%$ | T+2 | Hybrid |
+| **KRX** | 🇰🇷 South Korea | KOSPI 200 | Exture 3.0 | <50µs | 7-step scale (1~1000 KRW) | ±30% | T+2 | Hybrid |
 | **JPX** | 🇯🇵 Japan | Nikkei 225, TOPIX | Arrowhead 4.0 | <100µs | TOPIX 100 Decimal Ticks | Price-banded | T+2 | Value-based |
 | **HKEX** | 🇭🇰 Hong Kong | Hang Seng (HSI) | OTP-C | <80µs | 13-step spread table | Unlimited (VCM) | T+2 | Value-based |
-| **SSE** | 🇨🇳 China | SSE Composite | New Gen | ~150µs | 0.01 CNY fixed | $\pm 10\% / \pm 20\%$ | T+1 | Flat rate |
-| **SZSE** | 🇨🇳 China | SZSE Component | 5th Gen | ~120µs | 0.01 CNY fixed | $\pm 10\% / \pm 20\%$ | T+1 | Flat rate |
-| **TWSE** | 🇹🇼 Taiwan | TAIEX | Continuous | <100µs | 6-step scale | $\pm 10\%$ | T+2 | Flat rate |
+| **SSE** | 🇨🇳 China | SSE Composite | New Gen | ~150µs | 0.01 CNY fixed | ±10% / ±20% | T+1 | Flat rate |
+| **SZSE** | 🇨🇳 China | SZSE Component | 5th Gen | ~120µs | 0.01 CNY fixed | ±10% / ±20% | T+1 | Flat rate |
+| **TWSE** | 🇹🇼 Taiwan | TAIEX | Continuous | <100µs | 6-step scale | ±10% | T+2 | Flat rate |
 | **SGX** | 🇸🇬 Singapore | STI Index | Titan (INET) | <30µs | 0.001 ~ 0.01 SGD | Unlimited | T+2 | Value-based |
 | **ASX** | 🇦🇺 Australia | S&P/ASX 200 | Trade (INET) | <40µs | 3-step scale | Unlimited | T+2 | Hybrid |
-| **Bursa** | 🇲🇾 Malaysia | KLCI | BTS2 (MIT) | ~80µs | 3-step scale | $\pm 30\%$ | T+2 | Value-based |
+| **Bursa** | 🇲🇾 Malaysia | KLCI | BTS2 (MIT) | ~80µs | 3-step scale | ±30% | T+2 | Value-based |
 | **LSE** | 🇬🇧 United Kingdom | FTSE 100 | Millennium | <25µs | MiFID II RTS 28 bands | Unlimited (Auctions)| T+2 | Maker-Taker |
 | **Euronext** | 🇪🇺 Pan-Europe | CAC 40, AEX | Optiq | <15µs | MiFID II RTS 28 bands | Unlimited (Collars) | T+2 | Hybrid |
 | **Deutsche Börse**| 🇩🇪 Germany | DAX 40 | T7 Architecture| <20µs | MiFID II RTS 28 bands | Unlimited (Volaint) | T+2 | Tiered |
@@ -239,7 +230,7 @@ flowchart TD
 | **Borsa Italiana**| 🇮🇹 Italy | FTSE MIB | Optiq | <15µs | MiFID II RTS 28 bands | Unlimited | T+2 | Hybrid |
 | **BME** | 🇪🇸 Spain | IBEX 35 | SIBE | ~60µs | MiFID II RTS 28 bands | Unlimited | T+2 | Value-based |
 | **Nasdaq Nordic** | 🇸🇪 Nordic | OMXS30 | INET Nordic | <20µs | MiFID II RTS 28 bands | Unlimited | T+2 | Maker-Taker |
-| **NSE India** | 🇮🇳 India | Nifty 50 | NEAT+ | ~80µs | 0.05 INR fixed | $\pm 10\sim 20\%$ | T+1 | Value-based |
-| **BSE** | 🇮🇳 India | Sensex | BOLT+ (T7) | <20µs | 0.05 INR fixed | $\pm 10\sim 20\%$ | T+1 | Value-based |
+| **NSE India** | 🇮🇳 India | Nifty 50 | NEAT+ | ~80µs | 0.05 INR fixed | ±10% ~ 20% | T+1 | Value-based |
+| **BSE** | 🇮🇳 India | Sensex | BOLT+ (T7) | <20µs | 0.05 INR fixed | ±10% ~ 20% | T+1 | Value-based |
 | **JSE** | 🇿🇦 South Africa | FTSE/JSE Top 40| MillenniumIT | ~70µs | Stepped scale | Unlimited | T+2 | Hybrid |
-| **Tadawul** | 🇸🇦 Saudi Arabia | TASI | X-Stream | <40µs | 0.01 ~ 0.02 SAR | $\pm 10\%$ | T+2 | Value-based |
+| **Tadawul** | 🇸🇦 Saudi Arabia | TASI | X-Stream | <40µs | 0.01 ~ 0.02 SAR | ±10% | T+2 | Value-based |
