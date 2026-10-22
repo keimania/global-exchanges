@@ -13,17 +13,30 @@
 
 ```mermaid
 flowchart TD
-    NA["북미 (North America)<br>NASDAQ · NYSE · TMX"]
-    APAC["아시아-태평양 (Asia-Pacific)<br>KRX · NXT · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
-    EU["유럽 (Europe)<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nordic"]
-    EM["신흥국 & 중동 (Emerging & Middle East)<br>NSE India · BSE · Saudi Tadawul · JSE"]
+    subgraph Regions["글로벌 4대 권역 (24개 거래소 및 ATS)"]
+        direction LR
+        NA["북미 (North America)<br>NASDAQ · NYSE · TMX"]
+        APAC["아시아-태평양 (APAC)<br>KRX · NXT · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
+        EU["유럽 (Europe)<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nordic"]
+        EM["신흥국 & 중동 (Emerging / MENA)<br>NSE India · BSE · Saudi Tadawul · JSE"]
+    end
 
-    Matrix["24개 거래소/ATS 8대 횡단 비교 영역<br>(엔진·지연시간 / 세션·경매 / 틱사이즈 / 변동성완화 / 결제주기 / 수수료 / 프로토콜 / 요약)"]
+    subgraph Pillars["8대 핵심 횡단 분석 체계"]
+        direction LR
+        P1["1. 엔진 아키텍처 & 레이턴시"]
+        P2["2. 일중 매매 & 경매 메커니즘"]
+        P3["3. 틱 사이즈 & 서브틱 규제"]
+        P4["4. 가격제한폭 & 변동성 완화"]
+        P5["5. 청산·결제 주기 & CCP"]
+        P6["6. 수수료 모델 & Maker-Taker"]
+        P7["7. 통신 프로토콜 & IT 인프라"]
+        P8["8. 24개 거래소 총괄 비교표"]
+    end
 
-    NA --> Matrix
-    APAC --> Matrix
-    EU --> Matrix
-    EM --> Matrix
+    NA --> P1
+    APAC --> P3
+    EU --> P5
+    EM --> P7
 ```
 
 ---
@@ -109,29 +122,22 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    Normal["정상 연속 매매 (Normal Continuous)"]
-    VI_Check{"급격한 가격 변동 발생"}
-    VI_Static["정적 VI 발동 (전일종가 대비 급변)"]
-    VI_Dynamic["동적 VI 발동 (직전체결가 대비 급변)"]
-    LULD_Band["LULD 가격밴드 도달 (미국 5%~20%)"]
-    CallAuction["단일가 경매 전환 (2~5분 쿨링)"]
+    subgraph Single_Stock["개별 종목 변동성 완화 (Single Stock VI / LULD)"]
+        Normal["정상 연속 매매"] --> Trigger{"급격한 가격 변동"}
+        Trigger -->|"정적 이탈 (±10%)"| VI_S["정적 VI 발동"]
+        Trigger -->|"동적 급변 (2%~6%)"| VI_D["동적 VI 발동"]
+        Trigger -->|"밴드 도달 (5%~20%)"| LULD["미국 LULD 밴드"]
+        VI_S --> Auction["2~5분 단일가 경매"]
+        VI_D --> Auction
+        LULD --> Auction
+        Auction --> Normal
+    end
 
-    Normal --> VI_Check
-    VI_Check -->|정적 이탈| VI_Static
-    VI_Check -->|동적 급변| VI_Dynamic
-    VI_Check -->|밴드 이탈| LULD_Band
-    VI_Static --> CallAuction
-    VI_Dynamic --> CallAuction
-    LULD_Band --> CallAuction
-    CallAuction --> Normal
-
-    Level1["Level 1 서킷브레이커 (-7% ~ -8% 하락)"]
-    Level2["Level 2 서킷브레이커 (-13% ~ -15% 하락)"]
-    Level3["Level 3 서킷브레이커 (-20% 당일 조기 마감)"]
-
-    Normal -->|지수 급락| Level1
-    Level1 --> Level2
-    Level2 --> Level3
+    subgraph Market_Wide["시장 전체 서킷브레이커 (Market-Wide CB)"]
+        MW_Start["시장 지수 폭락 감지"] --> CB1["Level 1 (-7% ~ -8% 하락) : 15~20분 정지"]
+        CB1 --> CB2["Level 2 (-13% ~ -15% 하락) : 15~20분 정지"]
+        CB2 --> CB3["Level 3 (-20% 하락) : 당일 장 조기 마감"]
+    end
 ```
 
 ### 변동성 완화 정책 상세 비교

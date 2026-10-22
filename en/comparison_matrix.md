@@ -13,17 +13,30 @@ This report delivers an exhaustive cross-comparison of 24 global exchanges and A
 
 ```mermaid
 flowchart TD
-    NA["North America<br>NASDAQ · NYSE · TMX"]
-    APAC["Asia-Pacific<br>KRX · NXT · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
-    EU["Europe<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nordic"]
-    EM["Emerging & Middle East<br>NSE India · BSE · Saudi Tadawul · JSE"]
+    subgraph Regions["Global 4 Capital Regions (24 Exchanges & ATS)"]
+        direction LR
+        NA["North America<br>NASDAQ · NYSE · TMX"]
+        APAC["Asia-Pacific (APAC)<br>KRX · NXT · JPX · HKEX · SSE · SZSE · TWSE · SGX · ASX · Bursa"]
+        EU["Europe<br>LSE · Euronext · Deutsche Börse · SIX · Borsa Italiana · BME · Nordic"]
+        EM["Emerging & Middle East<br>NSE India · BSE · Saudi Tadawul · JSE"]
+    end
 
-    Matrix["24 Exchanges/ATS Master Comparison Axes<br>(Engine & Latency / Sessions & Auctions / Tick Size / Volatility / Settlement / Fees / Protocols / Summary)"]
+    subgraph Pillars["8 Master Comparison Pillars"]
+        direction LR
+        P1["1. Engine Architecture & Latency"]
+        P2["2. Intraday Sessions & Auctions"]
+        P3["3. Tick Sizes & Sub-Tick Rules"]
+        P4["4. Price Limits & Volatility Controls"]
+        P5["5. Settlement Cycles & CCPs"]
+        P6["6. Fee Models & Maker-Taker"]
+        P7["7. Protocols & IT Infrastructure"]
+        P8["8. 24-Exchange Summary Matrix"]
+    end
 
-    NA --> Matrix
-    APAC --> Matrix
-    EU --> Matrix
-    EM --> Matrix
+    NA --> P1
+    APAC --> P3
+    EU --> P5
+    EM --> P7
 ```
 
 ---
@@ -109,29 +122,22 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    Normal["Normal Continuous Trading"]
-    VI_Check{"Sudden Price Spike Detected"}
-    VI_Static["Static VI Triggered (Prior Auction Base)"]
-    VI_Dynamic["Dynamic VI Triggered (Last Traded Base)"]
-    LULD_Band["LULD Price Band Hit (US 5%–20%)"]
-    CallAuction["Single-Price Call Auction (2–5m Cooling)"]
+    subgraph Single_Stock["Single Stock Volatility Safeguards (VI / LULD)"]
+        Normal["Normal Continuous Trading"] --> Trigger{"Sudden Price Spike / Move"}
+        Trigger -->|"Static Deviation (±10%)"| VI_S["Static VI Triggered"]
+        Trigger -->|"Dynamic Velocity (2%~6%)"| VI_D["Dynamic VI Triggered"]
+        Trigger -->|"Band Limit (5%~20%)"| LULD["US LULD Price Band"]
+        VI_S --> Auction["2~5 Min Call Auction (Cooling-off)"]
+        VI_D --> Auction
+        LULD --> Auction
+        Auction --> Normal
+    end
 
-    Normal --> VI_Check
-    VI_Check -->|Static Deviation| VI_Static
-    VI_Check -->|Dynamic Velocity| VI_Dynamic
-    VI_Check -->|Band Breach| LULD_Band
-    VI_Static --> CallAuction
-    VI_Dynamic --> CallAuction
-    LULD_Band --> CallAuction
-    CallAuction --> Normal
-
-    Level1["Level 1 Market CB (-7% to -8%)"]
-    Level2["Level 2 Market CB (-13% to -15%)"]
-    Level3["Level 3 Market CB (-20% Market Terminated)"]
-
-    Normal -->|Index Plummet| Level1
-    Level1 --> Level2
-    Level2 --> Level3
+    subgraph Market_Wide["Market-Wide Circuit Breakers (MWCB)"]
+        MW_Start["Market Index Plummet Detected"] --> CB1["Level 1 (-7% ~ -8% drop) : 15~20m Halt"]
+        CB1 --> CB2["Level 2 (-13% ~ -15% drop) : 15~20m Halt"]
+        CB2 --> CB3["Level 3 (-20% drop) : Market Terminated for Day"]
+    end
 ```
 
 ### Detailed Volatility Protection Matrix

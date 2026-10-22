@@ -852,8 +852,8 @@
       navList.innerHTML = html;
     }
 
-    // Process and Render HTML with Markdown, Tables, Math, and Mermaid
-    async function processAndRenderMarkdown(markdownText, targetElement) {
+    // Prepare HTML with Markdown, Tables, Math, and Mermaid Placeholders
+    function prepareMarkdownDOM(markdownText, targetElement) {
       // 1. Marked standard parse
       targetElement.innerHTML = marked.parse(markdownText);
 
@@ -880,26 +880,37 @@
         throwOnError: false
       });
 
-      // 4. Transform Mermaid code blocks into <div class="mermaid">
+      // 4. Transform Mermaid code blocks into <pre class="mermaid">
       const mermaidCodeBlocks = targetElement.querySelectorAll('pre code.language-mermaid');
       mermaidCodeBlocks.forEach(code => {
         const pre = code.parentElement;
-        const div = document.createElement('div');
+        const div = document.createElement('pre');
         div.className = 'mermaid';
-        div.textContent = code.textContent;
+        div.textContent = code.textContent.trim();
         pre.parentNode.insertBefore(div, pre);
         pre.remove();
       });
+    }
 
-      // 5. Run Mermaid Diagrams one-by-one safely
+    // Safely Render All Mermaid Diagrams in Container (Only when visible)
+    async function renderMermaidDiagrams(targetElement) {
       const mermaidNodes = targetElement.querySelectorAll('.mermaid');
+      if (!mermaidNodes.length) return;
+
       for (const node of mermaidNodes) {
+        if (node.getAttribute('data-processed') === 'true' || node.querySelector('svg')) continue;
         try {
           await mermaid.run({ nodes: [node] });
         } catch (e) {
           console.warn('Mermaid rendering issue on node:', e);
         }
       }
+    }
+
+    // Process and Render HTML with Markdown, Tables, Math, and Mermaid
+    async function processAndRenderMarkdown(markdownText, targetElement) {
+      prepareMarkdownDOM(markdownText, targetElement);
+      await renderMermaidDiagrams(targetElement);
     }
 
     // Load and Render Single Exchange Document
@@ -919,11 +930,10 @@
       renderSidebar(document.getElementById('sidebar-search').value);
       closeSidebar();
 
-      // Show Loading
+      // Show Loading Spinner
       const loading = document.getElementById('loading');
       const body = document.getElementById('markdown-body');
       loading.classList.remove('hidden');
-      body.classList.add('hidden');
 
       const targetFile = currentLang === 'ko' ? `ko/${ex.file}` : `en/${ex.file}`;
 
@@ -935,13 +945,19 @@
         }
         const markdown = await response.text();
 
-        await processAndRenderMarkdown(markdown, body);
+        // 1. Prepare DOM
+        prepareMarkdownDOM(markdown, body);
 
-        buildTOC();
-        setupScrollSpy();
-
+        // 2. Make body VISIBLE FIRST so Mermaid has real layout pixel dimensions
         loading.classList.add('hidden');
         body.classList.remove('hidden');
+
+        // 3. Render Mermaid diagrams now that body is visible!
+        await renderMermaidDiagrams(body);
+
+        // 4. Build TOC & ScrollSpy
+        buildTOC();
+        setupScrollSpy();
 
         document.getElementById('main-scroll-container').scrollTop = 0;
         lucide.createIcons();
@@ -1597,7 +1613,7 @@
     });
 
     function parseUrlHash() {
-      const hashStr = window.location.hash.replace('#/', '');
+      const hashStr = window.location.hash.replace(/^#\/?/, '');
       if (!hashStr) {
         loadExchange('nasdaq');
         return;
